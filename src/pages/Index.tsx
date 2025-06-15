@@ -134,7 +134,7 @@ const Index = () => {
             <img 
               src="/lovable-uploads/3b28a01a-7eb2-4e2f-8c08-eb963c70d76b.png" 
               alt="Recovery Point West Virginia" 
-              className="h-9 w-auto"
+              className="h-18 w-auto"
             />
           </div>
           <div className="hidden md:flex space-x-6">
