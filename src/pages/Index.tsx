@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -131,7 +132,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/45fd0024-28e6-4980-a6ce-8b5dc6718546.png" 
+              src="/lovable-uploads/3b28a01a-7eb2-4e2f-8c08-eb963c70d76b.png" 
               alt="Recovery Point West Virginia" 
               className="h-12 w-auto"
             />
