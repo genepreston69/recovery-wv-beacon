@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -99,7 +98,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
       {/* Crisis Bar */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
@@ -130,8 +129,12 @@ const Index = () => {
       {/* Navigation */}
       <nav className="bg-white/95 backdrop-blur-md sticky top-[52px] z-40 border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-green-700">
-            Recovery Point WV
+          <div className="flex items-center">
+            <img 
+              src="/lovable-uploads/45fd0024-28e6-4980-a6ce-8b5dc6718546.png" 
+              alt="Recovery Point West Virginia" 
+              className="h-12 w-auto"
+            />
           </div>
           <div className="hidden md:flex space-x-6">
             <a href="#programs" className="text-gray-700 hover:text-green-600 transition-colors">Programs</a>
@@ -348,7 +351,7 @@ const Index = () => {
       >
         <MessageCircle className="w-6 h-6" />
       </div>
-    </div>
+    </>
   );
 };
 
