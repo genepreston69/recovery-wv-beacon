@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Edit, Trash2 } from 'lucide-react';
+import { PhotoUpload } from './PhotoUpload';
 
 interface Story {
   id: string;
@@ -136,6 +137,14 @@ export const AdminPanel = () => {
     }
   };
 
+  const handlePhotoUpload = (url: string) => {
+    setFormData({ ...formData, featured_image_url: url });
+  };
+
+  const handlePhotoRemove = () => {
+    setFormData({ ...formData, featured_image_url: '' });
+  };
+
   if (!isAdmin) {
     return (
       <div className="max-w-4xl mx-auto p-6">
@@ -164,7 +173,7 @@ export const AdminPanel = () => {
             <CardTitle>{editingStory ? 'Edit Story' : 'Create New Story'}</CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <Input
                 placeholder="Story Title"
                 value={formData.title}
@@ -182,11 +191,16 @@ export const AdminPanel = () => {
                 value={formData.author_title}
                 onChange={(e) => setFormData({ ...formData, author_title: e.target.value })}
               />
-              <Input
-                placeholder="Featured Image URL (optional)"
-                value={formData.featured_image_url}
-                onChange={(e) => setFormData({ ...formData, featured_image_url: e.target.value })}
-              />
+              
+              <div>
+                <label className="block text-sm font-medium mb-2">Featured Image</label>
+                <PhotoUpload
+                  onUpload={handlePhotoUpload}
+                  currentImage={formData.featured_image_url}
+                  onRemove={handlePhotoRemove}
+                />
+              </div>
+
               <Textarea
                 placeholder="Story Content"
                 value={formData.content}
