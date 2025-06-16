@@ -1,23 +1,39 @@
 
 import React from 'react';
+import { AuthButton } from '@/components/auth/AuthButton';
+import { useAuth } from '@/hooks/useAuth';
+import { Button } from '@/components/ui/button';
+import { Shield } from 'lucide-react';
 
 export const Navigation = () => {
+  const { isAdmin } = useAuth();
+
   return (
-    <nav className="bg-white/95 backdrop-blur-md sticky top-[52px] z-40 border-b shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <img 
-            src="/lovable-uploads/3b28a01a-7eb2-4e2f-8c08-eb963c70d76b.png" 
-            alt="Recovery Point West Virginia" 
-            className="h-16 w-auto"
-          />
-        </div>
-        <div className="hidden md:flex space-x-6">
-          <a href="#programs" className="text-gray-700 hover:text-green-600 transition-colors">Programs</a>
-          <a href="#locations" className="text-gray-700 hover:text-green-600 transition-colors">Locations</a>
-          <a href="#success" className="text-gray-700 hover:text-green-600 transition-colors">Success Stories</a>
-          <a href="#support" className="text-gray-700 hover:text-green-600 transition-colors">Get Support</a>
-          <a href="#donate" className="text-gray-700 hover:text-green-600 transition-colors">Donate</a>
+    <nav className="bg-white shadow-sm border-b">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex items-center space-x-8">
+            <div className="text-2xl font-bold text-blue-700">Recovery Point</div>
+            <div className="hidden md:flex space-x-6">
+              <a href="#home" className="text-gray-600 hover:text-blue-700 transition-colors">Home</a>
+              <a href="#pathways" className="text-gray-600 hover:text-blue-700 transition-colors">Pathways</a>
+              <a href="#impact" className="text-gray-600 hover:text-blue-700 transition-colors">Impact</a>
+              <a href="#success" className="text-gray-600 hover:text-blue-700 transition-colors">Stories</a>
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            {isAdmin && (
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => window.location.href = '/admin'}
+              >
+                <Shield className="w-4 h-4 mr-1" />
+                Admin
+              </Button>
+            )}
+            <AuthButton />
+          </div>
         </div>
       </div>
     </nav>
