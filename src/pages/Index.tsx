@@ -14,7 +14,7 @@ const Index = () => {
   const { toast } = useToast();
   const [metrics, setMetrics] = useState({
     graduates: 1200,
-    successRate: 90,
+    successRate: 68,
     ridesProvided: 24901,
     currentlyServed: 1041,
     livesChanged: 3500,
