@@ -22,11 +22,11 @@ export const ImpactDashboard = ({ metrics }: ImpactDashboardProps) => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-green-600 to-green-700 text-white">
+    <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-700 text-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Real-Time Community Impact</h2>
-          <p className="text-xl text-green-100">See the difference we're making together, updated daily</p>
+          <p className="text-xl text-blue-100">See the difference we're making together, updated daily</p>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
