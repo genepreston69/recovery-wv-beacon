@@ -38,7 +38,7 @@ export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-8 py-3 rounded-full transition-all duration-300"
+              className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-blue-600 font-semibold px-8 py-3 rounded-full transition-all duration-300"
               onClick={() => onPathwaySelect('family')}
             >
               Help Someone I Love
