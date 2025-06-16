@@ -19,6 +19,7 @@ export const Navigation = () => {
               <a href="#pathways" className="text-gray-600 hover:text-blue-700 transition-colors">Pathways</a>
               <a href="#impact" className="text-gray-600 hover:text-blue-700 transition-colors">Impact</a>
               <a href="#success" className="text-gray-600 hover:text-blue-700 transition-colors">Stories</a>
+              <a href="/recovery-dynamics" className="text-gray-600 hover:text-blue-700 transition-colors">Recovery Dynamics</a>
             </div>
           </div>
           <div className="flex items-center space-x-4">
