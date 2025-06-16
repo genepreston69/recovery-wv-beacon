@@ -4,6 +4,7 @@ import { AuthButton } from '@/components/auth/AuthButton';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Navigation = () => {
   const { isAdmin } = useAuth();
@@ -13,13 +14,13 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
-            <div className="text-2xl font-bold text-blue-700">Recovery Point</div>
+            <Link to="/" className="text-2xl font-bold text-blue-700">Recovery Point</Link>
             <div className="hidden md:flex space-x-6">
-              <a href="#home" className="text-gray-600 hover:text-blue-700 transition-colors">Home</a>
+              <Link to="/" className="text-gray-600 hover:text-blue-700 transition-colors">Home</Link>
               <a href="#pathways" className="text-gray-600 hover:text-blue-700 transition-colors">Pathways</a>
               <a href="#impact" className="text-gray-600 hover:text-blue-700 transition-colors">Impact</a>
               <a href="#success" className="text-gray-600 hover:text-blue-700 transition-colors">Stories</a>
-              <a href="/recovery-dynamics" className="text-gray-600 hover:text-blue-700 transition-colors">Recovery Dynamics</a>
+              <Link to="/recovery-dynamics" className="text-gray-600 hover:text-blue-700 transition-colors">Recovery Dynamics</Link>
             </div>
           </div>
           <div className="flex items-center space-x-4">
