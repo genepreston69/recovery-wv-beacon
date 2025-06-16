@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AuthButton } from '@/components/auth/AuthButton';
 import { useAuth } from '@/hooks/useAuth';
@@ -14,7 +13,13 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
-            <Link to="/" className="text-2xl font-bold text-blue-700">Recovery Point</Link>
+            <Link to="/" className="flex items-center">
+              <img 
+                src="https://pvxbkqdeyrhuumjtwgzm.supabase.co/storage/v1/object/public/story-images//RPWV%20Logo%20with%20transparent%20background.png" 
+                alt="Recovery Point Logo" 
+                className="h-12 w-auto"
+              />
+            </Link>
             <div className="hidden md:flex space-x-6">
               <Link to="/" className="text-gray-600 hover:text-blue-700 transition-colors">Home</Link>
               <a href="#pathways" className="text-gray-600 hover:text-blue-700 transition-colors">Pathways</a>
