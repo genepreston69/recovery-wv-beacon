@@ -24,8 +24,8 @@ export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
             Recovery is <span className="text-yellow-400">Possible</span>
           </h1>
           <p className="text-xl text-blue-100">
-            <span className="font-bold">Free</span>, long-term recovery programs across West Virginia. No cost. No barriers. 
-            Just hope, healing, and a new beginning.
+            <span className="font-bold">Free</span>, <span className="font-bold">long-term recovery programs across West Virginia. No cost. No barriers. 
+            Just hope, healing, and a new beginning.</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button 
