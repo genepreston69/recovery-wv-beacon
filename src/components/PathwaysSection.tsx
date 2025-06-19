@@ -52,7 +52,7 @@ export const PathwaysSection = ({ onPathwaySelect }: PathwaysSectionProps) => {
           {pathways.map((pathway) => (
             <Card 
               key={pathway.id}
-              className="group cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg"
+              className="group cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg flex flex-col h-full"
               onClick={() => onPathwaySelect(pathway.id)}
             >
               <CardHeader className="text-center pb-4">
@@ -63,11 +63,11 @@ export const PathwaysSection = ({ onPathwaySelect }: PathwaysSectionProps) => {
                   {pathway.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-center">
-                <CardDescription className="mb-6">
+              <CardContent className="text-center flex flex-col flex-grow">
+                <CardDescription className="mb-6 flex-grow">
                   {pathway.description}
                 </CardDescription>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 rounded-full">
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 rounded-full mt-auto">
                   Get Started
                 </Button>
               </CardContent>
