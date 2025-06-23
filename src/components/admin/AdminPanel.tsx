@@ -8,8 +8,9 @@ import { Switch } from '@/components/ui/switch';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, Upload } from 'lucide-react';
 import { PhotoUpload } from './PhotoUpload';
+import { ContentUpload } from './ContentUpload';
 
 interface Story {
   id: string;
@@ -28,6 +29,7 @@ export const AdminPanel = () => {
   const [stories, setStories] = useState<Story[]>([]);
   const [editingStory, setEditingStory] = useState<Story | null>(null);
   const [isCreating, setIsCreating] = useState(false);
+  const [showContentUpload, setShowContentUpload] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -145,6 +147,11 @@ export const AdminPanel = () => {
     setFormData({ ...formData, featured_image_url: '' });
   };
 
+  const handleContentUploaded = () => {
+    // Refresh or update content list if needed
+    toast({ title: "Content uploaded successfully" });
+  };
+
   if (!isAdmin) {
     return (
       <div className="max-w-4xl mx-auto p-6">
@@ -160,12 +167,25 @@ export const AdminPanel = () => {
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Success Stories Admin</h1>
-        <Button onClick={() => setIsCreating(true)}>
-          <Plus className="w-4 h-4 mr-2" />
-          New Story
-        </Button>
+        <h1 className="text-3xl font-bold">Content Management Admin</h1>
+        <div className="flex gap-2">
+          <Button 
+            variant="outline"
+            onClick={() => setShowContentUpload(!showContentUpload)}
+          >
+            <Upload className="w-4 h-4 mr-2" />
+            Upload Content
+          </Button>
+          <Button onClick={() => setIsCreating(true)}>
+            <Plus className="w-4 h-4 mr-2" />
+            New Story
+          </Button>
+        </div>
       </div>
+
+      {showContentUpload && (
+        <ContentUpload onContentUploaded={handleContentUploaded} />
+      )}
 
       {isCreating && (
         <Card>
@@ -244,6 +264,7 @@ export const AdminPanel = () => {
       )}
 
       <div className="grid gap-4">
+        <h2 className="text-2xl font-semibold">Manage Stories</h2>
         {stories.map((story) => (
           <Card key={story.id}>
             <CardContent className="p-6">

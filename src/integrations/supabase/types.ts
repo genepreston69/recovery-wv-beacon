@@ -36,6 +36,108 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_checkins: {
+        Row: {
+          challenges_faced: string | null
+          checkin_date: string
+          created_at: string
+          goals_for_tomorrow: string | null
+          gratitude_note: string | null
+          id: string
+          mood_rating: number | null
+          sobriety_confidence: number | null
+          user_id: string
+        }
+        Insert: {
+          challenges_faced?: string | null
+          checkin_date?: string
+          created_at?: string
+          goals_for_tomorrow?: string | null
+          gratitude_note?: string | null
+          id?: string
+          mood_rating?: number | null
+          sobriety_confidence?: number | null
+          user_id: string
+        }
+        Update: {
+          challenges_faced?: string | null
+          checkin_date?: string
+          created_at?: string
+          goals_for_tomorrow?: string | null
+          gratitude_note?: string | null
+          id?: string
+          mood_rating?: number | null
+          sobriety_confidence?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      emergency_contacts: {
+        Row: {
+          contact_email: string | null
+          contact_name: string
+          contact_phone: string | null
+          created_at: string
+          id: string
+          is_primary: boolean | null
+          relationship: string | null
+          user_id: string
+        }
+        Insert: {
+          contact_email?: string | null
+          contact_name: string
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          is_primary?: boolean | null
+          relationship?: string | null
+          user_id: string
+        }
+        Update: {
+          contact_email?: string | null
+          contact_name?: string
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          is_primary?: boolean | null
+          relationship?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          is_emergency: boolean | null
+          is_read: boolean | null
+          receiver_id: string
+          sender_id: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          is_emergency?: boolean | null
+          is_read?: boolean | null
+          receiver_id: string
+          sender_id: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          is_emergency?: boolean | null
+          is_read?: boolean | null
+          receiver_id?: string
+          sender_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       note_categories: {
         Row: {
           category_name: string
@@ -88,6 +190,51 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      profiles: {
+        Row: {
+          city: string
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          is_sponsor: boolean
+          last_name: string
+          phone: string | null
+          state: string
+          street_address: string
+          updated_at: string
+          zip_code: string
+        }
+        Insert: {
+          city: string
+          created_at?: string
+          email: string
+          first_name: string
+          id: string
+          is_sponsor?: boolean
+          last_name: string
+          phone?: string | null
+          state: string
+          street_address: string
+          updated_at?: string
+          zip_code: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          is_sponsor?: boolean
+          last_name?: string
+          phone?: string | null
+          state?: string
+          street_address?: string
+          updated_at?: string
+          zip_code?: string
+        }
+        Relationships: []
       }
       reading_progress: {
         Row: {
@@ -178,6 +325,33 @@ export type Database = {
           streak_count?: number | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      sponsor_relationships: {
+        Row: {
+          created_at: string
+          id: string
+          sponsee_id: string
+          sponsor_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          sponsee_id: string
+          sponsor_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          sponsee_id?: string
+          sponsor_id?: string
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }
