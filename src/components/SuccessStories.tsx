@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 
 interface Story {
@@ -82,24 +83,26 @@ export const SuccessStories = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {stories.map((story) => (
-            <Card key={story.id} className="bg-gray-50 border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6">
-                {story.featured_image_url && (
-                  <img 
-                    src={story.featured_image_url} 
-                    alt={story.title}
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                )}
-                <h3 className="text-xl font-bold text-blue-700 mb-3">{story.title}</h3>
-                <blockquote className="text-gray-700 mb-4 italic">
-                  "{story.content.length > 150 ? story.content.substring(0, 150) + '...' : story.content}"
-                </blockquote>
-                <div className="text-blue-600 font-semibold">
-                  - {story.author_name}{story.author_title && `, ${story.author_title}`}
-                </div>
-              </CardContent>
-            </Card>
+            <Link key={story.id} to={`/success-story/${story.id}`}>
+              <Card className="bg-gray-50 border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                <CardContent className="p-6">
+                  {story.featured_image_url && (
+                    <img 
+                      src={story.featured_image_url} 
+                      alt={story.title}
+                      className="w-full h-48 object-cover rounded-lg mb-4"
+                    />
+                  )}
+                  <h3 className="text-xl font-bold text-blue-700 mb-3">{story.title}</h3>
+                  <blockquote className="text-gray-700 mb-4 italic">
+                    "{story.content.length > 150 ? story.content.substring(0, 150) + '...' : story.content}"
+                  </blockquote>
+                  <div className="text-blue-600 font-semibold">
+                    - {story.author_name}{story.author_title && `, ${story.author_title}`}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
