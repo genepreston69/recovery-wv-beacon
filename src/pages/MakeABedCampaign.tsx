@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
@@ -48,7 +47,7 @@ const MakeABedCampaign = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Total daily cost per person:</span>
-                    <span className="font-semibold text-lg">$32</span>
+                    <span className="font-semibold text-lg">$47</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">State funding received:</span>
@@ -57,7 +56,7 @@ const MakeABedCampaign = () => {
                   <hr className="my-2" />
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600 font-medium">Daily deficit per person:</span>
-                    <span className="font-bold text-red-600 text-xl">$14</span>
+                    <span className="font-bold text-red-600 text-xl">$29</span>
                   </div>
                 </div>
               </CardContent>
@@ -73,7 +72,7 @@ const MakeABedCampaign = () => {
             </CardHeader>
             <CardContent>
               <p className="text-white/90 text-lg mb-6 leading-relaxed">
-                Your sponsorship of $32 provides one full day of housing, meals, counseling, 
+                Your sponsorship of $47 provides one full day of housing, meals, counseling, 
                 and comprehensive support services for someone on their recovery journey. 
                 Every donation directly impacts a life and helps bridge the gap between 
                 state funding and the true cost of care.
@@ -83,7 +82,7 @@ const MakeABedCampaign = () => {
                   size="lg" 
                   className="bg-white text-orange-600 hover:bg-gray-100 font-semibold px-8 py-3 rounded-full"
                 >
-                  Sponsor a Bed - $32
+                  Sponsor a Bed - $47
                 </Button>
                 <Button 
                   size="lg" 
