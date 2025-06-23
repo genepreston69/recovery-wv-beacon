@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Home, Calendar, Car } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const QuickActions = () => {
   return (
@@ -24,9 +25,11 @@ export const QuickActions = () => {
               <p className="text-gray-600 mb-4">
                 $32 provides one day of housing and support for someone in recovery.
               </p>
-              <Button className="w-full bg-orange-500 hover:bg-orange-600 rounded-full">
-                Sponsor a Bed
-              </Button>
+              <Link to="/make-a-bed-campaign">
+                <Button className="w-full bg-orange-500 hover:bg-orange-600 rounded-full">
+                  Learn More
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
