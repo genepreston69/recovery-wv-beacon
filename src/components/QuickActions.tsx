@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -61,7 +62,7 @@ export const QuickActions = () => {
                 Volunteer to drive someone to treatment, job interviews, or appointments.
               </p>
               <Button className="w-full bg-purple-500 hover:bg-purple-600 rounded-full">
-                Volunteer to Drive
+                Become a Driver
               </Button>
             </CardContent>
           </Card>
