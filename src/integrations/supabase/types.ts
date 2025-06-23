@@ -105,6 +105,140 @@ export type Database = {
         }
         Relationships: []
       }
+      meeting_attendance: {
+        Row: {
+          attended_date: string
+          created_at: string
+          id: string
+          meeting_id: string
+          notes: string | null
+          rating: number | null
+          user_id: string
+        }
+        Insert: {
+          attended_date: string
+          created_at?: string
+          id?: string
+          meeting_id: string
+          notes?: string | null
+          rating?: number | null
+          user_id: string
+        }
+        Update: {
+          attended_date?: string
+          created_at?: string
+          id?: string
+          meeting_id?: string
+          notes?: string | null
+          rating?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meeting_attendance_meeting_id_fkey"
+            columns: ["meeting_id"]
+            isOneToOne: false
+            referencedRelation: "meetings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meetings: {
+        Row: {
+          created_at: string
+          day: number | null
+          district: string | null
+          email: string | null
+          end_time: string | null
+          formatted_address: string | null
+          group_name: string | null
+          group_notes: string | null
+          id: string
+          latitude: number | null
+          location: string | null
+          location_notes: string | null
+          longitude: number | null
+          meeting_guide_id: string | null
+          name: string
+          notes: string | null
+          paypal: string | null
+          phone: string | null
+          region: string | null
+          slug: string | null
+          square: string | null
+          sub_district: string | null
+          time: string | null
+          timezone: string | null
+          types: string[] | null
+          updated: string | null
+          updated_at: string
+          url: string | null
+          venmo: string | null
+        }
+        Insert: {
+          created_at?: string
+          day?: number | null
+          district?: string | null
+          email?: string | null
+          end_time?: string | null
+          formatted_address?: string | null
+          group_name?: string | null
+          group_notes?: string | null
+          id?: string
+          latitude?: number | null
+          location?: string | null
+          location_notes?: string | null
+          longitude?: number | null
+          meeting_guide_id?: string | null
+          name: string
+          notes?: string | null
+          paypal?: string | null
+          phone?: string | null
+          region?: string | null
+          slug?: string | null
+          square?: string | null
+          sub_district?: string | null
+          time?: string | null
+          timezone?: string | null
+          types?: string[] | null
+          updated?: string | null
+          updated_at?: string
+          url?: string | null
+          venmo?: string | null
+        }
+        Update: {
+          created_at?: string
+          day?: number | null
+          district?: string | null
+          email?: string | null
+          end_time?: string | null
+          formatted_address?: string | null
+          group_name?: string | null
+          group_notes?: string | null
+          id?: string
+          latitude?: number | null
+          location?: string | null
+          location_notes?: string | null
+          longitude?: number | null
+          meeting_guide_id?: string | null
+          name?: string
+          notes?: string | null
+          paypal?: string | null
+          phone?: string | null
+          region?: string | null
+          slug?: string | null
+          square?: string | null
+          sub_district?: string | null
+          time?: string | null
+          timezone?: string | null
+          types?: string[] | null
+          updated?: string | null
+          updated_at?: string
+          url?: string | null
+          venmo?: string | null
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           content: string
@@ -497,6 +631,39 @@ export type Database = {
           },
         ]
       }
+      user_meeting_preferences: {
+        Row: {
+          created_at: string
+          id: string
+          preferred_days: number[] | null
+          preferred_distance_miles: number | null
+          preferred_times: string[] | null
+          preferred_types: string[] | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          preferred_days?: number[] | null
+          preferred_distance_miles?: number | null
+          preferred_times?: string[] | null
+          preferred_types?: string[] | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          preferred_days?: number[] | null
+          preferred_distance_miles?: number | null
+          preferred_times?: string[] | null
+          preferred_types?: string[] | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_notes: {
         Row: {
           category_id: string | null
@@ -571,6 +738,44 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      user_saved_meetings: {
+        Row: {
+          created_at: string
+          id: string
+          meeting_id: string
+          notes: string | null
+          reminder_enabled: boolean | null
+          reminder_minutes: number | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          meeting_id: string
+          notes?: string | null
+          reminder_enabled?: boolean | null
+          reminder_minutes?: number | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          meeting_id?: string
+          notes?: string | null
+          reminder_enabled?: boolean | null
+          reminder_minutes?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_saved_meetings_meeting_id_fkey"
+            columns: ["meeting_id"]
+            isOneToOne: false
+            referencedRelation: "meetings"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       users: {
         Row: {
