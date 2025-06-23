@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { AuthButton } from '@/components/auth/AuthButton';
 import { useAuth } from '@/hooks/useAuth';
@@ -22,7 +23,6 @@ export const Navigation = () => {
             </Link>
             <div className="hidden md:flex space-x-6">
               <Link to="/" className="text-gray-600 hover:text-blue-700 transition-colors">Home</Link>
-              <a href="#pathways" className="text-gray-600 hover:text-blue-700 transition-colors">Pathways</a>
               <a href="#impact" className="text-gray-600 hover:text-blue-700 transition-colors">Impact</a>
               <a href="#success" className="text-gray-600 hover:text-blue-700 transition-colors">Stories</a>
               <Link to="/recovery-dynamics" className="text-gray-600 hover:text-blue-700 transition-colors">Recovery Dynamics</Link>
