@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Home, Calendar, Car } from 'lucide-react';
+import { Bed, Calendar, Car } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const QuickActions = () => {
@@ -17,13 +16,13 @@ export const QuickActions = () => {
           <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-blue-700">
-                <Home className="w-6 h-6" />
+                <Bed className="w-6 h-6" />
                 Make a Bed Campaign
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 mb-4">
-                $32 provides one day of housing and support for someone in recovery.
+                $47 provides one day of housing and support for someone in recovery.
               </p>
               <Link to="/make-a-bed-campaign">
                 <Button className="w-full bg-orange-500 hover:bg-orange-600 rounded-full">
