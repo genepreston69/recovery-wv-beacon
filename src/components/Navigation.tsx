@@ -13,11 +13,11 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center py-1">
               <img 
                 src="https://pvxbkqdeyrhuumjtwgzm.supabase.co/storage/v1/object/public/story-images//RPWV%20Logo%20with%20transparent%20background.png" 
                 alt="Recovery Point Logo" 
-                className="h-15 w-auto"
+                className="h-14 w-auto"
               />
             </Link>
             <div className="hidden md:flex space-x-6">
