@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { AuthButton } from '@/components/auth/AuthButton';
 import { useAuth } from '@/hooks/useAuth';
@@ -15,9 +16,11 @@ export const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <Link to="/" className="flex items-center py-1">
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-gray-900 leading-none">RECOVERY</span>
-                <span className="text-sm font-medium text-gray-600 leading-none">POINT</span>
+              <div className="flex items-center gap-1">
+                <span className="text-2xl font-bold text-black tracking-wide">RECOVERY</span>
+                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">POINT</span>
+                </div>
               </div>
             </Link>
             <div className="hidden md:flex space-x-6">
@@ -45,3 +48,4 @@ export const Navigation = () => {
     </nav>
   );
 };
+
