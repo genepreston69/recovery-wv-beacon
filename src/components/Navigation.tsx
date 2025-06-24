@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { AuthButton } from '@/components/auth/AuthButton';
 import { useAuth } from '@/hooks/useAuth';
@@ -14,11 +15,10 @@ export const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <Link to="/" className="flex items-center py-1">
-              <img 
-                src="https://pvxbkqdeyrhuumjtwgzm.supabase.co/storage/v1/object/public/story-images//RPWV%20Logo%20with%20transparent%20background.png" 
-                alt="Recovery Point Logo" 
-                className="h-14 w-auto"
-              />
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-gray-900 leading-none">RECOVERY</span>
+                <span className="text-sm font-medium text-gray-600 leading-none">POINT</span>
+              </div>
             </Link>
             <div className="hidden md:flex space-x-6">
               <Link to="/" className="text-gray-600 hover:text-blue-700 transition-colors">Home</Link>
