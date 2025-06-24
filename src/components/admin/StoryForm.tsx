@@ -1,11 +1,13 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { PhotoUpload } from './PhotoUpload';
+import { PhotoGallery } from './PhotoGallery';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface Story {
   id: string;
@@ -40,7 +42,13 @@ export const StoryForm = ({
   onSubmit, 
   onCancel 
 }: StoryFormProps) => {
+  const [activeTab, setActiveTab] = useState('upload');
+
   const handlePhotoUpload = (url: string) => {
+    setFormData({ ...formData, featured_image_url: url });
+  };
+
+  const handlePhotoSelect = (url: string) => {
     setFormData({ ...formData, featured_image_url: url });
   };
 
@@ -75,11 +83,25 @@ export const StoryForm = ({
           
           <div>
             <label className="block text-sm font-medium mb-2">Featured Image</label>
-            <PhotoUpload
-              onUpload={handlePhotoUpload}
-              currentImage={formData.featured_image_url}
-              onRemove={handlePhotoRemove}
-            />
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList>
+                <TabsTrigger value="upload">Upload New</TabsTrigger>
+                <TabsTrigger value="gallery">Choose from Gallery</TabsTrigger>
+              </TabsList>
+              <TabsContent value="upload">
+                <PhotoUpload
+                  onUpload={handlePhotoUpload}
+                  currentImage={formData.featured_image_url}
+                  onRemove={handlePhotoRemove}
+                />
+              </TabsContent>
+              <TabsContent value="gallery">
+                <PhotoGallery
+                  onPhotoSelect={handlePhotoSelect}
+                  selectedPhoto={formData.featured_image_url}
+                />
+              </TabsContent>
+            </Tabs>
           </div>
 
           <Textarea
