@@ -4,10 +4,11 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Upload } from 'lucide-react';
+import { Plus, Upload, Image } from 'lucide-react';
 import { ContentUpload } from './ContentUpload';
 import { StoryForm } from './StoryForm';
 import { StoryList } from './StoryList';
+import { PhotoGallery } from './PhotoGallery';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface Story {
@@ -37,6 +38,7 @@ export const AdminPanel = () => {
   const [editingStory, setEditingStory] = useState<Story | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [showContentUpload, setShowContentUpload] = useState(false);
+  const [showPhotoGallery, setShowPhotoGallery] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
@@ -164,6 +166,13 @@ export const AdminPanel = () => {
             <Upload className="w-4 h-4 mr-2" />
             Upload Content
           </Button>
+          <Button 
+            variant="outline"
+            onClick={() => setShowPhotoGallery(!showPhotoGallery)}
+          >
+            <Image className="w-4 h-4 mr-2" />
+            Photo Gallery
+          </Button>
           <Button onClick={() => setIsCreating(true)}>
             <Plus className="w-4 h-4 mr-2" />
             New Story
@@ -173,6 +182,10 @@ export const AdminPanel = () => {
 
       {showContentUpload && (
         <ContentUpload onContentUploaded={handleContentUploaded} />
+      )}
+
+      {showPhotoGallery && (
+        <PhotoGallery />
       )}
 
       {isCreating && (
