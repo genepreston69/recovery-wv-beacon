@@ -53,8 +53,8 @@ export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
               <div className="text-sm text-blue-100">Program Graduates</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-yellow-400">{metrics.successRate}%</div>
-              <div className="text-sm text-blue-100">Success Rate</div>
+              <div className="text-4xl font-bold text-yellow-400">12,000+</div>
+              <div className="text-sm text-blue-100">Individuals Served</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-yellow-400">{metrics.ridesProvided.toLocaleString()}</div>
