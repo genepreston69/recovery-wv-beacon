@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { PenTool, Upload, Layout, Home, LightBulb, HelpCircle, Plus, Info } from 'lucide-react';
+import { PenTool, Upload, Layout, Home, Lightbulb, HelpCircle, Plus, Info } from 'lucide-react';
 import { ContentUpload } from './ContentUpload';
 import { StoryForm } from './StoryForm';
 import { StoryList } from './StoryList';
@@ -161,7 +161,7 @@ export const AdminPanel = () => {
     { id: 'create-story', label: 'Create a Story', icon: PenTool, section: 'Core Functions' },
     { id: 'upload-images', label: 'Upload Images', icon: Upload, section: 'Core Functions' },
     { id: 'manage-content', label: 'Manage Content', icon: Layout, section: 'Core Functions' },
-    { id: 'best-practices', label: 'Best Practices', icon: LightBulb, section: 'Resources' },
+    { id: 'best-practices', label: 'Best Practices', icon: Lightbulb, section: 'Resources' },
     { id: 'help', label: 'Help & Support', icon: HelpCircle, section: 'Resources' },
   ];
 
