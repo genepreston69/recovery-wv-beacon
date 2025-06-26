@@ -1,4 +1,5 @@
 import React from 'react';
+import { CrisisBar } from '@/components/CrisisBar';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,16 +8,7 @@ import { Phone, MessageCircle, Search, Users, BookOpen, Smartphone, Heart, Calen
 const HelpLoved = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Crisis Banner */}
-      <div className="bg-red-500 text-white text-center py-3 px-4">
-        <p className="text-sm md:text-base">
-          Need immediate help? Call SAMHSA's National Helpline:{' '}
-          <a href="tel:1-800-662-4357" className="font-bold underline hover:no-underline">
-            1-800-662-HELP (4357)
-          </a>{' '}
-          • Available 24/7
-        </p>
-      </div>
+      <CrisisBar />
 
       <Navigation />
 
