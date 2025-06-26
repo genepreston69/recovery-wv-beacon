@@ -43,10 +43,11 @@ export const useAuth = () => {
         .select('role')
         .eq('user_id', userId)
         .eq('role', 'admin')
-        .single();
+        .maybeSingle(); // Use maybeSingle instead of single to handle no results
       
       setIsAdmin(!!data && !error);
     } catch (error) {
+      console.error('Error checking admin role:', error);
       setIsAdmin(false);
     }
   };
