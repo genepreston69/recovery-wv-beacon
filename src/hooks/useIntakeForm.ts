@@ -169,8 +169,8 @@ export const useIntakeForm = () => {
         throw new Error('User not authenticated');
       }
 
-      // Map form data to database structure
-      const intakeData: IntakeInsert | IntakeUpdate = {
+      // Map form data to database structure with proper typing
+      const baseIntakeData = {
         user_id: user.id,
         facility: formData.facility,
         
@@ -259,8 +259,10 @@ export const useIntakeForm = () => {
         family_substance_abuse_history: formData.familyInfo.familySubstanceAbuseHistory,
       };
 
+      let intakeData: IntakeInsert | IntakeUpdate = baseIntakeData;
+
       if (includeCompletedSteps) {
-        intakeData.completed_steps = completedSteps;
+        intakeData = { ...baseIntakeData, completed_steps: completedSteps };
       }
 
       let result;
@@ -268,7 +270,7 @@ export const useIntakeForm = () => {
         // Update existing intake
         result = await supabase
           .from('intakes')
-          .update(intakeData)
+          .update(intakeData as IntakeUpdate)
           .eq('id', intakeId)
           .select()
           .single();
@@ -276,7 +278,7 @@ export const useIntakeForm = () => {
         // Create new intake
         result = await supabase
           .from('intakes')
-          .insert(intakeData)
+          .insert(intakeData as IntakeInsert)
           .select()
           .single();
       }

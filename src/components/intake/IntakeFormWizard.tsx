@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -19,7 +18,7 @@ import { FamilyInfoStep } from './steps/FamilyInfoStep';
 import { ReviewStep } from './steps/ReviewStep';
 
 // Import the custom hook
-import { useIntakeForm, FormData } from '@/hooks/useIntakeForm';
+import { useIntakeForm, type FormData } from '@/hooks/useIntakeForm';
 
 const STEPS = [
   { id: 'welcome', title: 'Welcome', component: WelcomeStep },
@@ -225,4 +224,5 @@ export const IntakeFormWizard: React.FC = () => {
   );
 };
 
-export { FormData };
+export { IntakeFormWizard };
+export type { FormData };
