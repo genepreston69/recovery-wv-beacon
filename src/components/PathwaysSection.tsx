@@ -3,12 +3,40 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Heart, Stethoscope, DollarSign } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface PathwaysSectionProps {
   onPathwaySelect: (type: string) => void;
 }
 
 export const PathwaysSection = ({ onPathwaySelect }: PathwaysSectionProps) => {
+  const navigate = useNavigate();
+
+  const handlePathwayClick = (pathwayId: string) => {
+    console.log(`Pathway ${pathwayId} clicked - navigating...`);
+    
+    // Call the original toast function
+    onPathwaySelect(pathwayId);
+    
+    // Navigate to appropriate page based on pathway
+    switch (pathwayId) {
+      case 'individual':
+        navigate('/intake');
+        break;
+      case 'family':
+        navigate('/helploved');
+        break;
+      case 'professional':
+        // For now, show toast until professional referral page is created
+        break;
+      case 'support':
+        // For now, show toast until donation page is created
+        break;
+      default:
+        break;
+    }
+  };
+
   const pathways = [
     {
       id: 'individual',
@@ -53,7 +81,7 @@ export const PathwaysSection = ({ onPathwaySelect }: PathwaysSectionProps) => {
             <Card 
               key={pathway.id}
               className="group cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg flex flex-col h-full"
-              onClick={() => onPathwaySelect(pathway.id)}
+              onClick={() => handlePathwayClick(pathway.id)}
             >
               <CardHeader className="text-center pb-4">
                 <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${pathway.gradient} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
