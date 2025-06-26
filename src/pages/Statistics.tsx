@@ -1,719 +1,1132 @@
-import React, { useEffect, useRef } from 'react';
+
+import React, { useEffect } from 'react';
 import { Navigation } from '@/components/Navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
-import { AlertTriangle, TrendingUp, TrendingDown, ArrowRight, Users, Heart, Shield, FileText, Download } from 'lucide-react';
 
 const Statistics = () => {
-  const animatedRefs = useRef<(HTMLDivElement | null)[]>([]);
-
   useEffect(() => {
-    // Animate metric values on load
-    const animateValue = (element: HTMLElement, start: number, end: number, duration: number, isPercentage = true) => {
+    // Load Chart.js
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js';
+    script.onload = () => {
+      initializeCharts();
+      animateMetrics();
+      setupInteractivity();
+    };
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  const initializeCharts = () => {
+    // @ts-ignore
+    const Chart = window.Chart;
+    if (!Chart) return;
+
+    // Chart configurations with recovery colors
+    Chart.defaults.color = '#64748b';
+    Chart.defaults.borderColor = '#e2e8f0';
+    
+    // Legal Status Chart
+    const legalCtx = document.getElementById('legalChart')?.getContext('2d');
+    if (legalCtx) {
+      new Chart(legalCtx, {
+        type: 'bar',
+        data: {
+          labels: ['On Probation/Parole', 'Pending Charges', 'Legal Actions Against'],
+          datasets: [{
+            label: 'Percentage of Clients',
+            data: [50.0, 36.6, 13.8],
+            backgroundColor: [
+              'rgba(76, 81, 191, 0.8)',
+              'rgba(102, 126, 234, 0.8)',
+              'rgba(76, 81, 191, 0.8)'
+            ],
+            borderRadius: 8,
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'Current Legal Status',
+              font: { size: 16, weight: 'normal' },
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                callback: function(value: any) {
+                  return value + '%';
+                }
+              },
+              grid: {
+                color: 'rgba(0, 0, 0, 0.05)'
+              }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+    
+    // Quality of Life Chart
+    const qolCtx = document.getElementById('qolChart')?.getContext('2d');
+    if (qolCtx) {
+      new Chart(qolCtx, {
+        type: 'radar',
+        data: {
+          labels: [
+            'Mental Health',
+            'Overall Health',
+            'Recovery Support',
+            'Financial Security',
+            'Living Conditions',
+            'Education/Skills'
+          ],
+          datasets: [{
+            label: 'Good/Excellent',
+            data: [52.7, 64.4, 83.4, 29.5, 69.0, 50],
+            borderColor: 'rgba(76, 81, 191, 0.8)',
+            backgroundColor: 'rgba(76, 81, 191, 0.2)',
+            pointBackgroundColor: 'rgba(76, 81, 191, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(76, 81, 191, 1)'
+          }, {
+            label: 'Poor/Terrible',
+            data: [13.2, 8.1, 6.4, 36.4, 12.7, 25],
+            borderColor: 'rgba(159, 122, 234, 0.8)',
+            backgroundColor: 'rgba(159, 122, 234, 0.2)',
+            pointBackgroundColor: 'rgba(159, 122, 234, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(159, 122, 234, 1)'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Quality of Life Indicators',
+              font: { size: 16, weight: 'normal' },
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                stepSize: 20,
+                callback: function(value: any) {
+                  return value + '%';
+                }
+              },
+              grid: {
+                color: 'rgba(0, 0, 0, 0.1)'
+              },
+              angleLines: {
+                color: 'rgba(0, 0, 0, 0.1)'
+              }
+            }
+          }
+        }
+      });
+    }
+    
+    // Trauma and Family Impact Chart
+    const traumaCtx = document.getElementById('traumaChart')?.getContext('2d');
+    if (traumaCtx) {
+      new Chart(traumaCtx, {
+        type: 'doughnut',
+        data: {
+          labels: [
+            'Treated for Abuse (337)',
+            'No Abuse Treatment (1,182)',
+            'Unknown (49)'
+          ],
+          datasets: [{
+            data: [337, 1182, 49],
+            backgroundColor: [
+              'rgba(159, 122, 234, 0.8)',
+              'rgba(76, 81, 191, 0.8)',
+              'rgba(226, 232, 240, 0.8)'
+            ],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Abuse Treatment History Among Clients',
+              font: { size: 16, weight: 'normal' },
+              padding: { bottom: 20 }
+            },
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 15,
+                font: { size: 12 }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context: any) {
+                  const label = context.label || '';
+                  const value = context.parsed;
+                  const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0);
+                  const percentage = ((value / total) * 100).toFixed(1);
+                  return label + ': ' + percentage + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+    
+    // Abuse Types Chart
+    const abuseTypesCtx = document.getElementById('abuseTypesChart')?.getContext('2d');
+    if (abuseTypesCtx) {
+      new Chart(abuseTypesCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Verbal Abuse', 'Physical Abuse', 'Sexual Abuse', 'Rape', 'Incest'],
+          datasets: [{
+            label: 'Number of Clients',
+            data: [428, 427, 305, 185, 59],
+            backgroundColor: [
+              'rgba(159, 122, 234, 0.8)',
+              'rgba(159, 122, 234, 0.8)',
+              'rgba(102, 126, 234, 0.8)',
+              'rgba(76, 81, 191, 0.8)',
+              'rgba(76, 81, 191, 0.8)'
+            ],
+            borderRadius: 8,
+            borderWidth: 0
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'Types of Abuse Experienced by Clients',
+              font: { size: 16, weight: 'normal' },
+              padding: { bottom: 20 }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context: any) {
+                  const value = context.parsed.x;
+                  const percentage = ((value / 1568) * 100).toFixed(1);
+                  return `${value} clients (${percentage}%)`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 500,
+              grid: {
+                color: 'rgba(0, 0, 0, 0.05)'
+              }
+            },
+            y: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+  };
+
+  const animateMetrics = () => {
+    // Animated counter effect
+    function animateValue(element: HTMLElement, start: number, end: number, duration: number, isPercentage = true) {
       let startTimestamp: number | null = null;
       const step = (timestamp: number) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
         const currentValue = Math.floor(progress * (end - start) + start);
-        element.textContent = isPercentage ? currentValue + '%' : currentValue.toLocaleString();
+        element.textContent = isPercentage ? currentValue + '%' : currentValue + '+';
         if (progress < 1) {
           window.requestAnimationFrame(step);
         }
       };
       window.requestAnimationFrame(step);
-    };
-
+    }
+    
+    // Animate metric values on load
     setTimeout(() => {
-      animatedRefs.current.forEach((el, index) => {
-        if (el) {
-          const valueElement = el.querySelector('.metric-value') as HTMLElement;
-          if (valueElement) {
-            const text = valueElement.getAttribute('data-value') || '0';
-            const isPercentage = text.includes('%');
-            const value = parseFloat(text);
-            
-            if (!isNaN(value)) {
-              valueElement.textContent = isPercentage ? '0%' : '0';
-              setTimeout(() => animateValue(valueElement, 0, value, 1500, isPercentage), index * 100);
-            }
+      document.querySelectorAll('.metric-value').forEach(el => {
+        const element = el as HTMLElement;
+        const text = element.textContent || '';
+        const isPercentage = text.includes('%');
+        const value = parseFloat(text);
+        
+        if (!isNaN(value)) {
+          if (isPercentage) {
+            element.textContent = '0%';
+            setTimeout(() => animateValue(element, 0, value, 1500, true), 300);
+          } else if (text.includes('+')) {
+            element.textContent = '0+';
+            setTimeout(() => animateValue(element, 0, value, 1500, false), 300);
           }
         }
       });
-    }, 300);
-  }, []);
+    }, 100);
+  };
 
-  const legalData = [
-    { name: 'On Probation/Parole', value: 50.0 },
-    { name: 'Pending Charges', value: 36.6 },
-    { name: 'Legal Actions Against', value: 13.8 }
-  ];
-
-  const qolData = [
-    { metric: 'Mental Health', good: 52.7, poor: 13.2 },
-    { metric: 'Overall Health', good: 64.4, poor: 8.1 },
-    { metric: 'Recovery Support', good: 83.4, poor: 6.4 },
-    { metric: 'Financial Security', good: 29.5, poor: 36.4 },
-    { metric: 'Living Conditions', good: 69.0, poor: 12.7 },
-    { metric: 'Education/Skills', good: 50, poor: 25 }
-  ];
-
-  const abuseTypesData = [
-    { name: 'Verbal Abuse', value: 428, percentage: 27.3 },
-    { name: 'Physical Abuse', value: 427, percentage: 27.2 },
-    { name: 'Sexual Abuse', value: 305, percentage: 19.5 },
-    { name: 'Rape', value: 185, percentage: 11.8 },
-    { name: 'Incest', value: 59, percentage: 3.8 }
-  ];
-
-  const keyMetrics = [
-    { value: 24.9, label: 'High-Risk Clients', trend: 'down', icon: TrendingDown, color: 'text-red-600' },
-    { value: 59.6, label: 'Stable Housing', trend: 'up', icon: TrendingUp, color: 'text-green-600' },
-    { value: 83.4, label: 'Supportive Recovery', trend: 'neutral', icon: ArrowRight, color: 'text-blue-600' },
-    { value: 50.0, label: 'On Probation/Parole', trend: 'down', icon: TrendingDown, color: 'text-orange-600' }
-  ];
-
-  const traumaMetrics = [
-    { value: 21.5, label: 'Treated for Abuse', color: 'text-purple-600' },
-    { value: 932, label: 'Children Impacted', color: 'text-blue-600', isNumber: true },
-    { value: 30.0, label: 'Father Absent', color: 'text-purple-600' },
-    { value: 20.8, label: 'Poor Family Relations', color: 'text-purple-600' }
-  ];
-
-  const abuseAnalysisMetrics = [
-    { value: 32.7, label: 'Documented Abuse History', color: 'text-purple-600', subtitle: '513 total clients' },
-    { value: 176, label: 'Treatment Gap', color: 'text-purple-600', isNumber: true, subtitle: 'Untreated abuse survivors' },
-    { value: 82.8, label: 'Multiple Trauma Types', color: 'text-purple-600', subtitle: 'Of abuse survivors' },
-    { value: 275, label: 'Severe Cases', color: 'text-purple-600', isNumber: true, subtitle: '3+ types of abuse' }
-  ];
+  const setupInteractivity = () => {
+    // Interactive features
+    document.querySelectorAll('.metric-card').forEach(card => {
+      const cardElement = card as HTMLElement;
+      cardElement.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
+    });
+    
+    // Export functionality (placeholder)
+    const actionButton = document.querySelector('.action-button') as HTMLElement;
+    if (actionButton) {
+      actionButton.addEventListener('click', () => {
+        alert('Report export functionality would be implemented here. This would generate a comprehensive PDF report with all dashboard data and insights.');
+      });
+    }
+  };
 
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-gray-50 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="mb-8">
+      <style jsx>{`
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        .dashboard-content {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: #f0f4f8;
+          color: #2d3748;
+          line-height: 1.6;
+          overflow-x: hidden;
+        }
+        
+        .dashboard {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 2rem;
+        }
+        
+        .header {
+          text-align: center;
+          margin-bottom: 3rem;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .header h1 {
+          font-size: 3rem;
+          font-weight: 800;
+          background: linear-gradient(45deg, #4c51bf, #667eea, #9f7aea);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 0.5rem;
+          animation: gradient 3s ease infinite;
+          background-size: 200% 200%;
+        }
+        
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        .subtitle {
+          color: #64748b;
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+        
+        .key-metrics {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.5rem;
+          margin-bottom: 3rem;
+        }
+        
+        .metric-card {
+          background: linear-gradient(135deg, #ffffff, #f8fafc);
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 2rem;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .metric-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
+          border-color: #667eea;
+        }
+        
+        .metric-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #4c51bf, #667eea, #9f7aea);
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
+          transform-origin: left;
+        }
+        
+        .metric-card:hover::before {
+          transform: scaleX(1);
+        }
+        
+        .metric-value {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+          color: #4c51bf;
+        }
+        
+        .metric-label {
+          color: #64748b;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+        
+        .metric-trend {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          font-size: 1.5rem;
+        }
+        
+        .trend-up { color: #4c51bf; }
+        .trend-down { color: #9f7aea; }
+        .trend-neutral { color: #667eea; }
+        
+        .section {
+          margin-bottom: 3rem;
+        }
+        
+        .section-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 2rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: #2d3748;
+          margin-right: auto;
+        }
+        
+        .action-button {
+          background: linear-gradient(135deg, #4c51bf, #667eea);
+          color: white;
+          border: none;
+          padding: 0.7rem 1.5rem;
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-size: 0.9rem;
+        }
+        
+        .action-button:hover {
+          transform: scale(1.05);
+          box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .chart-container {
+          background: white;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 2rem;
+          margin-bottom: 2rem;
+          position: relative;
+          min-height: 400px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .risk-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1.5rem;
+        }
+        
+        .risk-card {
+          background: white;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 1.5rem;
+          transition: all 0.3s ease;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .risk-card.high {
+          border-color: #9f7aea;
+          background: linear-gradient(135deg, #ffffff, #faf5ff);
+        }
+        
+        .risk-card.medium {
+          border-color: #667eea;
+          background: linear-gradient(135deg, #ffffff, #f0f4ff);
+        }
+        
+        .risk-card.low {
+          border-color: #4c51bf;
+          background: linear-gradient(135deg, #ffffff, #ebf4ff);
+        }
+        
+        .progress-bar {
+          width: 100%;
+          height: 8px;
+          background: #e2e8f0;
+          border-radius: 4px;
+          overflow: hidden;
+          margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #4c51bf, #667eea);
+          transition: width 0.5s ease;
+          border-radius: 4px;
+        }
+        
+        .alert-box {
+          background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+          border: 1px solid #9f7aea;
+          border-radius: 12px;
+          padding: 1.5rem;
+          margin-bottom: 2rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        
+        .alert-icon {
+          font-size: 2rem;
+          color: #9f7aea;
+        }
+        
+        .insights-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2rem;
+        }
+        
+        .insight-card {
+          background: white;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 2rem;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .insight-card h3 {
+          color: #4c51bf;
+          margin-bottom: 1rem;
+          font-size: 1.3rem;
+        }
+        
+        .insight-card ul {
+          list-style: none;
+          padding: 0;
+        }
+        
+        .insight-card li {
+          padding: 0.5rem 0;
+          border-bottom: 1px solid #f0f4f8;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        
+        .insight-card li:last-child {
+          border-bottom: none;
+        }
+        
+        .badge {
+          background: #f0f4f8;
+          padding: 0.3rem 0.8rem;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 600;
+        }
+        
+        .badge.critical { background: #9f7aea; color: white; }
+        .badge.warning { background: #667eea; color: white; }
+        .badge.success { background: #4c51bf; color: white; }
+        
+        @media (max-width: 768px) {
+          .dashboard { padding: 1rem; }
+          .header h1 { font-size: 2rem; }
+          .metric-value { font-size: 2rem; }
+          .key-metrics { grid-template-columns: 1fr; }
+        }
+        
+        .loading {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 3px solid #e2e8f0;
+          border-top-color: #4c51bf;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+      
+      <div className="dashboard-content">
+        <div className="dashboard">
+          <div className="header">
+            <div style={{ marginBottom: '2rem' }}>
               <img 
                 src="https://pvxbkqdeyrhuumjtwgzm.supabase.co/storage/v1/object/public/story-images//RPWV%20Logo%20with%20transparent%20background.png" 
                 alt="Recovery Point West Virginia" 
-                className="max-w-md h-auto mx-auto"
+                style={{ maxWidth: '400px', height: 'auto', margin: '0 auto', display: 'block' }}
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const textLogo = document.getElementById('text-logo');
+                  if (textLogo) textLogo.style.display = 'block';
+                }}
               />
+              <div id="text-logo" style={{ display: 'none', textAlign: 'center' }}>
+                <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#2d3748', marginBottom: 0 }}>
+                  RECOVERY<span style={{ color: '#4c51bf' }}>POINT</span>
+                </h2>
+                <p style={{ color: '#4c51bf', fontSize: '1.2rem', letterSpacing: '0.3em', marginTop: '-0.5rem' }}>
+                  WEST VIRGINIA
+                </p>
+              </div>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent mb-4">
-              Long-Term Recovery Dashboard
-            </h1>
-            <p className="text-xl text-gray-600 mb-2">Comprehensive Client Analysis | 1,568 Total Clients</p>
-            <p className="text-gray-500">Data Analysis Date: June 26, 2025</p>
+            <h1>Long-Term Recovery Dashboard</h1>
+            <p className="subtitle">Comprehensive Client Analysis | 1,568 Total Clients</p>
+            <p style={{ color: '#94a3b8' }}>Data Analysis Date: June 26, 2025</p>
           </div>
-
-          {/* Data Collection Methodology */}
-          <Card className="mb-8 bg-gradient-to-r from-blue-50 to-gray-50 border-blue-300 text-center">
-            <CardContent className="p-6">
-              <p className="text-gray-700 leading-relaxed text-lg">
-                <strong className="text-gray-900">Data Collection Methodology:</strong> This comprehensive analysis is based on data gathered through intake assessments at admission and ongoing surveys conducted throughout each client's recovery journey. The information represents a holistic view of our clients' needs, progress, and outcomes during their time in our long-term recovery program.
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Critical Alert */}
-          <Card className="mb-8 border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-4">
-                <AlertTriangle className="w-8 h-8 text-amber-600" />
-                <div>
-                  <strong className="text-amber-900">Critical Action Required:</strong>
-                  <span className="text-amber-800"> 763 clients (48.7%) need mental health providers but don't have one. This represents our most significant service gap.</span>
+          
+          <div style={{ background: 'linear-gradient(135deg, #ebf4ff, #f0f4f8)', border: '1px solid #4c51bf', borderRadius: '12px', padding: '1.5rem', marginBottom: '2rem', textAlign: 'center' }}>
+            <p style={{ color: '#2d3748', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
+              <strong>Data Collection Methodology:</strong> This comprehensive analysis is based on data gathered through intake assessments at admission and ongoing surveys conducted throughout each client's recovery journey. The information represents a holistic view of our clients' needs, progress, and outcomes during their time in our long-term recovery program.
+            </p>
+          </div>
+          
+          <div className="alert-box">
+            <span className="alert-icon">⚠️</span>
+            <div>
+              <strong>Critical Action Required:</strong> 763 clients (48.7%) need mental health providers but don't have one. This represents our most significant service gap.
+            </div>
+          </div>
+          
+          <div className="key-metrics">
+            <div className="metric-card">
+              <span className="metric-trend trend-down">⬇</span>
+              <div className="metric-value">24.9%</div>
+              <div className="metric-label">High-Risk Clients</div>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: '24.9%' }}></div>
+              </div>
+            </div>
+            
+            <div className="metric-card">
+              <span className="metric-trend trend-up">⬆</span>
+              <div className="metric-value">59.6%</div>
+              <div className="metric-label">Stable Housing</div>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: '59.6%' }}></div>
+              </div>
+            </div>
+            
+            <div className="metric-card">
+              <span className="metric-trend trend-neutral">➡</span>
+              <div className="metric-value">83.4%</div>
+              <div className="metric-label">Supportive Recovery</div>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: '83.4%' }}></div>
+              </div>
+            </div>
+            
+            <div className="metric-card">
+              <span className="metric-trend trend-down">⬇</span>
+              <div className="metric-value">50.0%</div>
+              <div className="metric-label">On Probation/Parole</div>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: '50%' }}></div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Service Gaps & Critical Needs</h2>
+              <button className="action-button">Export Report</button>
+            </div>
+            
+            <div className="insights-grid">
+              <div className="insight-card">
+                <h3>🧠 Mental Health Services Gap</h3>
+                <ul>
+                  <li>
+                    <span>Need Provider (No Access)</span>
+                    <span className="badge critical">763 clients</span>
+                  </li>
+                  <li>
+                    <span>Have Provider</span>
+                    <span className="badge success">263 clients</span>
+                  </li>
+                  <li>
+                    <span>Inpatient Treatment History</span>
+                    <span className="badge">214 clients</span>
+                  </li>
+                  <li>
+                    <span>Service Coverage Rate</span>
+                    <span className="badge critical">25.6%</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="insight-card">
+                <h3>🎖️ Veterans Services</h3>
+                <ul>
+                  <li>
+                    <span>Military Service</span>
+                    <span className="badge">162 veterans</span>
+                  </li>
+                  <li>
+                    <span>Combat Veterans</span>
+                    <span className="badge">149 clients</span>
+                  </li>
+                  <li>
+                    <span>Not VA Registered</span>
+                    <span className="badge warning">92 veterans</span>
+                  </li>
+                  <li>
+                    <span>VA Coverage Gap</span>
+                    <span className="badge warning">56.8%</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="insight-card">
+                <h3>📋 Documentation Status</h3>
+                <ul>
+                  <li>
+                    <span>Birth Certificate</span>
+                    <span className="badge warning">52.9%</span>
+                  </li>
+                  <li>
+                    <span>Driver's License</span>
+                    <span className="badge critical">35.1%</span>
+                  </li>
+                  <li>
+                    <span>Social Security Card</span>
+                    <span className="badge warning">58.1%</span>
+                  </li>
+                  <li>
+                    <span>HS Diploma/GED</span>
+                    <span className="badge success">77.7%</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Legal System Involvement</h2>
+            </div>
+            
+            <div className="chart-container">
+              <canvas id="legalChart"></canvas>
+            </div>
+          </div>
+          
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Quality of Life Assessment</h2>
+            </div>
+            
+            <p style={{ color: '#64748b', fontStyle: 'italic', marginBottom: '1rem', textAlign: 'center' }}>
+              Based on client survey after 90 days of residency.
+            </p>
+            
+            <div className="chart-container">
+              <canvas id="qolChart"></canvas>
+            </div>
+          </div>
+          
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Risk Stratification</h2>
+            </div>
+            
+            <div className="risk-grid">
+              <div className="risk-card high">
+                <h3 style={{ color: '#9f7aea' }}>🚨 High Risk (390 clients)</h3>
+                <p>Multiple indicators including:</p>
+                <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
+                  <li>Recent arrests (past 30 days)</li>
+                  <li>Unstable housing</li>
+                  <li>Unmet mental health needs</li>
+                  <li>Multiple "Terrible" QOL ratings</li>
+                </ul>
+              </div>
+              
+              <div className="risk-card medium">
+                <h3 style={{ color: '#667eea' }}>⚠️ Medium Risk (634 clients)</h3>
+                <p>Key concerns:</p>
+                <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
+                  <li>Housing instability</li>
+                  <li>Pending legal charges</li>
+                  <li>Limited support systems</li>
+                  <li>Financial insecurity</li>
+                </ul>
+              </div>
+              
+              <div className="risk-card low">
+                <h3 style={{ color: '#4c51bf' }}>✅ Stable/Low Risk (544 clients)</h3>
+                <p>Positive indicators:</p>
+                <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
+                  <li>Stable housing (30+ days)</li>
+                  <li>Educational attainment</li>
+                  <li>Supportive recovery environment</li>
+                  <li>Good overall health</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Trauma & Family Impact Analysis</h2>
+            </div>
+            
+            <div className="alert-box" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderColor: '#f59e0b' }}>
+              <span className="alert-icon" style={{ color: '#f59e0b' }}>👨‍👩‍👧‍👦</span>
+              <div>
+                <strong>Children at Risk:</strong> An estimated 932+ children are impacted by their parents' recovery journey, with 69+ in high-risk situations requiring immediate family support services.
+              </div>
+            </div>
+            
+            <div className="key-metrics" style={{ marginBottom: '2rem' }}>
+              <div className="metric-card">
+                <span className="metric-trend trend-down">⬇</span>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>21.5%</div>
+                <div className="metric-label">Treated for Abuse</div>
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{ width: '21.5%', background: 'linear-gradient(90deg, #9f7aea, #b794f4)' }}></div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Key Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {keyMetrics.map((metric, index) => {
-              const Icon = metric.icon;
-              return (
-                <Card 
-                  key={metric.label}
-                  ref={el => animatedRefs.current[index] = el}
-                  className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <Icon className={`w-6 h-6 ${metric.color}`} />
-                    </div>
-                    <div className="metric-value text-3xl font-bold text-blue-600 mb-2" data-value={`${metric.value}%`}>
-                      {metric.value}%
-                    </div>
-                    <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">
-                      {metric.label}
-                    </div>
-                    <div className="mt-3 w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000"
-                        style={{ width: `${metric.value}%` }}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          {/* Service Gaps Section */}
-          <div className="mb-12">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Service Gaps & Critical Needs</h2>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600">
-                <Download className="w-4 h-4 mr-2" />
-                Export Report
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Mental Health Services */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-purple-600" />
-                    Mental Health Services Gap
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Need Provider (No Access)</span>
-                      <Badge variant="destructive">763 clients</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Have Provider</span>
-                      <Badge className="bg-green-600">263 clients</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Inpatient Treatment History</span>
-                      <Badge variant="secondary">214 clients</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Service Coverage Rate</span>
-                      <Badge variant="destructive">25.6%</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Veterans Services */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-600" />
-                    Veterans Services
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Military Service</span>
-                      <Badge variant="secondary">162 veterans</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Combat Veterans</span>
-                      <Badge variant="secondary">149 clients</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Not VA Registered</span>
-                      <Badge className="bg-yellow-600">92 veterans</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>VA Coverage Gap</span>
-                      <Badge className="bg-yellow-600">56.8%</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Documentation Status */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-green-600" />
-                    Documentation Status
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Birth Certificate</span>
-                      <Badge className="bg-yellow-600">52.9%</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Driver's License</span>
-                      <Badge variant="destructive">35.1%</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Social Security Card</span>
-                      <Badge className="bg-yellow-600">58.1%</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>HS Diploma/GED</span>
-                      <Badge className="bg-green-600">77.7%</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* Legal System Involvement Chart */}
-          <Card className="mb-12">
-            <CardHeader>
-              <CardTitle>Legal System Involvement</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ChartContainer
-                config={{
-                  value: {
-                    label: "Percentage",
-                    color: "#4c51bf",
-                  },
-                }}
-                className="h-80"
-              >
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={legalData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <Bar dataKey="value" fill="#4c51bf" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </ChartContainer>
-            </CardContent>
-          </Card>
-
-          {/* Quality of Life Assessment */}
-          <Card className="mb-12">
-            <CardHeader>
-              <CardTitle>Quality of Life Assessment</CardTitle>
-              <p className="text-gray-600 italic">Based on client survey after 90 days of residency.</p>
-            </CardHeader>
-            <CardContent>
-              <ChartContainer
-                config={{
-                  good: {
-                    label: "Good/Excellent",
-                    color: "#4c51bf",
-                  },
-                  poor: {
-                    label: "Poor/Terrible", 
-                    color: "#9f7aea",
-                  },
-                }}
-                className="h-96"
-              >
-                <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={qolData}>
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey="metric" />
-                    <PolarRadiusAxis angle={90} domain={[0, 100]} />
-                    <Radar name="Good/Excellent" dataKey="good" stroke="#4c51bf" fill="#4c51bf" fillOpacity={0.2} />
-                    <Radar name="Poor/Terrible" dataKey="poor" stroke="#9f7aea" fill="#9f7aea" fillOpacity={0.2} />
-                    <Legend />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                  </RadarChart>
-                </ResponsiveContainer>
-              </ChartContainer>
-            </CardContent>
-          </Card>
-
-          {/* Risk Stratification */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Risk Stratification</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <Card className="border-purple-200 bg-gradient-to-br from-white to-purple-50">
-                <CardHeader>
-                  <CardTitle className="text-purple-700">🚨 High Risk (390 clients)</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="mb-4">Multiple indicators including:</p>
-                  <ul className="space-y-2 text-sm">
-                    <li>• Recent arrests (past 30 days)</li>
-                    <li>• Unstable housing</li>
-                    <li>• Unmet mental health needs</li>
-                    <li>• Multiple "Terrible" QOL ratings</li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="border-blue-200 bg-gradient-to-br from-white to-blue-50">
-                <CardHeader>
-                  <CardTitle className="text-blue-700">⚠️ Medium Risk (634 clients)</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="mb-4">Key concerns:</p>
-                  <ul className="space-y-2 text-sm">
-                    <li>• Housing instability</li>
-                    <li>• Pending legal charges</li>
-                    <li>• Limited support systems</li>
-                    <li>• Financial insecurity</li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="border-green-200 bg-gradient-to-br from-white to-green-50">
-                <CardHeader>
-                  <CardTitle className="text-green-700">✅ Stable/Low Risk (544 clients)</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="mb-4">Positive indicators:</p>
-                  <ul className="space-y-2 text-sm">
-                    <li>• Stable housing (30+ days)</li>
-                    <li>• Educational attainment</li>
-                    <li>• Supportive recovery environment</li>
-                    <li>• Good overall health</li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* Trauma & Family Impact */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Trauma & Family Impact Analysis</h2>
-            
-            <Card className="mb-6 border-yellow-200 bg-gradient-to-r from-yellow-50 to-amber-50">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <Users className="w-8 h-8 text-yellow-600" />
-                  <div>
-                    <strong className="text-yellow-900">Children at Risk:</strong>
-                    <span className="text-yellow-800"> An estimated 932+ children are impacted by their parents' recovery journey, with 69+ in high-risk situations requiring immediate family support services.</span>
-                  </div>
+              
+              <div className="metric-card">
+                <span className="metric-trend trend-neutral">➡</span>
+                <div className="metric-value" style={{ color: '#667eea' }}>932+</div>
+                <div className="metric-label">Children Impacted</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>Based on 444 likely parents</p>
+              </div>
+              
+              <div className="metric-card">
+                <span className="metric-trend trend-down">⬇</span>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>30.0%</div>
+                <div className="metric-label">Father Absent</div>
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{ width: '30%', background: 'linear-gradient(90deg, #9f7aea, #b794f4)' }}></div>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Trauma Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {traumaMetrics.map((metric, index) => (
-                <Card 
-                  key={metric.label}
-                  ref={el => animatedRefs.current[index + keyMetrics.length] = el}
-                  className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                >
-                  <CardContent className="p-6">
-                    <div 
-                      className={`text-3xl font-bold mb-2 ${metric.color}`}
-                      data-value={metric.isNumber ? metric.value.toString() : `${metric.value}%`}>
-                      {metric.isNumber ? metric.value.toLocaleString() : `${metric.value}%`}
-                    </div>
-                    <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">
-                      {metric.label}
-                    </div>
-                    {metric.label === 'Children Impacted' && (
-                      <p className="text-xs text-gray-500 mt-1">Based on 444 likely parents</p>
-                    )}
-                    {!metric.isNumber && (
-                      <div className="mt-3 w-full bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-1000"
-                          style={{ width: `${metric.value}%` }}
-                        />
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle>🔍 Intergenerational Trauma Patterns</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Abuse History</span>
-                      <Badge variant="destructive">337 clients</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Absent Father + Abuse</span>
-                      <Badge className="bg-yellow-600">106 clients</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>% with Absent Fathers Abused</span>
-                      <Badge variant="destructive">22.6%</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Abuse + Poor Family Relations</span>
-                      <Badge className="bg-yellow-600">109 clients</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>👨‍👩‍👧‍👦 Family System Health</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Good/Excellent Relations</span>
-                      <Badge className="bg-green-600">48.8%</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Poor/Terrible Relations</span>
-                      <Badge variant="destructive">20.8%</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Father Present in Childhood</span>
-                      <Badge variant="secondary">69.6%</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>High-Risk Parent Situations</span>
-                      <Badge variant="destructive">33 families</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* Comprehensive Abuse & Trauma Analysis */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Comprehensive Abuse & Trauma Analysis</h2>
-            
-            <Card className="mb-6 border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <AlertTriangle className="w-8 h-8 text-purple-600" />
-                  <div>
-                    <strong className="text-purple-900">Critical Finding:</strong>
-                    <span className="text-purple-800"> 513 clients (32.7%) have documented abuse histories, but only 337 (21.5%) received treatment. This represents 176 abuse survivors with unmet trauma treatment needs.</span>
-                  </div>
+              </div>
+              
+              <div className="metric-card">
+                <span className="metric-trend trend-down">⬇</span>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>20.8%</div>
+                <div className="metric-label">Poor Family Relations</div>
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{ width: '20.8%', background: 'linear-gradient(90deg, #9f7aea, #b794f4)' }}></div>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Abuse Analysis Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {abuseAnalysisMetrics.map((metric, index) => (
-                <Card 
-                  key={metric.label}
-                  className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                >
-                  <CardContent className="p-6">
-                    <div className={`text-3xl font-bold mb-2 ${metric.color}`}>
-                      {metric.isNumber ? metric.value.toLocaleString() : `${metric.value}%`}
-                    </div>
-                    <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">
-                      {metric.label}
-                    </div>
-                    {metric.subtitle && (
-                      <p className="text-xs text-gray-500 mt-1">{metric.subtitle}</p>
-                    )}
-                    {!metric.isNumber && (
-                      <div className="mt-3 w-full bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-1000"
-                          style={{ width: `${metric.value}%` }}
-                        />
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
+              </div>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle>📊 Abuse Type Prevalence</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Verbal Abuse</span>
-                      <Badge variant="destructive">428 (27.3%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Physical Abuse</span>
-                      <Badge variant="destructive">427 (27.2%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Sexual Abuse</span>
-                      <Badge variant="destructive">305 (19.5%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Rape</span>
-                      <Badge variant="destructive">185 (11.8%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Incest</span>
-                      <Badge className="bg-yellow-600">59 (3.8%)</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>⚠️ Treatment Coverage Analysis</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Abuse Survivors Identified</span>
-                      <Badge variant="secondary">513 clients</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Received Treatment</span>
-                      <Badge className="bg-yellow-600">337 (65.7%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>No Treatment</span>
-                      <Badge variant="destructive">176 (34.3%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Treatment Coverage Rate</span>
-                      <Badge className="bg-yellow-600">65.7%</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>🔄 Trauma Complexity Patterns</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Single Type of Abuse</span>
-                      <Badge variant="secondary">88 (17.2%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>2 Types of Abuse</span>
-                      <Badge className="bg-yellow-600">150 (29.2%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>3+ Types of Abuse</span>
-                      <Badge variant="destructive">275 (53.6%)</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Most Common Pattern</span>
-                      <span className="text-sm">Physical + Verbal + Sexual</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            
+            <div className="insights-grid">
+              <div className="insight-card">
+                <h3>🔍 Intergenerational Trauma Patterns</h3>
+                <ul>
+                  <li>
+                    <span>Abuse History</span>
+                    <span className="badge critical">337 clients</span>
+                  </li>
+                  <li>
+                    <span>Absent Father + Abuse</span>
+                    <span className="badge warning">106 clients</span>
+                  </li>
+                  <li>
+                    <span>% with Absent Fathers Abused</span>
+                    <span className="badge critical">22.6%</span>
+                  </li>
+                  <li>
+                    <span>Abuse + Poor Family Relations</span>
+                    <span className="badge warning">109 clients</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="insight-card">
+                <h3>👨‍👩‍👧‍👦 Family System Health</h3>
+                <ul>
+                  <li>
+                    <span>Good/Excellent Relations</span>
+                    <span className="badge success">48.8%</span>
+                  </li>
+                  <li>
+                    <span>Poor/Terrible Relations</span>
+                    <span className="badge critical">20.8%</span>
+                  </li>
+                  <li>
+                    <span>Father Present in Childhood</span>
+                    <span className="badge">69.6%</span>
+                  </li>
+                  <li>
+                    <span>High-Risk Parent Situations</span>
+                    <span className="badge critical">33 families</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Types of Abuse Experienced by Clients</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ChartContainer
-                  config={{
-                    value: {
-                      label: "Number of Clients",
-                      color: "#9f7aea",
-                    },
-                  }}
-                  className="h-80"
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={abuseTypesData} layout="horizontal">
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis type="number" />
-                      <YAxis type="category" dataKey="name" width={100} />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                      <Bar dataKey="value" fill="#9f7aea" radius={[0, 4, 4, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </CardContent>
-            </Card>
+            
+            <div className="chart-container" style={{ marginTop: '2rem' }}>
+              <canvas id="traumaChart"></canvas>
+            </div>
           </div>
-
-          {/* Strategic Recommendations */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Strategic Recommendations</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>🎯 Immediate Actions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Trauma-Informed Care Training</span>
-                      <Badge variant="destructive">URGENT</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Expand Trauma Treatment</span>
-                      <Badge variant="destructive">URGENT</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Mental Health Provider Recruitment</span>
-                      <Badge variant="destructive">URGENT</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Family Support Services</span>
-                      <Badge variant="destructive">URGENT</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Screen 176 Untreated Survivors</span>
-                      <Badge className="bg-yellow-600">HIGH</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Housing Stabilization Initiative</span>
-                      <Badge className="bg-yellow-600">HIGH</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>📊 Program Enhancements</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Integrated MH Services</span>
-                      <span className="text-sm text-gray-600">48.7% need</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Family Reunification Program</span>
-                      <span className="text-sm text-gray-600">932+ children</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Parenting Skills Track</span>
-                      <span className="text-sm text-gray-600">444 parents</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Intergenerational Healing</span>
-                      <span className="text-sm text-gray-600">337 trauma cases</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Legal Aid Partnership</span>
-                      <span className="text-sm text-gray-600">50% affected</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Veterans-Specific Track</span>
-                      <span className="text-sm text-gray-600">162 clients</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+          
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Comprehensive Abuse & Trauma Analysis</h2>
+            </div>
+            
+            <div className="alert-box" style={{ background: 'linear-gradient(135deg, #faf5ff, #f3e8ff)', borderColor: '#9f7aea' }}>
+              <span className="alert-icon" style={{ color: '#9f7aea' }}>⚡</span>
+              <div>
+                <strong>Critical Finding:</strong> 513 clients (32.7%) have documented abuse histories, but only 337 (21.5%) received treatment. This represents 176 abuse survivors with unmet trauma treatment needs.
+              </div>
+            </div>
+            
+            <div className="key-metrics" style={{ marginBottom: '2rem' }}>
+              <div className="metric-card">
+                <span className="metric-trend trend-down">⬇</span>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>32.7%</div>
+                <div className="metric-label">Documented Abuse History</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>513 total clients</p>
+              </div>
+              
+              <div className="metric-card">
+                <span className="metric-trend trend-down">⬇</span>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>176</div>
+                <div className="metric-label">Treatment Gap</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>Untreated abuse survivors</p>
+              </div>
+              
+              <div className="metric-card">
+                <span className="metric-trend trend-down">⬇</span>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>82.8%</div>
+                <div className="metric-label">Multiple Trauma Types</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>Of abuse survivors</p>
+              </div>
+              
+              <div className="metric-card">
+                <span className="metric-trend trend-down">⬇</span>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>275</div>
+                <div className="metric-label">Severe Cases</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>3+ types of abuse</p>
+              </div>
+            </div>
+            
+            <div className="insights-grid">
+              <div className="insight-card">
+                <h3>📊 Abuse Type Prevalence</h3>
+                <ul>
+                  <li>
+                    <span>Verbal Abuse</span>
+                    <span className="badge critical">428 (27.3%)</span>
+                  </li>
+                  <li>
+                    <span>Physical Abuse</span>
+                    <span className="badge critical">427 (27.2%)</span>
+                  </li>
+                  <li>
+                    <span>Sexual Abuse</span>
+                    <span className="badge critical">305 (19.5%)</span>
+                  </li>
+                  <li>
+                    <span>Rape</span>
+                    <span className="badge critical">185 (11.8%)</span>
+                  </li>
+                  <li>
+                    <span>Incest</span>
+                    <span className="badge warning">59 (3.8%)</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="insight-card">
+                <h3>⚠️ Treatment Coverage Analysis</h3>
+                <ul>
+                  <li>
+                    <span>Abuse Survivors Identified</span>
+                    <span className="badge">513 clients</span>
+                  </li>
+                  <li>
+                    <span>Received Treatment</span>
+                    <span className="badge warning">337 (65.7%)</span>
+                  </li>
+                  <li>
+                    <span>No Treatment</span>
+                    <span className="badge critical">176 (34.3%)</span>
+                  </li>
+                  <li>
+                    <span>Treatment Coverage Rate</span>
+                    <span className="badge warning">65.7%</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="insight-card">
+                <h3>🔄 Trauma Complexity Patterns</h3>
+                <ul>
+                  <li>
+                    <span>Single Type of Abuse</span>
+                    <span className="badge">88 (17.2%)</span>
+                  </li>
+                  <li>
+                    <span>2 Types of Abuse</span>
+                    <span className="badge warning">150 (29.2%)</span>
+                  </li>
+                  <li>
+                    <span>3+ Types of Abuse</span>
+                    <span className="badge critical">275 (53.6%)</span>
+                  </li>
+                  <li>
+                    <span>Most Common Pattern</span>
+                    <span style={{ fontSize: '0.85rem' }}>Physical + Verbal + Sexual</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="chart-container" style={{ marginTop: '2rem' }}>
+              <canvas id="abuseTypesChart"></canvas>
+            </div>
+          </div>
+          
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Strategic Recommendations</h2>
+            </div>
+            
+            <div className="insights-grid">
+              <div className="insight-card">
+                <h3>🎯 Immediate Actions</h3>
+                <ul>
+                  <li>
+                    <span>Trauma-Informed Care Training</span>
+                    <span className="badge critical">URGENT</span>
+                  </li>
+                  <li>
+                    <span>Expand Trauma Treatment</span>
+                    <span className="badge critical">URGENT</span>
+                  </li>
+                  <li>
+                    <span>Mental Health Provider Recruitment</span>
+                    <span className="badge critical">URGENT</span>
+                  </li>
+                  <li>
+                    <span>Family Support Services</span>
+                    <span className="badge critical">URGENT</span>
+                  </li>
+                  <li>
+                    <span>Screen 176 Untreated Survivors</span>
+                    <span className="badge warning">HIGH</span>
+                  </li>
+                  <li>
+                    <span>Housing Stabilization Initiative</span>
+                    <span className="badge warning">HIGH</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="insight-card">
+                <h3>📊 Program Enhancements</h3>
+                <ul>
+                  <li>
+                    <span>Integrated MH Services</span>
+                    <span>48.7% need</span>
+                  </li>
+                  <li>
+                    <span>Family Reunification Program</span>
+                    <span>932+ children</span>
+                  </li>
+                  <li>
+                    <span>Parenting Skills Track</span>
+                    <span>444 parents</span>
+                  </li>
+                  <li>
+                    <span>Intergenerational Healing</span>
+                    <span>337 trauma cases</span>
+                  </li>
+                  <li>
+                    <span>Legal Aid Partnership</span>
+                    <span>50% affected</span>
+                  </li>
+                  <li>
+                    <span>Veterans-Specific Track</span>
+                    <span>162 clients</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
