@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 interface Metrics {
   graduates: number;
@@ -15,6 +16,12 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate('/intake');
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20 overflow-hidden">
       <div className="absolute inset-0 opacity-20"></div>
@@ -31,7 +38,7 @@ export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
             <Button 
               size="lg" 
               className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
-              onClick={() => onPathwaySelect('individual')}
+              onClick={handleGetStarted}
             >
               I Need Help Now
             </Button>
