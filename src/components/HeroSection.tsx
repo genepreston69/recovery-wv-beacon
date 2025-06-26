@@ -23,6 +23,10 @@ export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
     navigate('/intake');
   };
 
+  const handleHelpSomeone = () => {
+    onPathwaySelect('family');
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20 overflow-hidden">
       <div className="absolute inset-0 opacity-20"></div>
@@ -47,7 +51,7 @@ export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
               size="lg" 
               variant="outline" 
               className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-blue-600 font-semibold px-8 py-3 rounded-full transition-all duration-300"
-              onClick={() => onPathwaySelect('family')}
+              onClick={handleHelpSomeone}
             >
               Help Someone I Love
             </Button>
