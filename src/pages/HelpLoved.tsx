@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { CrisisBar } from '@/components/CrisisBar';
 import { Navigation } from '@/components/Navigation';
@@ -36,68 +37,80 @@ const HelpLoved = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-blue-700">
                   <Phone className="w-8 h-8" />
                   24/7 National Helpline
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  SAMHSA's free, confidential treatment referral service for individuals and families facing substance use disorders.
-                </p>
-                <div className="mb-4">
-                  <strong className="text-lg">1-800-662-HELP (4357)</strong><br />
-                  <small className="text-gray-500">Text your ZIP to 435748 (HELP4U)</small>
+              <CardContent className="flex flex-col h-full">
+                <div className="card-content flex-grow">
+                  <p className="text-gray-600 mb-4">
+                    SAMHSA's free, confidential treatment referral service for individuals and families facing substance use disorders.
+                  </p>
+                  <div className="mb-4">
+                    <strong className="text-lg">1-800-662-HELP (4357)</strong><br />
+                    <small className="text-gray-500">Text your ZIP to 435748 (HELP4U)</small>
+                  </div>
                 </div>
-                <a href="tel:1-800-662-4357">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                    Call Now →
-                  </Button>
-                </a>
+                <div className="card-action">
+                  <a href="tel:1-800-662-4357">
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                      Call Now →
+                    </Button>
+                  </a>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-blue-700">
                   <MessageCircle className="w-8 h-8" />
                   Crisis Text Line
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Free, 24/7 support for those in crisis. Text with a trained crisis counselor for immediate emotional support.
-                </p>
-                <div className="mb-4">
-                  <strong className="text-lg">Text HOME to 741741</strong>
+              <CardContent className="flex flex-col h-full">
+                <div className="card-content flex-grow">
+                  <p className="text-gray-600 mb-4">
+                    Free, 24/7 support for those in crisis. Text with a trained crisis counselor for immediate emotional support.
+                  </p>
+                  <div className="mb-4">
+                    <strong className="text-lg">Text HOME to 741741</strong>
+                  </div>
                 </div>
-                <a href="sms:741741">
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
-                    Text Now →
-                  </Button>
-                </a>
+                <div className="card-action">
+                  <a href="sms:741741">
+                    <Button className="w-full bg-green-600 hover:bg-green-700">
+                      Text Now →
+                    </Button>
+                  </a>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-blue-700">
                   <Search className="w-8 h-8" />
                   Find Treatment
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Search for substance use treatment facilities, support groups, and healthcare providers in your area.
-                </p>
-                <a href="https://findtreatment.gov" target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700">
-                    Search Treatment Options →
-                  </Button>
-                </a>
+              <CardContent className="flex flex-col h-full">
+                <div className="card-content flex-grow">
+                  <p className="text-gray-600 mb-4">
+                    Search for substance use treatment facilities, support groups, and healthcare providers in your area.
+                  </p>
+                </div>
+                <div className="card-action">
+                  <a href="https://findtreatment.gov" target="_blank" rel="noopener noreferrer">
+                    <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                      Search Treatment Options →
+                    </Button>
+                  </a>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -112,7 +125,7 @@ const HelpLoved = () => {
             Connect with others who understand what you're going through
           </p>
           
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-6 items-stretch">
             {[
               {
                 name: "Al-Anon Family Groups",
@@ -135,18 +148,22 @@ const HelpLoved = () => {
                 link: "https://www.familiesanonymous.org"
               }
             ].map((group, index) => (
-              <Card key={index} className="bg-white text-center">
-                <CardContent className="p-6">
-                  <h4 className="font-semibold text-gray-800 mb-2">{group.name}</h4>
-                  <p className="text-sm text-gray-600 mb-4">{group.description}</p>
-                  <a 
-                    href={group.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 font-medium"
-                  >
-                    Find a Meeting →
-                  </a>
+              <Card key={index} className="bg-white text-center h-full flex flex-col">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="card-content flex-grow">
+                    <h4 className="font-semibold text-gray-800 mb-2">{group.name}</h4>
+                    <p className="text-sm text-gray-600 mb-4">{group.description}</p>
+                  </div>
+                  <div className="card-action">
+                    <a 
+                      href={group.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 font-medium"
+                    >
+                      Find a Meeting →
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -163,17 +180,19 @@ const HelpLoved = () => {
               Community Reinforcement and Family Training (CRAFT) is an evidence-based approach that helps families motivate their loved ones to seek treatment while improving their own lives.
             </p>
             
-            <div className="grid md:grid-cols-4 gap-6 mb-8">
+            <div className="grid md:grid-cols-4 gap-6 mb-8 items-stretch">
               {[
                 { stat: "70% Success Rate", desc: "Getting loved ones into treatment" },
                 { stat: "Positive Communication", desc: "Learn effective strategies" },
                 { stat: "Self-Care Focus", desc: "Improve your own wellbeing" },
                 { stat: "Non-Confrontational", desc: "Build bridges, not walls" }
               ].map((benefit, index) => (
-                <Card key={index} className="bg-white">
-                  <CardContent className="p-6 text-center">
-                    <div className="font-bold text-blue-700 mb-2">{benefit.stat}</div>
-                    <div className="text-sm text-gray-600">{benefit.desc}</div>
+                <Card key={index} className="bg-white h-full flex flex-col">
+                  <CardContent className="p-6 text-center flex flex-col h-full">
+                    <div className="card-content flex-grow">
+                      <div className="font-bold text-blue-700 mb-2">{benefit.stat}</div>
+                      <div className="text-sm text-gray-600">{benefit.desc}</div>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -196,7 +215,7 @@ const HelpLoved = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 items-stretch">
             {[
               {
                 title: "Understanding Substance Use Disorder",
@@ -223,10 +242,12 @@ const HelpLoved = () => {
                 description: "Recognize when it's time to involve professionals and what treatment options are available."
               }
             ].map((resource, index) => (
-              <Card key={index} className="border-l-4 border-l-blue-600 hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <h4 className="font-semibold text-gray-800 mb-3">{resource.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{resource.description}</p>
+              <Card key={index} className="border-l-4 border-l-blue-600 hover:shadow-lg transition-shadow h-full flex flex-col">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="card-content flex-grow">
+                    <h4 className="font-semibold text-gray-800 mb-3">{resource.title}</h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">{resource.description}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -244,55 +265,67 @@ const HelpLoved = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-blue-700">
                   <BookOpen className="w-8 h-8" />
                   Family Education Program
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Free online courses and webinars designed to help families understand and cope with addiction.
-                </p>
-                <Button className="w-full bg-orange-500 hover:bg-orange-600">
-                  Explore Programs →
-                </Button>
+              <CardContent className="flex flex-col h-full">
+                <div className="card-content flex-grow">
+                  <p className="text-gray-600 mb-4">
+                    Free online courses and webinars designed to help families understand and cope with addiction.
+                  </p>
+                </div>
+                <div className="card-action">
+                  <Button className="w-full bg-orange-500 hover:bg-orange-600">
+                    Explore Programs →
+                  </Button>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-blue-700">
                   <Users className="w-8 h-8" />
                   Parent Support Network
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Connect with other parents who are navigating their child's substance use challenges.
-                </p>
-                <Button className="w-full bg-green-500 hover:bg-green-600">
-                  Join Network →
-                </Button>
+              <CardContent className="flex flex-col h-full">
+                <div className="card-content flex-grow">
+                  <p className="text-gray-600 mb-4">
+                    Connect with other parents who are navigating their child's substance use challenges.
+                  </p>
+                </div>
+                <div className="card-action">
+                  <Button className="w-full bg-green-500 hover:bg-green-600">
+                    Join Network →
+                  </Button>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-blue-700">
                   <Smartphone className="w-8 h-8" />
                   Mobile Support Apps
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Download apps that provide daily support, coping strategies, and connection to resources.
-                </p>
-                <Button className="w-full bg-purple-500 hover:bg-purple-600">
-                  View Apps →
-                </Button>
+              <CardContent className="flex flex-col h-full">
+                <div className="card-content flex-grow">
+                  <p className="text-gray-600 mb-4">
+                    Download apps that provide daily support, coping strategies, and connection to resources.
+                  </p>
+                </div>
+                <div className="card-action">
+                  <Button className="w-full bg-purple-500 hover:bg-purple-600">
+                    View Apps →
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
