@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -11,10 +12,9 @@ interface Metrics {
 
 interface HeroSectionProps {
   metrics: Metrics;
-  onPathwaySelect: (type: string) => void;
 }
 
-export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
+export const HeroSection = ({ metrics }: HeroSectionProps) => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {

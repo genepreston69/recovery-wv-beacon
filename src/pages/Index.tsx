@@ -63,7 +63,6 @@ const Index = () => {
           ridesProvided: metrics.ridesProvided,
           currentlyServed: metrics.currentlyServed
         }} 
-        onPathwaySelect={handlePathwaySelect} 
       />
       <PathwaysSection onPathwaySelect={handlePathwaySelect} />
       <ImpactDashboard 
