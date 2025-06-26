@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -36,6 +35,15 @@ export const WelcomeStep: React.FC<WelcomeStepProps> = ({
 
   return (
     <div className="p-8">
+      {/* Logo Section */}
+      <div className="text-center mb-8">
+        <img 
+          src="https://pvxbkqdeyrhuumjtwgzm.supabase.co/storage/v1/object/public/story-images//RPWV%20Logo%20with%20transparent%20background.png" 
+          alt="Recovery Point Logo" 
+          className="h-20 w-auto mx-auto mb-4"
+        />
+      </div>
+
       <CardHeader>
         <CardTitle className="text-2xl text-center">Welcome to Recovery Point</CardTitle>
         <p className="text-center text-gray-600 mt-4">
