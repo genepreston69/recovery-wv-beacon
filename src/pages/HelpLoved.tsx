@@ -25,11 +25,26 @@ const HelpLoved = () => {
       <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Help a Loved One</h1>
-          <p className="text-xl text-blue-100 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl text-blue-100 leading-relaxed max-w-3xl mx-auto mb-8">
             When someone you care about is struggling with substance use, you're not alone. 
             Find support, resources, and evidence-based strategies to help your loved one 
             while taking care of yourself.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              size="lg" 
+              className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+            >
+              Get Immediate Help
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-blue-600 font-semibold px-8 py-3 rounded-full transition-all duration-300 w-full sm:w-auto"
+            >
+              Find Support Groups
+            </Button>
+          </div>
         </div>
       </section>
 
