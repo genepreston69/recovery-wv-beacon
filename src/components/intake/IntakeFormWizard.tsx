@@ -34,7 +34,7 @@ const STEPS = [
   { id: 'review', title: 'Review & Sign', component: ReviewStep },
 ];
 
-export const IntakeFormWizard: React.FC = () => {
+const IntakeFormWizard: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [validationErrors, setValidationErrors] = useState<any>({});
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
