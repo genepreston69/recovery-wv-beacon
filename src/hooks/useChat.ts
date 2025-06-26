@@ -51,7 +51,7 @@ export const useChat = () => {
       if (convError) throw convError;
 
       if (existingConversation) {
-        setConversation(existingConversation);
+        setConversation(existingConversation as Conversation);
         await loadMessages(existingConversation.id);
       } else {
         // Create new conversation
@@ -68,7 +68,7 @@ export const useChat = () => {
 
         if (createError) throw createError;
 
-        setConversation(newConversation);
+        setConversation(newConversation as Conversation);
         
         // Send welcome message
         await supabase
@@ -103,7 +103,7 @@ export const useChat = () => {
         .order('created_at', { ascending: true });
 
       if (error) throw error;
-      setMessages(data || []);
+      setMessages((data || []) as ChatMessage[]);
     } catch (error: any) {
       console.error('Error loading messages:', error);
       toast({

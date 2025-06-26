@@ -50,7 +50,7 @@ export const ChatAdmin = () => {
         .order('updated_at', { ascending: false });
 
       if (error) throw error;
-      setConversations(data || []);
+      setConversations((data || []) as Conversation[]);
     } catch (error: any) {
       console.error('Error loading conversations:', error);
       toast({
@@ -71,7 +71,7 @@ export const ChatAdmin = () => {
         .order('created_at', { ascending: true });
 
       if (error) throw error;
-      setMessages(data || []);
+      setMessages((data || []) as ChatMessage[]);
     } catch (error: any) {
       console.error('Error loading messages:', error);
       toast({
