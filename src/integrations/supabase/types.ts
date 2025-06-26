@@ -105,6 +105,243 @@ export type Database = {
         }
         Relationships: []
       }
+      intakes: {
+        Row: {
+          address: string | null
+          allergies: string[] | null
+          children_custody: string | null
+          city: string | null
+          completed_steps: number[] | null
+          court_dates: string[] | null
+          created_at: string
+          current_legal_issues: string | null
+          current_living_situation: string | null
+          current_medications: string[] | null
+          current_mental_health_treatment: string | null
+          custody_details: string | null
+          date_of_birth: string | null
+          dependent_details: string | null
+          dependents: number | null
+          detox_needed: string | null
+          disability_details: string | null
+          disability_status: string | null
+          email: string | null
+          emergency_contact_name: string | null
+          emergency_contact_phone: string | null
+          emergency_contact_relationship: string | null
+          facility: string
+          family_contact_person: string | null
+          family_contact_phone: string | null
+          family_substance_abuse_history: string | null
+          family_support: string | null
+          first_name: string | null
+          form_status: string | null
+          frequency_of_use: string | null
+          hospitalization_details: string | null
+          housing_history: string | null
+          housing_stability: string | null
+          id: string
+          last_name: string | null
+          last_use_date: string | null
+          legal_details: string | null
+          medical_conditions: string[] | null
+          medication_allergies: string[] | null
+          medication_compliance: string | null
+          mental_health_conditions: string[] | null
+          mental_health_history: string | null
+          mental_health_provider: string | null
+          pending_charges: string | null
+          phone_number: string | null
+          prescription_medications: Json | null
+          previous_leaving_reason: string | null
+          previous_residency_date: string | null
+          previous_resident: string | null
+          previous_treatment: string | null
+          previous_treatment_details: string | null
+          primary_substance: string | null
+          probation_officer_contact: string | null
+          probation_officer_name: string | null
+          probation_parole: string | null
+          recent_hospitalizations: string | null
+          referral_date: string | null
+          referral_other_source: string | null
+          referral_source: string | null
+          sex_offender: string | null
+          signature_data: string | null
+          signature_date: string | null
+          social_security: string | null
+          state: string | null
+          submitted_at: string | null
+          substances_used: string[] | null
+          suicide_details: string | null
+          suicide_history: string | null
+          trauma_details: string | null
+          trauma_history: string | null
+          updated_at: string
+          user_id: string | null
+          violent_crime: string | null
+          violent_crime_details: string | null
+          withdrawal_history: string | null
+          zip_code: string | null
+        }
+        Insert: {
+          address?: string | null
+          allergies?: string[] | null
+          children_custody?: string | null
+          city?: string | null
+          completed_steps?: number[] | null
+          court_dates?: string[] | null
+          created_at?: string
+          current_legal_issues?: string | null
+          current_living_situation?: string | null
+          current_medications?: string[] | null
+          current_mental_health_treatment?: string | null
+          custody_details?: string | null
+          date_of_birth?: string | null
+          dependent_details?: string | null
+          dependents?: number | null
+          detox_needed?: string | null
+          disability_details?: string | null
+          disability_status?: string | null
+          email?: string | null
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          emergency_contact_relationship?: string | null
+          facility: string
+          family_contact_person?: string | null
+          family_contact_phone?: string | null
+          family_substance_abuse_history?: string | null
+          family_support?: string | null
+          first_name?: string | null
+          form_status?: string | null
+          frequency_of_use?: string | null
+          hospitalization_details?: string | null
+          housing_history?: string | null
+          housing_stability?: string | null
+          id?: string
+          last_name?: string | null
+          last_use_date?: string | null
+          legal_details?: string | null
+          medical_conditions?: string[] | null
+          medication_allergies?: string[] | null
+          medication_compliance?: string | null
+          mental_health_conditions?: string[] | null
+          mental_health_history?: string | null
+          mental_health_provider?: string | null
+          pending_charges?: string | null
+          phone_number?: string | null
+          prescription_medications?: Json | null
+          previous_leaving_reason?: string | null
+          previous_residency_date?: string | null
+          previous_resident?: string | null
+          previous_treatment?: string | null
+          previous_treatment_details?: string | null
+          primary_substance?: string | null
+          probation_officer_contact?: string | null
+          probation_officer_name?: string | null
+          probation_parole?: string | null
+          recent_hospitalizations?: string | null
+          referral_date?: string | null
+          referral_other_source?: string | null
+          referral_source?: string | null
+          sex_offender?: string | null
+          signature_data?: string | null
+          signature_date?: string | null
+          social_security?: string | null
+          state?: string | null
+          submitted_at?: string | null
+          substances_used?: string[] | null
+          suicide_details?: string | null
+          suicide_history?: string | null
+          trauma_details?: string | null
+          trauma_history?: string | null
+          updated_at?: string
+          user_id?: string | null
+          violent_crime?: string | null
+          violent_crime_details?: string | null
+          withdrawal_history?: string | null
+          zip_code?: string | null
+        }
+        Update: {
+          address?: string | null
+          allergies?: string[] | null
+          children_custody?: string | null
+          city?: string | null
+          completed_steps?: number[] | null
+          court_dates?: string[] | null
+          created_at?: string
+          current_legal_issues?: string | null
+          current_living_situation?: string | null
+          current_medications?: string[] | null
+          current_mental_health_treatment?: string | null
+          custody_details?: string | null
+          date_of_birth?: string | null
+          dependent_details?: string | null
+          dependents?: number | null
+          detox_needed?: string | null
+          disability_details?: string | null
+          disability_status?: string | null
+          email?: string | null
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          emergency_contact_relationship?: string | null
+          facility?: string
+          family_contact_person?: string | null
+          family_contact_phone?: string | null
+          family_substance_abuse_history?: string | null
+          family_support?: string | null
+          first_name?: string | null
+          form_status?: string | null
+          frequency_of_use?: string | null
+          hospitalization_details?: string | null
+          housing_history?: string | null
+          housing_stability?: string | null
+          id?: string
+          last_name?: string | null
+          last_use_date?: string | null
+          legal_details?: string | null
+          medical_conditions?: string[] | null
+          medication_allergies?: string[] | null
+          medication_compliance?: string | null
+          mental_health_conditions?: string[] | null
+          mental_health_history?: string | null
+          mental_health_provider?: string | null
+          pending_charges?: string | null
+          phone_number?: string | null
+          prescription_medications?: Json | null
+          previous_leaving_reason?: string | null
+          previous_residency_date?: string | null
+          previous_resident?: string | null
+          previous_treatment?: string | null
+          previous_treatment_details?: string | null
+          primary_substance?: string | null
+          probation_officer_contact?: string | null
+          probation_officer_name?: string | null
+          probation_parole?: string | null
+          recent_hospitalizations?: string | null
+          referral_date?: string | null
+          referral_other_source?: string | null
+          referral_source?: string | null
+          sex_offender?: string | null
+          signature_data?: string | null
+          signature_date?: string | null
+          social_security?: string | null
+          state?: string | null
+          submitted_at?: string | null
+          substances_used?: string[] | null
+          suicide_details?: string | null
+          suicide_history?: string | null
+          trauma_details?: string | null
+          trauma_history?: string | null
+          updated_at?: string
+          user_id?: string | null
+          violent_crime?: string | null
+          violent_crime_details?: string | null
+          withdrawal_history?: string | null
+          zip_code?: string | null
+        }
+        Relationships: []
+      }
       meeting_attendance: {
         Row: {
           attended_date: string
