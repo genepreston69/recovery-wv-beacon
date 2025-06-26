@@ -19,6 +19,7 @@ export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
+    console.log('Get Started button clicked - navigating to /intake');
     navigate('/intake');
   };
 
