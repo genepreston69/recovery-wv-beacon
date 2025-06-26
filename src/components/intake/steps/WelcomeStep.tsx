@@ -13,9 +13,11 @@ interface WelcomeStepProps {
 }
 
 const FACILITIES = [
-  { value: 'hurricane', label: 'Hurricane - Men\'s Facility' },
-  { value: 'charleston', label: 'Charleston - Women\'s Facility' },
-  { value: 'morgantown', label: 'Morgantown - Co-ed Facility' },
+  { value: 'bluefield', label: 'Bluefield' },
+  { value: 'charleston', label: 'Charleston' },
+  { value: 'huntington', label: 'Huntington' },
+  { value: 'parkersburg', label: 'Parkersburg' },
+  { value: 'point-apartments', label: 'Point Apartments' },
 ];
 
 export const WelcomeStep: React.FC<WelcomeStepProps> = ({
