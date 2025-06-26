@@ -74,6 +74,13 @@ const Statistics = () => {
     { value: 50.0, label: 'On Probation/Parole', trend: 'down', icon: TrendingDown, color: 'text-orange-600' }
   ];
 
+  const traumaMetrics = [
+    { value: 21.5, label: 'Treated for Abuse', color: 'text-purple-600' },
+    { value: 932, label: 'Children Impacted', color: 'text-blue-600', isNumber: true },
+    { value: 30.0, label: 'Father Absent', color: 'text-purple-600' },
+    { value: 20.8, label: 'Poor Family Relations', color: 'text-purple-600' }
+  ];
+
   return (
     <>
       <Navigation />
@@ -381,6 +388,93 @@ const Statistics = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Trauma Metrics */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {traumaMetrics.map((metric, index) => (
+                <Card 
+                  key={metric.label}
+                  ref={el => animatedRefs.current[index + keyMetrics.length] = el}
+                  className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                >
+                  <CardContent className="p-6">
+                    <div className="metric-value text-3xl font-bold mb-2" 
+                         className={`text-3xl font-bold mb-2 ${metric.color}`}
+                         data-value={metric.isNumber ? metric.value.toString() : `${metric.value}%`}>
+                      {metric.isNumber ? metric.value.toLocaleString() : `${metric.value}%`}
+                    </div>
+                    <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">
+                      {metric.label}
+                    </div>
+                    {metric.label === 'Children Impacted' && (
+                      <p className="text-xs text-gray-500 mt-1">Based on 444 likely parents</p>
+                    )}
+                    {!metric.isNumber && (
+                      <div className="mt-3 w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-1000"
+                          style={{ width: `${metric.value}%` }}
+                        />
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle>🔍 Intergenerational Trauma Patterns</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span>Abuse History</span>
+                      <Badge variant="destructive">337 clients</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Absent Father + Abuse</span>
+                      <Badge className="bg-yellow-600">106 clients</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>% with Absent Fathers Abused</span>
+                      <Badge variant="destructive">22.6%</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Abuse + Poor Family Relations</span>
+                      <Badge className="bg-yellow-600">109 clients</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>👨‍👩‍👧‍👦 Family System Health</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span>Good/Excellent Relations</span>
+                      <Badge className="bg-green-600">48.8%</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Poor/Terrible Relations</span>
+                      <Badge variant="destructive">20.8%</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Father Present in Childhood</span>
+                      <Badge variant="secondary">69.6%</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>High-Risk Parent Situations</span>
+                      <Badge variant="destructive">33 families</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
             <Card>
               <CardHeader>
