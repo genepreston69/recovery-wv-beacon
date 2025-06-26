@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Navigation } from '@/components/Navigation';
 
@@ -29,7 +28,7 @@ const Statistics = () => {
     Chart.defaults.borderColor = '#e2e8f0';
     
     // Legal Status Chart
-    const legalCtx = document.getElementById('legalChart')?.getContext('2d');
+    const legalCtx = (document.getElementById('legalChart') as HTMLCanvasElement)?.getContext('2d');
     if (legalCtx) {
       new Chart(legalCtx, {
         type: 'bar',
@@ -81,7 +80,7 @@ const Statistics = () => {
     }
     
     // Quality of Life Chart
-    const qolCtx = document.getElementById('qolChart')?.getContext('2d');
+    const qolCtx = (document.getElementById('qolChart') as HTMLCanvasElement)?.getContext('2d');
     if (qolCtx) {
       new Chart(qolCtx, {
         type: 'radar',
@@ -148,7 +147,7 @@ const Statistics = () => {
     }
     
     // Trauma and Family Impact Chart
-    const traumaCtx = document.getElementById('traumaChart')?.getContext('2d');
+    const traumaCtx = (document.getElementById('traumaChart') as HTMLCanvasElement)?.getContext('2d');
     if (traumaCtx) {
       new Chart(traumaCtx, {
         type: 'doughnut',
@@ -202,7 +201,7 @@ const Statistics = () => {
     }
     
     // Abuse Types Chart
-    const abuseTypesCtx = document.getElementById('abuseTypesChart')?.getContext('2d');
+    const abuseTypesCtx = (document.getElementById('abuseTypesChart') as HTMLCanvasElement)?.getContext('2d');
     if (abuseTypesCtx) {
       new Chart(abuseTypesCtx, {
         type: 'bar',
@@ -322,7 +321,7 @@ const Statistics = () => {
   return (
     <>
       <Navigation />
-      <style jsx>{`
+      <style>{`
         * {
           margin: 0;
           padding: 0;
