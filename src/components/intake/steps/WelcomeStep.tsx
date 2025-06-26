@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -59,7 +60,7 @@ export const WelcomeStep: React.FC<WelcomeStepProps> = ({
           <RadioGroup
             value={data.facility}
             onValueChange={handleFacilityChange}
-            className="space-y-4"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4"
           >
             {FACILITIES.map((facility) => (
               <Card 
