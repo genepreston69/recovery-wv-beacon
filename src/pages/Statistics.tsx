@@ -67,6 +67,14 @@ const Statistics = () => {
     { name: 'Unknown', value: 49, color: '#e2e8f0' }
   ];
 
+  const abuseTypesData = [
+    { name: 'Verbal Abuse', value: 428, percentage: 27.3 },
+    { name: 'Physical Abuse', value: 427, percentage: 27.2 },
+    { name: 'Sexual Abuse', value: 305, percentage: 19.5 },
+    { name: 'Rape', value: 185, percentage: 11.8 },
+    { name: 'Incest', value: 59, percentage: 3.8 }
+  ];
+
   const keyMetrics = [
     { value: 24.9, label: 'High-Risk Clients', trend: 'down', icon: TrendingDown, color: 'text-red-600' },
     { value: 59.6, label: 'Stable Housing', trend: 'up', icon: TrendingUp, color: 'text-green-600' },
@@ -79,6 +87,13 @@ const Statistics = () => {
     { value: 932, label: 'Children Impacted', color: 'text-blue-600', isNumber: true },
     { value: 30.0, label: 'Father Absent', color: 'text-purple-600' },
     { value: 20.8, label: 'Poor Family Relations', color: 'text-purple-600' }
+  ];
+
+  const abuseAnalysisMetrics = [
+    { value: 32.7, label: 'Documented Abuse History', color: 'text-purple-600', subtitle: '513 total clients' },
+    { value: 176, label: 'Treatment Gap', color: 'text-purple-600', isNumber: true, subtitle: 'Untreated abuse survivors' },
+    { value: 82.8, label: 'Multiple Trauma Types', color: 'text-purple-600', subtitle: 'Of abuse survivors' },
+    { value: 275, label: 'Severe Cases', color: 'text-purple-600', isNumber: true, subtitle: '3+ types of abuse' }
   ];
 
   return (
@@ -103,10 +118,10 @@ const Statistics = () => {
           </div>
 
           {/* Data Collection Methodology */}
-          <Card className="mb-8">
+          <Card className="mb-8 bg-gradient-to-r from-blue-50 to-gray-50 border-blue-300 text-center">
             <CardContent className="p-6">
-              <p className="text-gray-700 leading-relaxed">
-                <strong>Data Collection Methodology:</strong> This comprehensive analysis is based on data gathered through intake assessments at admission and ongoing surveys conducted throughout clients' residency in our long-term recovery program. The data represents a holistic view of our clients' backgrounds, needs, progress, and outcomes, enabling evidence-based program improvements and targeted interventions.
+              <p className="text-gray-700 leading-relaxed text-lg">
+                <strong className="text-gray-900">Data Collection Methodology:</strong> This comprehensive analysis is based on data gathered through intake assessments at admission and ongoing surveys conducted throughout each client's recovery journey. The information represents a holistic view of our clients' needs, progress, and outcomes during their time in our long-term recovery program.
               </p>
             </CardContent>
           </Card>
@@ -398,9 +413,9 @@ const Statistics = () => {
                   className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 >
                   <CardContent className="p-6">
-                    <div className="metric-value text-3xl font-bold mb-2" 
-                         className={`text-3xl font-bold mb-2 ${metric.color}`}
-                         data-value={metric.isNumber ? metric.value.toString() : `${metric.value}%`}>
+                    <div 
+                      className={`text-3xl font-bold mb-2 ${metric.color}`}
+                      data-value={metric.isNumber ? metric.value.toString() : `${metric.value}%`}>
                       {metric.isNumber ? metric.value.toLocaleString() : `${metric.value}%`}
                     </div>
                     <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">
@@ -514,6 +529,164 @@ const Statistics = () => {
             </Card>
           </div>
 
+          {/* Comprehensive Abuse & Trauma Analysis */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Comprehensive Abuse & Trauma Analysis</h2>
+            
+            <Card className="mb-6 border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <AlertTriangle className="w-8 h-8 text-purple-600" />
+                  <div>
+                    <strong className="text-purple-900">Critical Finding:</strong>
+                    <span className="text-purple-800"> 513 clients (32.7%) have documented abuse histories, but only 337 (21.5%) received treatment. This represents 176 abuse survivors with unmet trauma treatment needs.</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Abuse Analysis Metrics */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {abuseAnalysisMetrics.map((metric, index) => (
+                <Card 
+                  key={metric.label}
+                  className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                >
+                  <CardContent className="p-6">
+                    <div className={`text-3xl font-bold mb-2 ${metric.color}`}>
+                      {metric.isNumber ? metric.value.toLocaleString() : `${metric.value}%`}
+                    </div>
+                    <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">
+                      {metric.label}
+                    </div>
+                    {metric.subtitle && (
+                      <p className="text-xs text-gray-500 mt-1">{metric.subtitle}</p>
+                    )}
+                    {!metric.isNumber && (
+                      <div className="mt-3 w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-1000"
+                          style={{ width: `${metric.value}%` }}
+                        />
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle>📊 Abuse Type Prevalence</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span>Verbal Abuse</span>
+                      <Badge variant="destructive">428 (27.3%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Physical Abuse</span>
+                      <Badge variant="destructive">427 (27.2%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Sexual Abuse</span>
+                      <Badge variant="destructive">305 (19.5%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Rape</span>
+                      <Badge variant="destructive">185 (11.8%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Incest</span>
+                      <Badge className="bg-yellow-600">59 (3.8%)</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>⚠️ Treatment Coverage Analysis</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span>Abuse Survivors Identified</span>
+                      <Badge variant="secondary">513 clients</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Received Treatment</span>
+                      <Badge className="bg-yellow-600">337 (65.7%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>No Treatment</span>
+                      <Badge variant="destructive">176 (34.3%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Treatment Coverage Rate</span>
+                      <Badge className="bg-yellow-600">65.7%</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>🔄 Trauma Complexity Patterns</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span>Single Type of Abuse</span>
+                      <Badge variant="secondary">88 (17.2%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>2 Types of Abuse</span>
+                      <Badge className="bg-yellow-600">150 (29.2%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>3+ Types of Abuse</span>
+                      <Badge variant="destructive">275 (53.6%)</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Most Common Pattern</span>
+                      <span className="text-sm">Physical + Verbal + Sexual</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Types of Abuse Experienced by Clients</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer
+                  config={{
+                    value: {
+                      label: "Number of Clients",
+                      color: "#9f7aea",
+                    },
+                  }}
+                  className="h-80"
+                >
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={abuseTypesData} layout="horizontal">
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis type="number" />
+                      <YAxis type="category" dataKey="name" width={100} />
+                      <ChartTooltip content={<ChartTooltipContent />} />
+                      <Bar dataKey="value" fill="#9f7aea" radius={[0, 4, 4, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Strategic Recommendations */}
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Strategic Recommendations</h2>
@@ -525,6 +698,14 @@ const Statistics = () => {
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
+                      <span>Trauma-Informed Care Training</span>
+                      <Badge variant="destructive">URGENT</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Expand Trauma Treatment</span>
+                      <Badge variant="destructive">URGENT</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
                       <span>Mental Health Provider Recruitment</span>
                       <Badge variant="destructive">URGENT</Badge>
                     </div>
@@ -533,20 +714,12 @@ const Statistics = () => {
                       <Badge variant="destructive">URGENT</Badge>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span>Children's Program Development</span>
-                      <Badge className="bg-yellow-600">HIGH</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Trauma-Informed Care Training</span>
-                      <Badge className="bg-yellow-600">HIGH</Badge>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>VA Registration Drive</span>
+                      <span>Screen 176 Untreated Survivors</span>
                       <Badge className="bg-yellow-600">HIGH</Badge>
                     </div>
                     <div className="flex justify-between items-center">
                       <span>Housing Stabilization Initiative</span>
-                      <Badge variant="destructive">URGENT</Badge>
+                      <Badge className="bg-yellow-600">HIGH</Badge>
                     </div>
                   </div>
                 </CardContent>
