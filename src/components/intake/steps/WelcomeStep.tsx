@@ -13,10 +13,10 @@ interface WelcomeStepProps {
 }
 
 const FACILITIES = [
-  { value: 'bluefield', label: 'Bluefield' },
-  { value: 'charleston', label: 'Charleston' },
-  { value: 'huntington', label: 'Huntington' },
-  { value: 'parkersburg', label: 'Parkersburg' },
+  { value: 'bluefield', label: 'Bluefield - Men\'s Facility' },
+  { value: 'charleston', label: 'Charleston - Women\'s Facility' },
+  { value: 'huntington', label: 'Huntington - Men\'s Facility' },
+  { value: 'parkersburg', label: 'Parkersburg - Men\'s Facility' },
   { value: 'point-apartments', label: 'Point Apartments' },
 ];
 
