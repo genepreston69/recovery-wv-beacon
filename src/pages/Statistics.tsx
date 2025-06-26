@@ -1,11 +1,10 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
 import { AlertTriangle, TrendingUp, TrendingDown, ArrowRight, Users, Heart, Shield, FileText, Download } from 'lucide-react';
 
 const Statistics = () => {
@@ -59,12 +58,6 @@ const Statistics = () => {
     { metric: 'Financial Security', good: 29.5, poor: 36.4 },
     { metric: 'Living Conditions', good: 69.0, poor: 12.7 },
     { metric: 'Education/Skills', good: 50, poor: 25 }
-  ];
-
-  const traumaData = [
-    { name: 'Treated for Abuse', value: 337, color: '#9f7aea' },
-    { name: 'No Abuse Treatment', value: 1182, color: '#4c51bf' },
-    { name: 'Unknown', value: 49, color: '#e2e8f0' }
   ];
 
   const abuseTypesData = [
