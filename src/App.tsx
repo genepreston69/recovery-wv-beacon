@@ -11,6 +11,7 @@ import RecoveryDynamics from "./pages/RecoveryDynamics";
 import MakeABedCampaign from "./pages/MakeABedCampaign";
 import Intake from "./pages/Intake";
 import SuccessStory from "./pages/SuccessStory";
+import HelpLoved from "./pages/HelpLoved";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/recovery-dynamics" element={<RecoveryDynamics />} />
           <Route path="/make-a-bed-campaign" element={<MakeABedCampaign />} />
           <Route path="/intake" element={<Intake />} />
+          <Route path="/helploved" element={<HelpLoved />} />
           <Route path="/success-story/:id" element={<SuccessStory />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

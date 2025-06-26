@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +23,8 @@ export const HeroSection = ({ metrics, onPathwaySelect }: HeroSectionProps) => {
   };
 
   const handleHelpSomeone = () => {
-    onPathwaySelect('family');
+    console.log('Help Someone I Love button clicked - navigating to /helploved');
+    navigate('/helploved');
   };
 
   return (
