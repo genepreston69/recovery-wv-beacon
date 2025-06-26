@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
+import Statistics from "./pages/Statistics";
 import RecoveryDynamics from "./pages/RecoveryDynamics";
 import MakeABedCampaign from "./pages/MakeABedCampaign";
 import SuccessStory from "./pages/SuccessStory";
@@ -22,6 +23,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/statistics" element={<Statistics />} />
           <Route path="/recovery-dynamics" element={<RecoveryDynamics />} />
           <Route path="/make-a-bed-campaign" element={<MakeABedCampaign />} />
           <Route path="/success-story/:id" element={<SuccessStory />} />

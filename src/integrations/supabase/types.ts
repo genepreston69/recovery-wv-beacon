@@ -335,6 +335,7 @@ export type Database = {
           is_sponsor: boolean
           last_name: string
           phone: string | null
+          sobriety_date: string | null
           state: string
           street_address: string
           updated_at: string
@@ -349,6 +350,7 @@ export type Database = {
           is_sponsor?: boolean
           last_name: string
           phone?: string | null
+          sobriety_date?: string | null
           state: string
           street_address: string
           updated_at?: string
@@ -363,6 +365,7 @@ export type Database = {
           is_sponsor?: boolean
           last_name?: string
           phone?: string | null
+          sobriety_date?: string | null
           state?: string
           street_address?: string
           updated_at?: string
@@ -392,15 +395,7 @@ export type Database = {
           progress_percentage?: number | null
           user_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "reading_progress_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       reading_statistics: {
         Row: {
