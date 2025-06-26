@@ -9,6 +9,7 @@ import Admin from "./pages/Admin";
 import Statistics from "./pages/Statistics";
 import RecoveryDynamics from "./pages/RecoveryDynamics";
 import MakeABedCampaign from "./pages/MakeABedCampaign";
+import Intake from "./pages/Intake";
 import SuccessStory from "./pages/SuccessStory";
 import NotFound from "./pages/NotFound";
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/recovery-dynamics" element={<RecoveryDynamics />} />
           <Route path="/make-a-bed-campaign" element={<MakeABedCampaign />} />
+          <Route path="/intake" element={<Intake />} />
           <Route path="/success-story/:id" element={<SuccessStory />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
