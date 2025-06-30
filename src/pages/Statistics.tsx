@@ -16,7 +16,9 @@ const Statistics = () => {
     document.head.appendChild(script);
 
     return () => {
-      document.head.removeChild(script);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
     };
   }, []);
 
@@ -249,7 +251,6 @@ const Statistics = () => {
             element.textContent = '0+';
             setTimeout(() => animateValue(element, 0, value, 1500, '+'), 300);
           } else {
-            // For numeric values like 146.6
             element.textContent = '0.0';
             setTimeout(() => animateValue(element, 0, value, 1500, ''), 300);
           }
@@ -569,20 +570,6 @@ const Statistics = () => {
           .metric-value { font-size: 2rem; }
           .key-metrics { grid-template-columns: 1fr; }
         }
-        
-        .loading {
-          display: inline-block;
-          width: 20px;
-          height: 20px;
-          border: 3px solid #e2e8f0;
-          border-top-color: #4c51bf;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
       `}</style>
       
       <div className="dashboard-content">
@@ -590,7 +577,7 @@ const Statistics = () => {
           <div className="header">
             <div style={{ marginBottom: '2rem' }}>
               <img 
-                src="https://pvxbkqdeyrhuumjtwgzm.supabase.co/storage/v1/object/public/story-images//RPWV%20Logo%20with%20transparent%20background.png" 
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" 
                 alt="Recovery Point West Virginia" 
                 style={{ maxWidth: '400px', height: 'auto', margin: '0 auto', display: 'block' }}
                 onError={(e) => {
@@ -639,6 +626,9 @@ const Statistics = () => {
                 <div style={{ padding: '1rem', background: 'white', borderRadius: '8px', borderLeft: '4px solid #9f7aea' }}>
                   <strong style={{ color: '#9f7aea' }}>💡 Strategic Opportunity:</strong> The 54.4% who stay beyond 30 days show strong engagement. Investing in first-month retention could potentially help 3,174 additional clients annually.
                 </div>
+                <div style={{ padding: '1rem', background: 'white', borderRadius: '8px', borderLeft: '4px solid #9f7aea' }}>
+                  <strong style={{ color: '#9f7aea' }}>🧠 Trauma Prevalence:</strong> Among the 1,207 clients surveyed about abuse, 1 in 3 (33.6%) reported abuse histories, with 40.2% of survivors lacking treatment - highlighting the need for universal trauma screening.
+                </div>
               </div>
             </div>
           </div>
@@ -666,7 +656,7 @@ const Statistics = () => {
               <div className="metric-card">
                 <span className="metric-trend trend-up">⬆</span>
                 <div className="metric-value" style={{ color: '#4c51bf' }}>146.6</div>
-                <div className="metric-label">Avg Days (>30 Day Stays)</div>
+                <div className="metric-label">Avg Days (30+ Day Stays)</div>
                 <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>3,781 clients</p>
               </div>
               
@@ -1015,22 +1005,25 @@ const Statistics = () => {
           
           <div className="section">
             <div className="section-header">
-              <h2 className="section-title">Comprehensive Abuse & Trauma Analysis</h2>
+              <div>
+                <h2 className="section-title" style={{ marginBottom: '0.25rem' }}>Comprehensive Abuse & Trauma Analysis</h2>
+                <p style={{ fontSize: '0.9rem', color: '#64748b', fontStyle: 'italic', margin: 0 }}>Based on 1,207 clients surveyed (16.7% of total population)</p>
+              </div>
             </div>
             
             <div className="alert-box" style={{ background: 'linear-gradient(135deg, #faf5ff, #f3e8ff)', borderColor: '#9f7aea' }}>
               <span className="alert-icon" style={{ color: '#9f7aea' }}>⚡</span>
               <div>
-                <strong>Critical Finding:</strong> 405 clients (5.6%) have documented abuse histories, but only 242 (3.3%) received treatment. This represents 163 abuse survivors with unmet trauma treatment needs.
+                <strong>Critical Finding:</strong> Among 1,207 clients surveyed about abuse, 405 (33.6%) have documented abuse histories, but only 242 (20.0%) received treatment. This represents 163 abuse survivors with unmet trauma treatment needs.
               </div>
             </div>
             
             <div className="key-metrics" style={{ marginBottom: '2rem' }}>
               <div className="metric-card">
                 <span className="metric-trend trend-down">⬇</span>
-                <div className="metric-value" style={{ color: '#9f7aea' }}>5.6%</div>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>33.6%</div>
                 <div className="metric-label">Documented Abuse History</div>
-                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>405 total clients</p>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>405 of 1,207 surveyed</p>
               </div>
               
               <div className="metric-card">
@@ -1051,77 +1044,59 @@ const Statistics = () => {
                 <span className="metric-trend trend-neutral">➡</span>
                 <div className="metric-value" style={{ color: '#9f7aea' }}>242</div>
                 <div className="metric-label">Received Treatment</div>
-                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>3.3% of all clients</p>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>20.0% of surveyed</p>
               </div>
             </div>
             
             <div className="insights-grid">
               <div className="insight-card">
-                <h3>📊 Abuse Type Prevalence</h3>
-                <ul>
-                  <li>
-                    <span>Verbal Abuse</span>
-                    <span className="badge critical">428 (27.3%)</span>
-                  </li>
-                  <li>
-                    <span>Physical Abuse</span>
-                    <span className="badge critical">427 (27.2%)</span>
-                  </li>
-                  <li>
-                    <span>Sexual Abuse</span>
-                    <span className="badge critical">305 (19.5%)</span>
-                  </li>
-                  <li>
-                    <span>Rape</span>
-                    <span className="badge critical">185 (11.8%)</span>
-                  </li>
-                  <li>
-                    <span>Incest</span>
-                    <span className="badge warning">59 (3.8%)</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div className="insight-card">
                 <h3>⚠️ Treatment Coverage Analysis</h3>
                 <ul>
                   <li>
+                    <span>Clients Surveyed About Abuse</span>
+                    <span className="badge">1,207 clients</span>
+                  </li>
+                  <li>
                     <span>Abuse Survivors Identified</span>
-                    <span className="badge">513 clients</span>
+                    <span className="badge critical">405 (33.6%)</span>
                   </li>
                   <li>
                     <span>Received Treatment</span>
-                    <span className="badge warning">337 (65.7%)</span>
+                    <span className="badge warning">242 (59.8%)</span>
                   </li>
                   <li>
                     <span>No Treatment</span>
-                    <span className="badge critical">176 (34.3%)</span>
+                    <span className="badge critical">163 (40.2%)</span>
                   </li>
                   <li>
-                    <span>Treatment Coverage Rate</span>
-                    <span className="badge warning">65.7%</span>
+                    <span>Sample Size Note</span>
+                    <span style={{ fontSize: '0.85rem' }}>1,207 of 7,232</span>
                   </li>
                 </ul>
               </div>
               
               <div className="insight-card">
-                <h3>🔄 Trauma Complexity Patterns</h3>
+                <h3>📊 Key Abuse Findings</h3>
                 <ul>
                   <li>
-                    <span>Single Type of Abuse</span>
-                    <span className="badge">88 (17.2%)</span>
+                    <span>Prevalence Rate</span>
+                    <span className="badge critical">1 in 3 surveyed</span>
                   </li>
                   <li>
-                    <span>2 Types of Abuse</span>
-                    <span className="badge warning">150 (29.2%)</span>
+                    <span>Treatment Gap</span>
+                    <span className="badge critical">40.2% untreated</span>
                   </li>
                   <li>
-                    <span>3+ Types of Abuse</span>
-                    <span className="badge critical">275 (53.6%)</span>
+                    <span>Trauma-Informed Need</span>
+                    <span className="badge warning">High Priority</span>
                   </li>
                   <li>
-                    <span>Most Common Pattern</span>
-                    <span style={{ fontSize: '0.85rem' }}>Physical + Verbal + Sexual</span>
+                    <span>Screening Coverage</span>
+                    <span className="badge">16.7% of clients</span>
+                  </li>
+                  <li>
+                    <span>Recommendation</span>
+                    <span style={{ fontSize: '0.85rem' }}>Universal screening</span>
                   </li>
                 </ul>
               </div>
