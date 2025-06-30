@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import React, { useEffect, useState } from 'react';
 import { StatisticsHeader } from './StatisticsHeader';
 import { ExecutiveInsights } from './ExecutiveInsights';
 import { LengthOfStaySection } from './LengthOfStaySection';
@@ -15,6 +14,8 @@ import { DemographicsSection } from './DemographicsSection';
 import { ProgramInsightsSection } from './ProgramInsightsSection';
 
 export const StatisticsDashboard = () => {
+  const [activeSection, setActiveSection] = useState('overview');
+
   useEffect(() => {
     // Load Chart.js
     const script = document.createElement('script');
@@ -291,6 +292,29 @@ export const StatisticsDashboard = () => {
     }
   };
 
+  const renderOverviewContent = () => (
+    <>
+      <ExecutiveInsights />
+      <LengthOfStaySection />
+      
+      <div className="alert-box">
+        <span className="alert-icon">⚠️</span>
+        <div>
+          <strong>Critical Retention Challenge:</strong> 45.6% of clients leave within 30 days, with 24.5% departing in the first week. Early intervention and engagement strategies are urgently needed.
+        </div>
+      </div>
+      
+      <KeyMetricsGrid />
+      <ServiceGapsSection />
+      <LegalSystemSection />
+      <QualityOfLifeSection />
+      <RiskStratificationSection />
+      <TraumaFamilySection />
+      <ComprehensiveAbuseSection />
+      <StrategicRecommendationsSection />
+    </>
+  );
+
   return (
     <div className="dashboard-content">
       <div className="dashboard">
@@ -302,42 +326,80 @@ export const StatisticsDashboard = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="demographics">Demographics</TabsTrigger>
-            <TabsTrigger value="program-insights">Program Insights</TabsTrigger>
-          </TabsList>
+        {/* Navigation - hidden in print */}
+        <div className="section-navigation" style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <button 
+              onClick={() => setActiveSection('overview')}
+              className={`action-button ${activeSection === 'overview' ? 'active' : ''}`}
+              style={{ 
+                background: activeSection === 'overview' ? 'linear-gradient(135deg, #0077be, #4da6d9)' : 'linear-gradient(135deg, #64748b, #94a3b8)',
+                opacity: activeSection === 'overview' ? 1 : 0.7
+              }}
+            >
+              Overview
+            </button>
+            <button 
+              onClick={() => setActiveSection('demographics')}
+              className={`action-button ${activeSection === 'demographics' ? 'active' : ''}`}
+              style={{ 
+                background: activeSection === 'demographics' ? 'linear-gradient(135deg, #0077be, #4da6d9)' : 'linear-gradient(135deg, #64748b, #94a3b8)',
+                opacity: activeSection === 'demographics' ? 1 : 0.7
+              }}
+            >
+              Demographics
+            </button>
+            <button 
+              onClick={() => setActiveSection('program-insights')}
+              className={`action-button ${activeSection === 'program-insights' ? 'active' : ''}`}
+              style={{ 
+                background: activeSection === 'program-insights' ? 'linear-gradient(135deg, #0077be, #4da6d9)' : 'linear-gradient(135deg, #64748b, #94a3b8)',
+                opacity: activeSection === 'program-insights' ? 1 : 0.7
+              }}
+            >
+              Program Insights
+            </button>
+          </div>
+        </div>
+        
+        {/* Content sections - all visible in print */}
+        <div className="dashboard-sections">
+          {activeSection === 'overview' && (
+            <div className="section-content" id="overview-section">
+              {renderOverviewContent()}
+            </div>
+          )}
           
-          <TabsContent value="overview">
-            <ExecutiveInsights />
-            <LengthOfStaySection />
-            
-            <div className="alert-box">
-              <span className="alert-icon">⚠️</span>
-              <div>
-                <strong>Critical Retention Challenge:</strong> 45.6% of clients leave within 30 days, with 24.5% departing in the first week. Early intervention and engagement strategies are urgently needed.
-              </div>
+          {activeSection === 'demographics' && (
+            <div className="section-content" id="demographics-section">
+              <DemographicsSection />
+            </div>
+          )}
+          
+          {activeSection === 'program-insights' && (
+            <div className="section-content" id="program-insights-section">
+              <ProgramInsightsSection />
+            </div>
+          )}
+
+          {/* Print-only: Show all sections */}
+          <div className="print-only-content" style={{ display: 'none' }}>
+            <div className="print-section">
+              <h1 style={{ pageBreakBefore: 'auto', color: '#0077be', fontSize: '2rem', marginBottom: '2rem', textAlign: 'center' }}>Overview</h1>
+              {renderOverviewContent()}
             </div>
             
-            <KeyMetricsGrid />
-            <ServiceGapsSection />
-            <LegalSystemSection />
-            <QualityOfLifeSection />
-            <RiskStratificationSection />
-            <TraumaFamilySection />
-            <ComprehensiveAbuseSection />
-            <StrategicRecommendationsSection />
-          </TabsContent>
-          
-          <TabsContent value="demographics">
-            <DemographicsSection />
-          </TabsContent>
-          
-          <TabsContent value="program-insights">
-            <ProgramInsightsSection />
-          </TabsContent>
-        </Tabs>
+            <div className="print-section" style={{ pageBreakBefore: 'always' }}>
+              <h1 style={{ color: '#0077be', fontSize: '2rem', marginBottom: '2rem', textAlign: 'center' }}>Demographics</h1>
+              <DemographicsSection />
+            </div>
+            
+            <div className="print-section" style={{ pageBreakBefore: 'always' }}>
+              <h1 style={{ color: '#0077be', fontSize: '2rem', marginBottom: '2rem', textAlign: 'center' }}>Program Insights</h1>
+              <ProgramInsightsSection />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

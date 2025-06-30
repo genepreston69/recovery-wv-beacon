@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export const StatisticsStyles = () => {
@@ -318,6 +317,163 @@ export const StatisticsStyles = () => {
         .header h1 { font-size: 2rem; }
         .metric-value { font-size: 2rem; }
         .key-metrics { grid-template-columns: 1fr; }
+      }
+      
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #e2e8f0;
+        border-top-color: #0077be;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* Navigation styles */
+      .section-navigation {
+        margin-bottom: 2rem;
+      }
+      
+      .action-button.active {
+        transform: scale(1.05);
+        box-shadow: 0 5px 20px rgba(77, 166, 217, 0.4);
+      }
+      
+      /* Print-specific improvements */
+      @media print {
+        .dashboard-content {
+          background: white !important;
+        }
+        
+        /* Hide navigation in print */
+        .section-navigation {
+          display: none !important;
+        }
+        
+        /* Hide screen content in print */
+        .section-content {
+          display: none !important;
+        }
+        
+        /* Show print-only content */
+        .print-only-content {
+          display: block !important;
+        }
+        
+        .print-section {
+          page-break-inside: avoid;
+          margin-bottom: 3rem;
+        }
+        
+        .metric-card {
+          box-shadow: none !important;
+          border: 1px solid #ccc !important;
+          page-break-inside: avoid;
+          background: white !important;
+        }
+        
+        .chart-container {
+          box-shadow: none !important;
+          border: 1px solid #ccc !important;
+          page-break-inside: avoid;
+          background: white !important;
+        }
+        
+        .section {
+          page-break-inside: avoid;
+          margin-bottom: 2rem;
+        }
+        
+        .alert-box {
+          border: 1px solid #ccc !important;
+          background: #f9f9f9 !important;
+          page-break-inside: avoid;
+        }
+        
+        .insight-card {
+          border: 1px solid #ccc !important;
+          box-shadow: none !important;
+          page-break-inside: avoid;
+          background: white !important;
+        }
+        
+        .risk-card {
+          border: 1px solid #ccc !important;
+          box-shadow: none !important;
+          page-break-inside: avoid;
+          background: white !important;
+        }
+        
+        /* Ensure proper page breaks */
+        h1, h2, h3 {
+          page-break-after: avoid;
+          page-break-inside: avoid;
+        }
+        
+        .key-metrics {
+          page-break-inside: avoid;
+        }
+        
+        .insights-grid {
+          page-break-inside: avoid;
+        }
+        
+        .risk-grid {
+          page-break-inside: avoid;
+        }
+        
+        /* Print typography improvements */
+        body {
+          font-size: 12pt !important;
+          line-height: 1.4 !important;
+        }
+        
+        .metric-value {
+          font-size: 18pt !important;
+        }
+        
+        .section-title {
+          font-size: 16pt !important;
+        }
+        
+        /* Remove gradients and colors that don't print well */
+        .header h1 {
+          color: #000 !important;
+          background: none !important;
+          -webkit-text-fill-color: initial !important;
+        }
+        
+        .metric-value {
+          color: #000 !important;
+        }
+        
+        /* Ensure all text is black for printing */
+        * {
+          color: #000 !important;
+          text-shadow: none !important;
+        }
+        
+        .badge {
+          border: 1px solid #ccc !important;
+          background: #f5f5f5 !important;
+          color: #000 !important;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .dashboard { padding: 1rem; }
+        .header h1 { font-size: 2rem; }
+        .metric-value { font-size: 2rem; }
+        .key-metrics { grid-template-columns: 1fr; }
+        
+        .section-navigation button {
+          font-size: 0.8rem;
+          padding: 0.5rem 1rem;
+        }
       }
       
       .loading {
