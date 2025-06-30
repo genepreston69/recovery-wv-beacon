@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,22 +14,20 @@ export const PathwaysSection = ({ onPathwaySelect }: PathwaysSectionProps) => {
   const handlePathwayClick = (pathwayId: string) => {
     console.log(`Pathway ${pathwayId} clicked - navigating...`);
     
-    // Call the original toast function
-    onPathwaySelect(pathwayId);
-    
     // Navigate to appropriate page based on pathway
     switch (pathwayId) {
       case 'individual':
         navigate('/intake');
         break;
       case 'family':
+        onPathwaySelect(pathwayId);
         navigate('/helploved');
         break;
       case 'professional':
-        // For now, show toast until professional referral page is created
+        onPathwaySelect(pathwayId);
         break;
       case 'support':
-        // For now, show toast until donation page is created
+        onPathwaySelect(pathwayId);
         break;
       default:
         break;
