@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,7 +18,7 @@ export const PathwaysSection = ({ onPathwaySelect }: PathwaysSectionProps) => {
     // Navigate to appropriate page based on pathway
     switch (pathwayId) {
       case 'individual':
-        navigate('/intake');
+        onPathwaySelect(pathwayId);
         break;
       case 'family':
         onPathwaySelect(pathwayId);

@@ -38,7 +38,7 @@ const Index = () => {
 
   const handlePathwaySelect = (type: string) => {
     const pathwayMessages = {
-      individual: "Connecting you with intake coordinator... Next steps: Complete brief assessment, Schedule facility tour, Begin program within 24-48 hours",
+      individual: "Coming Soon",
       family: "Family Support Resources: Family therapy sessions, Support group meetings, Educational workshops, 24/7 family helpline",
       professional: "Professional Referral System: Secure online referral portal, Direct communication with intake team, Progress updates",
       support: "Make an Impact Today: $32 sponsors one day of recovery housing, $160 sponsors one week of support"
