@@ -1,5 +1,5 @@
-
 import React, { useEffect } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { StatisticsHeader } from './StatisticsHeader';
 import { ExecutiveInsights } from './ExecutiveInsights';
 import { LengthOfStaySection } from './LengthOfStaySection';
@@ -11,6 +11,8 @@ import { RiskStratificationSection } from './RiskStratificationSection';
 import { TraumaFamilySection } from './TraumaFamilySection';
 import { ComprehensiveAbuseSection } from './ComprehensiveAbuseSection';
 import { StrategicRecommendationsSection } from './StrategicRecommendationsSection';
+import { DemographicsSection } from './DemographicsSection';
+import { ProgramInsightsSection } from './ProgramInsightsSection';
 
 export const StatisticsDashboard = () => {
   useEffect(() => {
@@ -300,24 +302,42 @@ export const StatisticsDashboard = () => {
           </p>
         </div>
 
-        <ExecutiveInsights />
-        <LengthOfStaySection />
-        
-        <div className="alert-box">
-          <span className="alert-icon">⚠️</span>
-          <div>
-            <strong>Critical Retention Challenge:</strong> 45.6% of clients leave within 30 days, with 24.5% departing in the first week. Early intervention and engagement strategies are urgently needed.
-          </div>
-        </div>
-        
-        <KeyMetricsGrid />
-        <ServiceGapsSection />
-        <LegalSystemSection />
-        <QualityOfLifeSection />
-        <RiskStratificationSection />
-        <TraumaFamilySection />
-        <ComprehensiveAbuseSection />
-        <StrategicRecommendationsSection />
+        <Tabs defaultValue="overview" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="demographics">Demographics</TabsTrigger>
+            <TabsTrigger value="program-insights">Program Insights</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="overview">
+            <ExecutiveInsights />
+            <LengthOfStaySection />
+            
+            <div className="alert-box">
+              <span className="alert-icon">⚠️</span>
+              <div>
+                <strong>Critical Retention Challenge:</strong> 45.6% of clients leave within 30 days, with 24.5% departing in the first week. Early intervention and engagement strategies are urgently needed.
+              </div>
+            </div>
+            
+            <KeyMetricsGrid />
+            <ServiceGapsSection />
+            <LegalSystemSection />
+            <QualityOfLifeSection />
+            <RiskStratificationSection />
+            <TraumaFamilySection />
+            <ComprehensiveAbuseSection />
+            <StrategicRecommendationsSection />
+          </TabsContent>
+          
+          <TabsContent value="demographics">
+            <DemographicsSection />
+          </TabsContent>
+          
+          <TabsContent value="program-insights">
+            <ProgramInsightsSection />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
