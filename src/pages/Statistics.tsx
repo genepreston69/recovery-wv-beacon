@@ -570,6 +570,20 @@ const Statistics = () => {
           .metric-value { font-size: 2rem; }
           .key-metrics { grid-template-columns: 1fr; }
         }
+        
+        .loading {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 3px solid #e2e8f0;
+          border-top-color: #4c51bf;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
       `}</style>
       
       <div className="dashboard-content">
@@ -621,13 +635,16 @@ const Statistics = () => {
                   <strong style={{ color: '#667eea' }}>⏱️ Success Threshold:</strong> Clients who stay beyond 30 days average 146.6 days in treatment, suggesting a critical stabilization period that dramatically improves long-term outcomes.
                 </div>
                 <div style={{ padding: '1rem', background: 'white', borderRadius: '8px', borderLeft: '4px solid #4c51bf' }}>
-                  <strong style={{ color: '#4c51bf' }}>🔄 Intergenerational Impact:</strong> 7.1% have siblings with addiction issues, and 12.2% have recent arrests, highlighting the complex family and legal challenges facing recovery.
+                  <strong style={{ color: '#4c51bf' }}>🔄 Intergenerational Impact:</strong> Among the 1,207 surveyed clients, significant family addiction patterns and criminal justice involvement were reported, highlighting the complex family and legal challenges facing recovery.
                 </div>
                 <div style={{ padding: '1rem', background: 'white', borderRadius: '8px', borderLeft: '4px solid #9f7aea' }}>
                   <strong style={{ color: '#9f7aea' }}>💡 Strategic Opportunity:</strong> The 54.4% who stay beyond 30 days show strong engagement. Investing in first-month retention could potentially help 3,174 additional clients annually.
                 </div>
                 <div style={{ padding: '1rem', background: 'white', borderRadius: '8px', borderLeft: '4px solid #9f7aea' }}>
                   <strong style={{ color: '#9f7aea' }}>🧠 Trauma Prevalence:</strong> Among the 1,207 clients surveyed about abuse, 1 in 3 (33.6%) reported abuse histories, with 40.2% of survivors lacking treatment - highlighting the need for universal trauma screening.
+                </div>
+                <div style={{ padding: '1rem', background: 'white', borderRadius: '8px', borderLeft: '4px solid #f59e0b' }}>
+                  <strong style={{ color: '#f59e0b' }}>📋 Data Gap Alert:</strong> Only 16.7% of clients (1,207 of 7,232) have been surveyed about trauma, family history, and children. Expanding assessment coverage could reveal the true scope of intergenerational impact and treatment needs.
                 </div>
               </div>
             </div>
@@ -656,7 +673,7 @@ const Statistics = () => {
               <div className="metric-card">
                 <span className="metric-trend trend-up">⬆</span>
                 <div className="metric-value" style={{ color: '#4c51bf' }}>146.6</div>
-                <div className="metric-label">Avg Days (30+ Day Stays)</div>
+                <div className="metric-label">Avg Days (&gt;30 Day Stays)</div>
                 <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>3,781 clients</p>
               </div>
               
@@ -907,52 +924,49 @@ const Statistics = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="section">
             <div className="section-header">
-              <h2 className="section-title">Trauma & Family Impact Analysis</h2>
+              <div>
+                <h2 className="section-title" style={{ marginBottom: '0.25rem' }}>Trauma & Family Impact Analysis</h2>
+                <p style={{ fontSize: '0.9rem', color: '#64748b', fontStyle: 'italic', margin: 0 }}>Based on 1,207 clients surveyed (16.7% of total population)</p>
+              </div>
             </div>
             
             <div className="alert-box" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderColor: '#f59e0b' }}>
               <span className="alert-icon" style={{ color: '#f59e0b' }}>👨‍👩‍👧‍👦</span>
               <div>
-                <strong>Children at Risk:</strong> Updated analysis shows thousands of children impacted by their parents' recovery journey. Comprehensive family support services are essential for breaking intergenerational cycles.
+                <strong>Children at Risk:</strong> Among the 1,207 surveyed clients, analysis reveals significant numbers of children impacted by their parents' recovery journey. Comprehensive family support services are essential for breaking intergenerational cycles.
               </div>
             </div>
             
             <div className="key-metrics" style={{ marginBottom: '2rem' }}>
               <div className="metric-card">
                 <span className="metric-trend trend-down">⬇</span>
-                <div className="metric-value" style={{ color: '#9f7aea' }}>21.5%</div>
-                <div className="metric-label">Treated for Abuse</div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '21.5%', background: 'linear-gradient(90deg, #9f7aea, #b794f4)' }}></div>
-                </div>
+                <div className="metric-value" style={{ color: '#667eea' }}>33.6%</div>
+                <div className="metric-label">Report Abuse History</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>Of 1,207 surveyed</p>
               </div>
               
               <div className="metric-card">
                 <span className="metric-trend trend-neutral">➡</span>
-                <div className="metric-value" style={{ color: '#667eea' }}>932+</div>
-                <div className="metric-label">Children Impacted</div>
-                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>Based on 444 likely parents</p>
+                <div className="metric-value" style={{ color: '#667eea' }}>1,207</div>
+                <div className="metric-label">Clients Surveyed</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>16.7% of total</p>
               </div>
               
               <div className="metric-card">
                 <span className="metric-trend trend-down">⬇</span>
-                <div className="metric-value" style={{ color: '#9f7aea' }}>30.0%</div>
-                <div className="metric-label">Father Absent</div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '30%', background: 'linear-gradient(90deg, #9f7aea, #b794f4)' }}></div>
-                </div>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>69.6%</div>
+                <div className="metric-label">Father Present</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>Among surveyed</p>
               </div>
               
               <div className="metric-card">
                 <span className="metric-trend trend-down">⬇</span>
-                <div className="metric-value" style={{ color: '#9f7aea' }}>20.8%</div>
-                <div className="metric-label">Poor Family Relations</div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '20.8%', background: 'linear-gradient(90deg, #9f7aea, #b794f4)' }}></div>
-                </div>
+                <div className="metric-value" style={{ color: '#9f7aea' }}>Data Gap</div>
+                <div className="metric-label">83.3% Not Assessed</div>
+                <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>6,025 clients</p>
               </div>
             </div>
             
@@ -961,20 +975,24 @@ const Statistics = () => {
                 <h3>🔍 Intergenerational Trauma Patterns</h3>
                 <ul>
                   <li>
-                    <span>Abuse History</span>
-                    <span className="badge critical">337 clients</span>
+                    <span>Abuse History Reported</span>
+                    <span className="badge critical">1 in 3 surveyed</span>
                   </li>
                   <li>
-                    <span>Absent Father + Abuse</span>
-                    <span className="badge warning">106 clients</span>
+                    <span>Father Absent in Childhood</span>
+                    <span className="badge warning">30% of surveyed</span>
                   </li>
                   <li>
-                    <span>% with Absent Fathers Abused</span>
-                    <span className="badge critical">22.6%</span>
+                    <span>Correlation Pattern</span>
+                    <span className="badge">Absence + Abuse</span>
                   </li>
                   <li>
-                    <span>Abuse + Poor Family Relations</span>
-                    <span className="badge warning">109 clients</span>
+                    <span>Sample Limitation</span>
+                    <span className="badge">1,207 clients</span>
+                  </li>
+                  <li>
+                    <span>Recommendation</span>
+                    <span style={{ fontSize: '0.85rem' }}>Expand screening</span>
                   </li>
                 </ul>
               </div>
@@ -983,20 +1001,24 @@ const Statistics = () => {
                 <h3>👨‍👩‍👧‍👦 Family System Health</h3>
                 <ul>
                   <li>
-                    <span>Good/Excellent Relations</span>
-                    <span className="badge success">48.8%</span>
+                    <span>Assessment Coverage</span>
+                    <span className="badge warning">16.7% only</span>
                   </li>
                   <li>
-                    <span>Poor/Terrible Relations</span>
-                    <span className="badge critical">20.8%</span>
+                    <span>Family Relations Quality</span>
+                    <span className="badge">Variable</span>
                   </li>
                   <li>
-                    <span>Father Present in Childhood</span>
-                    <span className="badge">69.6%</span>
+                    <span>Children Impact</span>
+                    <span className="badge critical">Significant</span>
                   </li>
                   <li>
-                    <span>High-Risk Parent Situations</span>
-                    <span className="badge critical">33 families</span>
+                    <span>Parental Status</span>
+                    <span className="badge">Many affected</span>
+                  </li>
+                  <li>
+                    <span>Data Need</span>
+                    <span style={{ fontSize: '0.85rem' }}>Universal assessment</span>
                   </li>
                 </ul>
               </div>
@@ -1121,8 +1143,12 @@ const Statistics = () => {
                     <span className="badge critical">URGENT</span>
                   </li>
                   <li>
-                    <span>Trauma-Informed Care Training</span>
+                    <span>Universal Trauma Screening</span>
                     <span className="badge critical">URGENT</span>
+                  </li>
+                  <li>
+                    <span>Expand Assessment Coverage</span>
+                    <span className="badge warning">HIGH</span>
                   </li>
                   <li>
                     <span>Family Addiction Services</span>
@@ -1132,10 +1158,6 @@ const Statistics = () => {
                     <span>Mental Health Provider Expansion</span>
                     <span className="badge warning">HIGH</span>
                   </li>
-                  <li>
-                    <span>Criminal Justice Partnership</span>
-                    <span className="badge warning">HIGH</span>
-                  </li>
                 </ul>
               </div>
               
@@ -1143,28 +1165,28 @@ const Statistics = () => {
                 <h3>📊 Program Enhancements</h3>
                 <ul>
                   <li>
+                    <span>Universal Assessment Protocol</span>
+                    <span>83.3% gap</span>
+                  </li>
+                  <li>
                     <span>Integrated MH Services</span>
-                    <span>48.7% need</span>
+                    <span>Critical need</span>
                   </li>
                   <li>
                     <span>Family Reunification Program</span>
-                    <span>932+ children</span>
+                    <span>Many impacted</span>
                   </li>
                   <li>
                     <span>Parenting Skills Track</span>
-                    <span>444 parents</span>
+                    <span>For surveyed parents</span>
                   </li>
                   <li>
                     <span>Intergenerational Healing</span>
-                    <span>337 trauma cases</span>
+                    <span>33.6% need</span>
                   </li>
                   <li>
-                    <span>Legal Aid Partnership</span>
-                    <span>50% affected</span>
-                  </li>
-                  <li>
-                    <span>Veterans-Specific Track</span>
-                    <span>162 clients</span>
+                    <span>Data Collection Expansion</span>
+                    <span>6,025 to assess</span>
                   </li>
                 </ul>
               </div>
