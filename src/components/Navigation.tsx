@@ -7,7 +7,7 @@ import { Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Navigation = () => {
-  const { isAdmin } = useAuth();
+  const { isAdmin, user } = useAuth();
 
   return (
     <nav className="bg-white shadow-sm border-b">
@@ -26,7 +26,9 @@ export const Navigation = () => {
               <a href="#impact" className="text-gray-600 hover:text-blue-700 transition-colors">Impact</a>
               <a href="#success" className="text-gray-600 hover:text-blue-700 transition-colors">Stories</a>
               <Link to="/recovery-dynamics" className="text-gray-600 hover:text-blue-700 transition-colors">Recovery Dynamics</Link>
-              <Link to="/statistics" className="text-gray-600 hover:text-blue-700 transition-colors">Statistics</Link>
+              {user && (
+                <Link to="/statistics" className="text-gray-600 hover:text-blue-700 transition-colors">Statistics</Link>
+              )}
             </div>
           </div>
           <div className="flex items-center space-x-4">
