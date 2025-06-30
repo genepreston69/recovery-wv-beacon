@@ -31,7 +31,7 @@ export const AdminPanel = () => {
     featured_image_url: '',
     is_published: false
   });
-  const { isAuthenticated } = useAzureAuth();
+  const { isAuthenticated, user } = useAzureAuth();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -97,10 +97,13 @@ export const AdminPanel = () => {
         if (error) throw error;
         toast.success('Story updated successfully');
       } else {
-        // Create new story
+        // Create new story - include created_by field
         const { error } = await supabase
           .from('success_stories')
-          .insert([formData]);
+          .insert({
+            ...formData,
+            created_by: user?.homeAccountId || 'unknown-user'
+          });
         
         if (error) throw error;
         toast.success('Story created successfully');
