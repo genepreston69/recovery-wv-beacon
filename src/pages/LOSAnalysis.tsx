@@ -168,7 +168,7 @@ const LOSAnalysis = () => {
             backgroundColor: 'rgba(76, 81, 191, 0.1)',
             tension: 0.4
           }, {
-            label: 'RPC (Needs Improvement)',
+            label: 'RPC (Women\'s Facility)',
             data: [31.8, 18.6, 9.2, 6.4, 16.5, 17.5],
             borderColor: 'rgba(159, 122, 234, 1)',
             backgroundColor: 'rgba(159, 122, 234, 0.1)',
@@ -770,7 +770,7 @@ const LOSAnalysis = () => {
             </div>
             
             <div className="facility-card concern">
-              <h3 style={{ color: '#9f7aea' }}>⚠️ RPC - Needs Attention</h3>
+              <h3 style={{ color: '#9f7aea' }}>👩 RPC - Women's Facility</h3>
               <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem' }}>2,141 clients served</p>
               <div style={{ marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
@@ -882,8 +882,8 @@ const LOSAnalysis = () => {
                   <th style={{ padding: '1rem', textAlign: 'center' }}>Total Clients</th>
                   <th style={{ padding: '1rem', textAlign: 'center' }}>≤7 Days</th>
                   <th style={{ padding: '1rem', textAlign: 'center' }}>≤30 Days</th>
-                  <th style={{ padding: '1rem', textAlign: 'center' }}>>30 Days</th>
-                  <th style={{ padding: '1rem', textAlign: 'center' }}>>90 Days</th>
+                  <th style={{ padding: '1rem', textAlign: 'center' }}>{'>'}30 Days</th>
+                  <th style={{ padding: '1rem', textAlign: 'center' }}>{'>'}90 Days</th>
                 </tr>
               </thead>
               <tbody>
