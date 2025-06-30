@@ -9,6 +9,7 @@ import { msalInstance } from '@/config/msalConfig';
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
 import Statistics from "./pages/Statistics";
+import LOSAnalysis from "./pages/LOSAnalysis";
 import RecoveryDynamics from "./pages/RecoveryDynamics";
 import MakeABedCampaign from "./pages/MakeABedCampaign";
 import Intake from "./pages/Intake";
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/statistics" element={<Statistics />} />
+            <Route path="/los-analysis" element={<LOSAnalysis />} />
             <Route path="/recovery-dynamics" element={<RecoveryDynamics />} />
             <Route path="/make-a-bed-campaign" element={<MakeABedCampaign />} />
             <Route path="/intake" element={<Intake />} />

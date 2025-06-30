@@ -27,7 +27,10 @@ export const Navigation = () => {
               <a href="#success" className="text-gray-600 hover:text-blue-700 transition-colors">Stories</a>
               <Link to="/recovery-dynamics" className="text-gray-600 hover:text-blue-700 transition-colors">Recovery Dynamics</Link>
               {isAuthenticated && (
-                <Link to="/statistics" className="text-gray-600 hover:text-blue-700 transition-colors">Statistics</Link>
+                <>
+                  <Link to="/statistics" className="text-gray-600 hover:text-blue-700 transition-colors">Data Insights</Link>
+                  <Link to="/los-analysis" className="text-gray-600 hover:text-blue-700 transition-colors">LOS Analysis</Link>
+                </>
               )}
             </div>
           </div>
