@@ -8,7 +8,6 @@ import { PathwaysSection } from '@/components/PathwaysSection';
 import { ImpactDashboard } from '@/components/ImpactDashboard';
 import { SuccessStories } from '@/components/SuccessStories';
 import { QuickActions } from '@/components/QuickActions';
-import { ChatWidget } from '@/components/ChatWidget';
 
 const Index = () => {
   const { toast } = useToast();
@@ -75,7 +74,6 @@ const Index = () => {
       />
       <SuccessStories />
       <QuickActions />
-      <ChatWidget />
     </>
   );
 };
