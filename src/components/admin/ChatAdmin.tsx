@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -8,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Send, Clock, AlertTriangle, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/hooks/useAuth';
+import { useAzureAuth } from '@/hooks/useAzureAuth';
 import { format } from 'date-fns';
 
 interface Conversation {
@@ -38,7 +37,7 @@ export const ChatAdmin = () => {
   const [replyText, setReplyText] = useState('');
   const [sending, setSending] = useState(false);
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user } = useAzureAuth();
 
   // Load conversations
   const loadConversations = async () => {
@@ -92,7 +91,7 @@ export const ChatAdmin = () => {
         .from('chat_messages')
         .insert({
           conversation_id: selectedConversation.id,
-          sender_id: user.id,
+          sender_id: user.localAccountId,
           content: replyText.trim(),
           message_type: 'text',
           is_staff: true

@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Send, X, MessageCircle } from 'lucide-react';
 import { useChat } from '@/hooks/useChat';
-import { useAuth } from '@/hooks/useAuth';
+import { useAzureAuth } from '@/hooks/useAzureAuth';
 import { ChatMessage } from './ChatMessage';
 
 interface ChatInterfaceProps {
@@ -16,7 +16,7 @@ interface ChatInterfaceProps {
 export const ChatInterface = ({ isOpen, onClose }: ChatInterfaceProps) => {
   const [messageText, setMessageText] = useState('');
   const { messages, loading, sending, sendMessage } = useChat();
-  const { user } = useAuth();
+  const { user } = useAzureAuth();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -74,7 +74,7 @@ export const ChatInterface = ({ isOpen, onClose }: ChatInterfaceProps) => {
               <ChatMessage
                 key={message.id}
                 message={message}
-                isOwn={message.sender_id === user?.id && !message.is_staff}
+                isOwn={message.sender_id === user?.localAccountId && !message.is_staff}
               />
             ))}
             <div ref={messagesEndRef} />

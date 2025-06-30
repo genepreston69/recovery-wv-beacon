@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/hooks/useAuth';
+import { useAzureAuth } from '@/hooks/useAzureAuth';
 
 export interface ChatMessage {
   id: string;
@@ -31,18 +31,21 @@ export const useChat = () => {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user } = useAzureAuth();
 
   // Initialize or get existing conversation
   const initializeConversation = useCallback(async () => {
     if (!user) return;
 
     try {
+      // Use Azure user's localAccountId as the user_id
+      const userId = user.localAccountId;
+      
       // Check if user has an active conversation
       const { data: existingConversation, error: convError } = await supabase
         .from('conversations')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('user_id', userId)
         .eq('status', 'active')
         .order('updated_at', { ascending: false })
         .limit(1)
@@ -58,7 +61,7 @@ export const useChat = () => {
         const { data: newConversation, error: createError } = await supabase
           .from('conversations')
           .insert({
-            user_id: user.id,
+            user_id: userId,
             title: 'Support Chat',
             status: 'active',
             priority: 'normal'
@@ -75,7 +78,7 @@ export const useChat = () => {
           .from('chat_messages')
           .insert({
             conversation_id: newConversation.id,
-            sender_id: user.id,
+            sender_id: userId,
             content: 'Hello! How can we help you today?',
             message_type: 'system',
             is_staff: true
@@ -124,7 +127,7 @@ export const useChat = () => {
         .from('chat_messages')
         .insert({
           conversation_id: conversation.id,
-          sender_id: user.id,
+          sender_id: user.localAccountId,
           content: content.trim(),
           message_type: 'text',
           is_staff: false

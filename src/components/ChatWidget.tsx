@@ -2,12 +2,12 @@
 import React, { useState } from 'react';
 import { MessageCircle } from 'lucide-react';
 import { ChatInterface } from './chat/ChatInterface';
-import { useAuth } from '@/hooks/useAuth';
+import { useAzureAuth } from '@/hooks/useAzureAuth';
 import { useToast } from '@/hooks/use-toast';
 
 export const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
+  const { user } = useAzureAuth();
   const { toast } = useToast();
 
   const handleChatClick = () => {

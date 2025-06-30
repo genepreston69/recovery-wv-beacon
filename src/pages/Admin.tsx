@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { AdminPanel } from '@/components/admin/AdminPanel';
-import { AuthButton } from '@/components/auth/AuthButton';
+import { AzureAuthButton } from '@/components/auth/AzureAuthButton';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, BookOpen, Search, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ const Admin = () => {
               <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
                 <Github className="w-5 h-5" />
               </button>
-              <AuthButton />
+              <AzureAuthButton />
             </div>
           </div>
         </div>

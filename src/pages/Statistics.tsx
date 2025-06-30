@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { Navigation } from '@/components/Navigation';
-import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
+import { AzureProtectedRoute } from '@/components/auth/AzureProtectedRoute';
 import { StatisticsDashboard } from '@/components/statistics/StatisticsDashboard';
 
 const Statistics = () => {
   return (
-    <ProtectedRoute>
+    <AzureProtectedRoute>
       <Navigation />
       <style>{`
         * {
@@ -308,7 +308,7 @@ const Statistics = () => {
       `}</style>
       
       <StatisticsDashboard />
-    </ProtectedRoute>
+    </AzureProtectedRoute>
   );
 };
 
