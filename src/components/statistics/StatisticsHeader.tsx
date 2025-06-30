@@ -24,12 +24,16 @@ export const StatisticsHeader = () => {
           </p>
         </div>
       </div>
-      <h1 style={{ 
-        fontSize: '3rem', 
-        fontWeight: 800, 
-        color: '#0077be',
-        marginBottom: '0.5rem'
-      }}>Recovery Point Data Intelligence</h1>
+      <img 
+        src="/lovable-uploads/90c1444e-a36a-4f0e-a3f4-78cc0c6d52bc.png"
+        alt="Recovery Point West Virginia Logo"
+        style={{ 
+          maxWidth: '600px', 
+          height: 'auto', 
+          margin: '0 auto 2rem auto', 
+          display: 'block' 
+        }}
+      />
       <p className="subtitle">Comprehensive Client Analysis | 7,232 Total Clients</p>
       <p style={{ color: '#94a3b8' }}>Data Analysis Date: June 30, 2025</p>
     </div>
