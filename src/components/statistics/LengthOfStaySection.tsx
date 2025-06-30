@@ -26,7 +26,7 @@ export const LengthOfStaySection = () => {
         <div className="metric-card">
           <span className="metric-trend trend-up">⬆</span>
           <div className="metric-value" style={{ color: '#4c51bf' }}>146.6</div>
-          <div className="metric-label">Avg Days (&gt;30 Day Stays)</div>
+          <div className="metric-label">Avg Days (>30 Day Stays)</div>
           <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>3,781 clients</p>
         </div>
         
