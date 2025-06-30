@@ -5,6 +5,7 @@ import { StoryList } from './StoryList';
 import { StoryForm } from './StoryForm';
 import { useAzureAuth } from '@/hooks/useAzureAuth';
 import { PhotoGallery } from './PhotoGallery';
+import { ChatAdmin } from './ChatAdmin';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -145,10 +146,11 @@ export const AdminPanel = () => {
         <h1 className="text-3xl font-bold mb-8">Content Management System</h1>
         
         <Tabs defaultValue="stories" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="stories">Stories</TabsTrigger>
             <TabsTrigger value="create">Create Story</TabsTrigger>
             <TabsTrigger value="gallery">Photo Gallery</TabsTrigger>
+            <TabsTrigger value="chat">Chat Support</TabsTrigger>
           </TabsList>
           
           <TabsContent value="stories">
@@ -171,6 +173,10 @@ export const AdminPanel = () => {
           
           <TabsContent value="gallery">
             <PhotoGallery />
+          </TabsContent>
+          
+          <TabsContent value="chat">
+            <ChatAdmin />
           </TabsContent>
         </Tabs>
       </div>

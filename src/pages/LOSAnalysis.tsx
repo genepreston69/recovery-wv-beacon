@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -64,21 +63,6 @@ const LOSAnalysis = () => {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-6 mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-700 rounded-xl flex items-center justify-center shadow-lg">
-              <div className="text-white font-bold text-xl">RP</div>
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Recovery Point</h1>
-              <div className="flex items-center gap-4 text-sm text-gray-600">
-                <span className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  Data Current
-                </span>
-                <span>Last Updated: {new Date().toLocaleDateString()}</span>
-              </div>
-            </div>
-          </div>
           <h1 className="text-3xl font-bold text-gray-900">
             Length of Stay Analysis
           </h1>
@@ -154,8 +138,8 @@ const LOSAnalysis = () => {
                   <th className="p-3 text-center">Total Clients</th>
                   <th className="p-3 text-center">≤7 Days</th>
                   <th className="p-3 text-center">≤30 Days</th>
-                  <th className="p-3 text-center">{'>'}30 Days</th>
-                  <th className="p-3 text-center">{'>'}90 Days</th>
+                  <th className="p-3 text-center">>30 Days</th>
+                  <th className="p-3 text-center">>90 Days</th>
                 </tr>
               </thead>
               <tbody>
