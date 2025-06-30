@@ -285,6 +285,39 @@ const Statistics = () => {
         .badge.warning { background: #4da6d9; color: white; }
         .badge.success { background: #0077be; color: white; }
         
+        @media print {
+          .dashboard-content {
+            background: white !important;
+          }
+          
+          .metric-card {
+            box-shadow: none !important;
+            border: 1px solid #ccc !important;
+            page-break-inside: avoid;
+          }
+          
+          .chart-container {
+            box-shadow: none !important;
+            border: 1px solid #ccc !important;
+            page-break-inside: avoid;
+          }
+          
+          .section {
+            page-break-inside: avoid;
+          }
+          
+          .alert-box {
+            border: 1px solid #ccc !important;
+            background: #f9f9f9 !important;
+          }
+          
+          .insight-card {
+            border: 1px solid #ccc !important;
+            box-shadow: none !important;
+            page-break-inside: avoid;
+          }
+        }
+        
         @media (max-width: 768px) {
           .dashboard { padding: 1rem; }
           .header h1 { font-size: 2rem; }
