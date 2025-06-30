@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { StatisticsHeader } from '@/components/statistics/StatisticsHeader';
@@ -8,6 +7,7 @@ import { ChartSection } from '@/components/statistics/ChartSection';
 import { RiskStratification } from '@/components/statistics/RiskStratification';
 import { TraumaAnalysis } from '@/components/statistics/TraumaAnalysis';
 import { StrategicRecommendations } from '@/components/statistics/StrategicRecommendations';
+import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import { initializeCharts, animateMetrics, setupInteractivity } from '@/utils/chartUtils';
 
 const Statistics = () => {
@@ -28,7 +28,7 @@ const Statistics = () => {
   }, []);
 
   return (
-    <>
+    <ProtectedRoute>
       <Navigation />
       <style>{`
         * {
@@ -359,7 +359,7 @@ const Statistics = () => {
           <StrategicRecommendations />
         </div>
       </div>
-    </>
+    </ProtectedRoute>
   );
 };
 
