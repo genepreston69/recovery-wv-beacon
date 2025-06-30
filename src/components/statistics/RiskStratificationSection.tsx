@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export const RiskStratification = () => {
+export const RiskStratificationSection = () => {
   return (
     <div className="section">
       <div className="section-header">

@@ -6,7 +6,7 @@ export const StatisticsHeader = () => {
     <div className="header">
       <div style={{ marginBottom: '2rem' }}>
         <img 
-          src="https://pvxbkqdeyrhuumjtwgzm.supabase.co/storage/v1/object/public/story-images//RPWV%20Logo%20with%20transparent%20background.png" 
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" 
           alt="Recovery Point West Virginia" 
           style={{ maxWidth: '400px', height: 'auto', margin: '0 auto', display: 'block' }}
           onError={(e) => {
@@ -25,8 +25,8 @@ export const StatisticsHeader = () => {
         </div>
       </div>
       <h1>Long-Term Recovery Dashboard</h1>
-      <p className="subtitle">Comprehensive Client Analysis | 1,568 Total Clients</p>
-      <p style={{ color: '#94a3b8' }}>Data Analysis Date: June 26, 2025</p>
+      <p className="subtitle">Comprehensive Client Analysis | 7,232 Total Clients</p>
+      <p style={{ color: '#94a3b8' }}>Data Analysis Date: June 30, 2025</p>
     </div>
   );
 };

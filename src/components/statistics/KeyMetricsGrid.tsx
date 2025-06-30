@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export const KeyMetrics = () => {
+export const KeyMetricsGrid = () => {
   return (
     <div className="key-metrics">
       <div className="metric-card">
