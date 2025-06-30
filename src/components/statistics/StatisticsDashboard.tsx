@@ -302,40 +302,94 @@ export const StatisticsDashboard = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="demographics">Demographics</TabsTrigger>
-            <TabsTrigger value="program-insights">Program Insights</TabsTrigger>
+        <Tabs defaultValue="data-insights" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="data-insights">Data Insights</TabsTrigger>
+            <TabsTrigger value="length-of-stay">Length of Stay</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="overview">
-            <ExecutiveInsights />
-            <LengthOfStaySection />
-            
-            <div className="alert-box">
-              <span className="alert-icon">⚠️</span>
-              <div>
-                <strong>Critical Retention Challenge:</strong> 45.6% of clients leave within 30 days, with 24.5% departing in the first week. Early intervention and engagement strategies are urgently needed.
+          <TabsContent value="data-insights">
+            <Tabs defaultValue="overview" className="space-y-6">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="demographics">Demographics</TabsTrigger>
+                <TabsTrigger value="program-insights">Program Insights</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="overview">
+                <ExecutiveInsights />
+                <LengthOfStaySection />
+                
+                <div className="alert-box">
+                  <span className="alert-icon">⚠️</span>
+                  <div>
+                    <strong>Critical Retention Challenge:</strong> 45.6% of clients leave within 30 days, with 24.5% departing in the first week. Early intervention and engagement strategies are urgently needed.
+                  </div>
+                </div>
+                
+                <KeyMetricsGrid />
+                <ServiceGapsSection />
+                <LegalSystemSection />
+                <QualityOfLifeSection />
+                <RiskStratificationSection />
+                <TraumaFamilySection />
+                <ComprehensiveAbuseSection />
+                <StrategicRecommendationsSection />
+              </TabsContent>
+              
+              <TabsContent value="demographics">
+                <DemographicsSection />
+              </TabsContent>
+              
+              <TabsContent value="program-insights">
+                <ProgramInsightsSection />
+              </TabsContent>
+            </Tabs>
+          </TabsContent>
+          
+          <TabsContent value="length-of-stay">
+            <div className="space-y-6">
+              <LengthOfStaySection />
+              
+              <div className="alert-box">
+                <span className="alert-icon">📊</span>
+                <div>
+                  <strong>Length of Stay Analysis:</strong> Detailed breakdown of client retention patterns and their correlation with treatment outcomes.
+                </div>
+              </div>
+              
+              <div className="section">
+                <div className="section-header">
+                  <h2 className="section-title">Retention Metrics & Analysis</h2>
+                </div>
+                
+                <div className="key-metrics">
+                  <div className="metric-card">
+                    <div className="metric-value">24.5%</div>
+                    <div className="metric-label">Leave in First Week</div>
+                    <div className="metric-trend trend-down">📉</div>
+                  </div>
+                  
+                  <div className="metric-card">
+                    <div className="metric-value">45.6%</div>
+                    <div className="metric-label">Leave Within 30 Days</div>
+                    <div className="metric-trend trend-down">📉</div>
+                  </div>
+                  
+                  <div className="metric-card">
+                    <div className="metric-value">146.6</div>
+                    <div className="metric-label">Avg Days (30+ Day Stays)</div>
+                    <div className="metric-trend trend-up">📈</div>
+                  </div>
+                  
+                  <div className="metric-card">
+                    <div className="metric-value">54.4%</div>
+                    <div className="metric-label">Stay Beyond 30 Days</div>
+                    <div className="metric-trend trend-up">📈</div>
+                  </div>
+                </div>
               </div>
             </div>
-            
-            <KeyMetricsGrid />
-            <ServiceGapsSection />
-            <LegalSystemSection />
-            <QualityOfLifeSection />
-            <RiskStratificationSection />
-            <TraumaFamilySection />
-            <ComprehensiveAbuseSection />
-            <StrategicRecommendationsSection />
-          </TabsContent>
-          
-          <TabsContent value="demographics">
-            <DemographicsSection />
-          </TabsContent>
-          
-          <TabsContent value="program-insights">
-            <ProgramInsightsSection />
           </TabsContent>
         </Tabs>
       </div>
