@@ -39,7 +39,7 @@ const Statistics = () => {
         .header h1 {
           font-size: 3rem;
           font-weight: 800;
-          background: linear-gradient(45deg, #4c51bf, #667eea, #9f7aea);
+          background: linear-gradient(45deg, #0077be, #4da6d9, #80c7ea);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -69,7 +69,7 @@ const Statistics = () => {
         
         .metric-card {
           background: linear-gradient(135deg, #ffffff, #f8fafc);
-          border: 1px solid #667eea;
+          border: 1px solid #4da6d9;
           border-radius: 16px;
           padding: 2rem;
           position: relative;
@@ -77,12 +77,12 @@ const Statistics = () => {
           transition: all 0.3s ease;
           cursor: pointer;
           transform: translateY(-5px);
-          box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 119, 190, 0.2);
         }
         
         .metric-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 15px 40px rgba(79, 70, 229, 0.3);
+          box-shadow: 0 15px 40px rgba(0, 119, 190, 0.3);
         }
         
         .metric-card::before {
@@ -92,7 +92,7 @@ const Statistics = () => {
           left: 0;
           right: 0;
           height: 3px;
-          background: linear-gradient(90deg, #4c51bf, #667eea, #9f7aea);
+          background: linear-gradient(90deg, #0077be, #4da6d9, #80c7ea);
           transform: scaleX(1);
           transition: transform 0.3s ease;
           transform-origin: left;
@@ -102,7 +102,7 @@ const Statistics = () => {
           font-size: 2.5rem;
           font-weight: 700;
           margin-bottom: 0.5rem;
-          color: #4c51bf;
+          color: #0077be;
         }
         
         .metric-label {
@@ -119,9 +119,9 @@ const Statistics = () => {
           font-size: 1.5rem;
         }
         
-        .trend-up { color: #4c51bf; }
-        .trend-down { color: #9f7aea; }
-        .trend-neutral { color: #667eea; }
+        .trend-up { color: #0077be; }
+        .trend-down { color: #80c7ea; }
+        .trend-neutral { color: #4da6d9; }
         
         .section {
           margin-bottom: 3rem;
@@ -143,7 +143,7 @@ const Statistics = () => {
         }
         
         .action-button {
-          background: linear-gradient(135deg, #4c51bf, #667eea);
+          background: linear-gradient(135deg, #0077be, #4da6d9);
           color: white;
           border: none;
           padding: 0.7rem 1.5rem;
@@ -158,7 +158,7 @@ const Statistics = () => {
         
         .action-button:hover {
           transform: scale(1.05);
-          box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+          box-shadow: 0 5px 20px rgba(77, 166, 217, 0.4);
         }
         
         .chart-container {
@@ -188,18 +188,18 @@ const Statistics = () => {
         }
         
         .risk-card.high {
-          border-color: #9f7aea;
-          background: linear-gradient(135deg, #ffffff, #faf5ff);
+          border-color: #80c7ea;
+          background: linear-gradient(135deg, #ffffff, #f0f9ff);
         }
         
         .risk-card.medium {
-          border-color: #667eea;
-          background: linear-gradient(135deg, #ffffff, #f0f4ff);
+          border-color: #4da6d9;
+          background: linear-gradient(135deg, #ffffff, #f0f9ff);
         }
         
         .risk-card.low {
-          border-color: #4c51bf;
-          background: linear-gradient(135deg, #ffffff, #ebf4ff);
+          border-color: #0077be;
+          background: linear-gradient(135deg, #ffffff, #f0f9ff);
         }
         
         .progress-bar {
@@ -213,14 +213,14 @@ const Statistics = () => {
         
         .progress-fill {
           height: 100%;
-          background: linear-gradient(90deg, #4c51bf, #667eea);
+          background: linear-gradient(90deg, #0077be, #4da6d9);
           transition: width 0.5s ease;
           border-radius: 4px;
         }
         
         .alert-box {
-          background: linear-gradient(135deg, #faf5ff, #f3e8ff);
-          border: 1px solid #9f7aea;
+          background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+          border: 1px solid #80c7ea;
           border-radius: 12px;
           padding: 1.5rem;
           margin-bottom: 2rem;
@@ -231,7 +231,7 @@ const Statistics = () => {
         
         .alert-icon {
           font-size: 2rem;
-          color: #9f7aea;
+          color: #80c7ea;
         }
         
         .insights-grid {
@@ -251,7 +251,7 @@ const Statistics = () => {
         }
         
         .insight-card h3 {
-          color: #4c51bf;
+          color: #0077be;
           margin-bottom: 1rem;
           font-size: 1.3rem;
         }
@@ -281,9 +281,9 @@ const Statistics = () => {
           font-weight: 600;
         }
         
-        .badge.critical { background: #9f7aea; color: white; }
-        .badge.warning { background: #667eea; color: white; }
-        .badge.success { background: #4c51bf; color: white; }
+        .badge.critical { background: #80c7ea; color: white; }
+        .badge.warning { background: #4da6d9; color: white; }
+        .badge.success { background: #0077be; color: white; }
         
         @media (max-width: 768px) {
           .dashboard { padding: 1rem; }
@@ -297,7 +297,7 @@ const Statistics = () => {
           width: 20px;
           height: 20px;
           border: 3px solid #e2e8f0;
-          border-top-color: #4c51bf;
+          border-top-color: #0077be;
           border-radius: 50%;
           animation: spin 1s linear infinite;
         }

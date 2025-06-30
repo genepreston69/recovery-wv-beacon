@@ -17,9 +17,9 @@ export const StatisticsHeader = () => {
         />
         <div id="text-logo" style={{ display: 'none', textAlign: 'center' }}>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#2d3748', marginBottom: 0 }}>
-            RECOVERY<span style={{ color: '#1e40af' }}>POINT</span>
+            RECOVERY<span style={{ color: '#0077be' }}>POINT</span>
           </h2>
-          <p style={{ color: '#1e40af', fontSize: '1.2rem', letterSpacing: '0.3em', marginTop: '-0.5rem' }}>
+          <p style={{ color: '#0077be', fontSize: '1.2rem', letterSpacing: '0.3em', marginTop: '-0.5rem' }}>
             WEST VIRGINIA
           </p>
         </div>
@@ -27,7 +27,7 @@ export const StatisticsHeader = () => {
       <h1 style={{ 
         fontSize: '3rem', 
         fontWeight: 800, 
-        color: '#1e40af',
+        color: '#0077be',
         marginBottom: '0.5rem'
       }}>Recovery Point Data Intelligence</h1>
       <p className="subtitle">Comprehensive Client Analysis | 7,232 Total Clients</p>
