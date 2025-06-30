@@ -1,6 +1,4 @@
-
 import React from 'react';
-import { ChartSection } from './ChartSection';
 
 export const TraumaAnalysis = () => {
   return (
