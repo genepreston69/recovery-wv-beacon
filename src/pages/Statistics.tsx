@@ -69,20 +69,20 @@ const Statistics = () => {
         
         .metric-card {
           background: linear-gradient(135deg, #ffffff, #f8fafc);
-          border: 1px solid #e2e8f0;
+          border: 1px solid #667eea;
           border-radius: 16px;
           padding: 2rem;
           position: relative;
           overflow: hidden;
           transition: all 0.3s ease;
           cursor: pointer;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
         }
         
         .metric-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
-          border-color: #667eea;
+          transform: translateY(-8px);
+          box-shadow: 0 15px 40px rgba(79, 70, 229, 0.3);
         }
         
         .metric-card::before {
@@ -93,13 +93,9 @@ const Statistics = () => {
           right: 0;
           height: 3px;
           background: linear-gradient(90deg, #4c51bf, #667eea, #9f7aea);
-          transform: scaleX(0);
+          transform: scaleX(1);
           transition: transform 0.3s ease;
           transform-origin: left;
-        }
-        
-        .metric-card:hover::before {
-          transform: scaleX(1);
         }
         
         .metric-value {
