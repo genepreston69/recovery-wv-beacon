@@ -38,11 +38,15 @@ export const StatisticsDashboard = () => {
     const Chart = window.Chart;
     if (!Chart) return;
 
-    // Chart configurations with recovery colors
+    // Chart configurations with print optimization
     Chart.defaults.color = '#64748b';
     Chart.defaults.borderColor = '#e2e8f0';
     
-    // LOS Chart
+    // Print-friendly chart defaults
+    Chart.defaults.font.family = 'Times New Roman, serif';
+    Chart.defaults.plugins.legend.labels.usePointStyle = true;
+    
+    // LOS Chart with print optimization
     const losCtx = (document.getElementById('losChart') as HTMLCanvasElement)?.getContext('2d');
     if (losCtx) {
       new Chart(losCtx, {
@@ -59,19 +63,37 @@ export const StatisticsDashboard = () => {
               'rgba(102, 126, 234, 0.8)',
               'rgba(76, 81, 191, 0.8)'
             ],
-            borderRadius: 8,
-            borderWidth: 0
+            borderColor: [
+              'rgba(0, 0, 0, 1)',
+              'rgba(0, 0, 0, 1)',
+              'rgba(0, 0, 0, 1)',
+              'rgba(0, 0, 0, 1)',
+              'rgba(0, 0, 0, 1)'
+            ],
+            borderWidth: 1
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          animation: {
+            duration: 0 // Disable animations for print
+          },
           plugins: {
-            legend: { display: false },
+            legend: { 
+              display: false,
+              labels: {
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                }
+              }
+            },
             title: {
               display: true,
               text: 'Client Retention by Length of Stay',
-              font: { size: 16, weight: 'normal' },
+              font: { size: 16, weight: 'normal', family: 'Times New Roman, serif' },
+              color: '#000',
               padding: { bottom: 20 }
             },
             tooltip: {
@@ -89,23 +111,33 @@ export const StatisticsDashboard = () => {
               beginAtZero: true,
               max: 2500,
               grid: {
-                color: 'rgba(0, 0, 0, 0.05)'
+                color: 'rgba(0, 0, 0, 0.2)'
               },
               ticks: {
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                },
                 callback: function(value: any) {
                   return value.toLocaleString();
                 }
               }
             },
             x: {
-              grid: { display: false }
+              grid: { display: false },
+              ticks: {
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                }
+              }
             }
           }
         }
       });
     }
     
-    // Legal Status Chart
+    // Legal Status Chart with print optimization
     const legalCtx = (document.getElementById('legalChart') as HTMLCanvasElement)?.getContext('2d');
     if (legalCtx) {
       new Chart(legalCtx, {
@@ -120,19 +152,35 @@ export const StatisticsDashboard = () => {
               'rgba(102, 126, 234, 0.8)',
               'rgba(76, 81, 191, 0.8)'
             ],
-            borderRadius: 8,
-            borderWidth: 0
+            borderColor: [
+              'rgba(0, 0, 0, 1)',
+              'rgba(0, 0, 0, 1)',
+              'rgba(0, 0, 0, 1)'
+            ],
+            borderWidth: 1
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          animation: {
+            duration: 0
+          },
           plugins: {
-            legend: { display: false },
+            legend: { 
+              display: false,
+              labels: {
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                }
+              }
+            },
             title: {
               display: true,
               text: 'Current Legal Status',
-              font: { size: 16, weight: 'normal' },
+              font: { size: 16, weight: 'normal', family: 'Times New Roman, serif' },
+              color: '#000',
               padding: { bottom: 20 }
             }
           },
@@ -141,23 +189,33 @@ export const StatisticsDashboard = () => {
               beginAtZero: true,
               max: 100,
               ticks: {
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                },
                 callback: function(value: any) {
                   return value + '%';
                 }
               },
               grid: {
-                color: 'rgba(0, 0, 0, 0.05)'
+                color: 'rgba(0, 0, 0, 0.2)'
               }
             },
             x: {
-              grid: { display: false }
+              grid: { display: false },
+              ticks: {
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                }
+              }
             }
           }
         }
       });
     }
     
-    // Quality of Life Chart
+    // Quality of Life Chart with print optimization
     const qolCtx = (document.getElementById('qolChart') as HTMLCanvasElement)?.getContext('2d');
     if (qolCtx) {
       new Chart(qolCtx, {
@@ -174,32 +232,44 @@ export const StatisticsDashboard = () => {
           datasets: [{
             label: 'Good/Excellent',
             data: [52.7, 64.4, 83.4, 29.5, 69.0, 50],
-            borderColor: 'rgba(76, 81, 191, 0.8)',
-            backgroundColor: 'rgba(76, 81, 191, 0.2)',
-            pointBackgroundColor: 'rgba(76, 81, 191, 1)',
+            borderColor: 'rgba(0, 0, 0, 1)',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            pointBackgroundColor: 'rgba(0, 0, 0, 1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(76, 81, 191, 1)'
+            pointHoverBorderColor: 'rgba(0, 0, 0, 1)'
           }, {
             label: 'Poor/Terrible',
             data: [13.2, 8.1, 6.4, 36.4, 12.7, 25],
-            borderColor: 'rgba(159, 122, 234, 0.8)',
-            backgroundColor: 'rgba(159, 122, 234, 0.2)',
-            pointBackgroundColor: 'rgba(159, 122, 234, 1)',
+            borderColor: 'rgba(100, 100, 100, 1)',
+            backgroundColor: 'rgba(100, 100, 100, 0.1)',
+            pointBackgroundColor: 'rgba(100, 100, 100, 1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(159, 122, 234, 1)'
+            pointHoverBorderColor: 'rgba(100, 100, 100, 1)'
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          animation: {
+            duration: 0
+          },
           plugins: {
             title: {
               display: true,
               text: 'Quality of Life Indicators',
-              font: { size: 16, weight: 'normal' },
+              font: { size: 16, weight: 'normal', family: 'Times New Roman, serif' },
+              color: '#000',
               padding: { bottom: 20 }
+            },
+            legend: {
+              labels: {
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                }
+              }
             }
           },
           scales: {
@@ -208,15 +278,25 @@ export const StatisticsDashboard = () => {
               max: 100,
               ticks: {
                 stepSize: 20,
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                },
                 callback: function(value: any) {
                   return value + '%';
                 }
               },
               grid: {
-                color: 'rgba(0, 0, 0, 0.1)'
+                color: 'rgba(0, 0, 0, 0.2)'
               },
               angleLines: {
-                color: 'rgba(0, 0, 0, 0.1)'
+                color: 'rgba(0, 0, 0, 0.2)'
+              },
+              pointLabels: {
+                color: '#000',
+                font: {
+                  family: 'Times New Roman, serif'
+                }
               }
             }
           }
