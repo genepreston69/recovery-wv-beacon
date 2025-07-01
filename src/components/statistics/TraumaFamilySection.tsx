@@ -14,7 +14,7 @@ export const TraumaFamilySection = () => {
       <div className="alert-box" style={{ background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderColor: '#f59e0b' }}>
         <span className="alert-icon" style={{ color: '#f59e0b' }}>👨‍👩‍👧‍👦</span>
         <div>
-          <strong>Children at Risk:</strong> Among the 1,207 surveyed clients, analysis reveals significant numbers of children impacted by their parents' recovery journey. Comprehensive family support services are essential for breaking intergenerational cycles.
+          <strong>Children at Risk:</strong> Among the 1,207 surveyed clients, analysis reveals 932+ children impacted by their parents' recovery journey. Comprehensive family support services are essential for breaking intergenerational cycles.
         </div>
       </div>
       
