@@ -18,36 +18,6 @@ export const TraumaFamilySection = () => {
         </div>
       </div>
       
-      <div className="key-metrics" style={{ marginBottom: '2rem' }}>
-        <div className="metric-card">
-          <span className="metric-trend trend-down">⬇</span>
-          <div className="metric-value" style={{ color: '#667eea' }}>33.6%</div>
-          <div className="metric-label">Report Abuse History</div>
-          <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>Of 1,207 surveyed</p>
-        </div>
-        
-        <div className="metric-card">
-          <span className="metric-trend trend-neutral">➡</span>
-          <div className="metric-value no-animate" style={{ color: '#667eea' }}>1,207</div>
-          <div className="metric-label">CLIENTS SURVEYED</div>
-          <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>16.7% of total</p>
-        </div>
-        
-        <div className="metric-card">
-          <span className="metric-trend trend-down">⬇</span>
-          <div className="metric-value" style={{ color: '#9f7aea' }}>69.6%</div>
-          <div className="metric-label">Father Present</div>
-          <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>Among surveyed</p>
-        </div>
-        
-        <div className="metric-card">
-          <span className="metric-trend trend-down">⬇</span>
-          <div className="metric-value no-animate" style={{ color: '#9f7aea' }}>Data Gap</div>
-          <div className="metric-label">83.3% Not Assessed</div>
-          <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>6,025 clients</p>
-        </div>
-      </div>
-      
       <div className="insights-grid">
         <div className="insight-card">
           <h3>🔍 Intergenerational Trauma Patterns</h3>
