@@ -13,15 +13,15 @@ export const AzureAuthButton = () => {
 
   if (user) {
     return (
-      <div className="flex flex-col items-center gap-4 w-full">
-        <div className="flex items-center gap-2 text-center">
-          <User className="w-4 h-4" />
-          <span className="text-sm text-gray-600">
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-md">
+          <User className="w-4 h-4 text-gray-600" />
+          <span className="text-sm text-gray-700 font-medium">
             {user.name || user.username}
           </span>
         </div>
-        <Button variant="outline" onClick={signOut} className="w-full max-w-xs">
-          <LogOut className="w-4 h-4 mr-2" />
+        <Button variant="outline" onClick={signOut} size="sm">
+          <LogOut className="w-4 h-4 mr-1" />
           Sign Out
         </Button>
       </div>
@@ -29,7 +29,7 @@ export const AzureAuthButton = () => {
   }
 
   return (
-    <Button onClick={signIn} className="w-full max-w-xs">
+    <Button onClick={signIn} size="sm">
       <LogIn className="w-4 h-4 mr-2" />
       Sign in with Microsoft
     </Button>

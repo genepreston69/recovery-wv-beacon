@@ -32,18 +32,21 @@ export const Navigation = () => {
               )}
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             {isAuthenticated && (
               <Button 
                 variant="outline" 
                 size="sm"
                 onClick={() => window.location.href = '/admin'}
+                className="flex items-center gap-1"
               >
-                <Shield className="w-4 h-4 mr-1" />
+                <Shield className="w-4 h-4" />
                 Admin
               </Button>
             )}
-            <AzureAuthButton />
+            <div className="min-w-[200px] flex justify-end">
+              <AzureAuthButton />
+            </div>
           </div>
         </div>
       </div>
