@@ -6,7 +6,7 @@ import { loginRequest } from '@/config/msalConfig';
 import { useToast } from '@/hooks/use-toast';
 
 export const useAzureAuth = () => {
-  const { instance, accounts } = useMsal();
+  const { instance, accounts, inProgress } = useMsal();
   const [user, setUser] = useState<AccountInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -19,6 +19,12 @@ export const useAzureAuth = () => {
   }, [accounts]);
 
   const signIn = async () => {
+    // Check if there's already an interaction in progress
+    if (inProgress !== "none") {
+      console.log('Authentication interaction already in progress, skipping...');
+      return;
+    }
+
     try {
       setLoading(true);
       const loginResponse = await instance.loginPopup(loginRequest);
@@ -29,11 +35,14 @@ export const useAzureAuth = () => {
       });
     } catch (error: any) {
       console.error('Login error:', error);
-      toast({
-        title: "Sign in failed",
-        description: error.message || "An error occurred during sign in",
-        variant: "destructive",
-      });
+      // Only show error toast if it's not an interaction_in_progress error
+      if (error.errorCode !== 'interaction_in_progress') {
+        toast({
+          title: "Sign in failed",
+          description: error.message || "An error occurred during sign in",
+          variant: "destructive",
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -41,6 +50,7 @@ export const useAzureAuth = () => {
 
   const signOut = async () => {
     try {
+      setLoading(true);
       await instance.logoutPopup();
       setUser(null);
       toast({
@@ -54,12 +64,14 @@ export const useAzureAuth = () => {
         description: error.message || "An error occurred during sign out",
         variant: "destructive",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   return {
     user,
-    loading,
+    loading: loading || inProgress !== "none",
     signIn,
     signOut,
     isAuthenticated: !!user,
