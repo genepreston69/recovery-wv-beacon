@@ -26,8 +26,9 @@ export const useAzureAuth = () => {
     }
 
     try {
-      setLoading(true);
+      console.log('Starting sign in process...');
       const loginResponse = await instance.loginPopup(loginRequest);
+      console.log('Login successful:', loginResponse);
       setUser(loginResponse.account);
       toast({
         title: "Signed in successfully",
@@ -35,16 +36,14 @@ export const useAzureAuth = () => {
       });
     } catch (error: any) {
       console.error('Login error:', error);
-      // Only show error toast if it's not an interaction_in_progress error
-      if (error.errorCode !== 'interaction_in_progress') {
+      // Only show error toast if it's not an interaction_in_progress error or user cancellation
+      if (error.errorCode !== 'interaction_in_progress' && error.errorCode !== 'user_cancelled') {
         toast({
           title: "Sign in failed",
           description: error.message || "An error occurred during sign in",
           variant: "destructive",
         });
       }
-    } finally {
-      setLoading(false);
     }
   };
 
