@@ -70,7 +70,7 @@ export const useAzureAuth = () => {
 
   return {
     user,
-    loading: loading || inProgress !== "none",
+    loading: loading && inProgress === "startup",
     signIn,
     signOut,
     isAuthenticated: !!user,
