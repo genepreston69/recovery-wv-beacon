@@ -26,9 +26,6 @@ export const ExecutiveInsights = () => {
           <div style={{ padding: '1rem', background: 'white', borderRadius: '8px', borderLeft: '4px solid #80c7ea' }}>
             <strong style={{ color: '#80c7ea' }}>🧠 Trauma Prevalence:</strong> Among the 1,207 clients surveyed about abuse, 1 in 3 (33.6%) reported abuse histories, with 40.2% of survivors lacking treatment - highlighting the need for universal trauma screening.
           </div>
-          <div style={{ padding: '1rem', background: 'white', borderRadius: '8px', borderLeft: '4px solid #f59e0b' }}>
-            <strong style={{ color: '#f59e0b' }}>📋 Data Gap Alert:</strong> Only 16.7% of clients (1,207 of 7,232) have been surveyed about trauma, family history, and children. Expanding assessment coverage could reveal the true scope of intergenerational impact and treatment needs.
-          </div>
         </div>
       </div>
     </div>
