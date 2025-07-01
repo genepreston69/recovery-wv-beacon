@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export const TraumaFamilySection = () => {
@@ -29,7 +28,7 @@ export const TraumaFamilySection = () => {
         <div className="metric-card">
           <span className="metric-trend trend-neutral">➡</span>
           <div className="metric-value" style={{ color: '#667eea' }}>1,207</div>
-          <div className="metric-label">Clients Surveyed</div>
+          <div className="metric-label">CLIENTS SURVEYED</div>
           <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>16.7% of total</p>
         </div>
         
