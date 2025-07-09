@@ -6,7 +6,6 @@ export const ServiceGapsSection = () => {
     <div className="section">
       <div className="section-header">
         <h2 className="section-title">Service Gaps & Critical Needs</h2>
-        <button className="action-button">Export Report</button>
       </div>
       
       <div className="insights-grid">
