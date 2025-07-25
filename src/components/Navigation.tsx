@@ -28,6 +28,7 @@ export const Navigation = () => {
                 <>
                   <Link to="/statistics" className="text-gray-600 hover:text-blue-700 transition-colors">Data Insights</Link>
                   <Link to="/los-analysis" className="text-gray-600 hover:text-blue-700 transition-colors">LOS Analysis</Link>
+                  <Link to="/routes" className="text-gray-600 hover:text-blue-700 transition-colors">Routes</Link>
                 </>
               )}
             </div>
