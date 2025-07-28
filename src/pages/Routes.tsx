@@ -205,7 +205,7 @@ const RoutesDashboard = () => {
           loading={loading}
         />
         <KPICard
-          title="Miles Today"
+          title="Miles this Month To Date"
           value={todayMetrics ? formatNumber(todayMetrics.miles_today) : '—'}
           icon={Activity}
           trend={-3}
