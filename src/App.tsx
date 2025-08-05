@@ -17,6 +17,7 @@ import Intake from "./pages/Intake";
 import SuccessStory from "./pages/SuccessStory";
 import HelpLoved from "./pages/HelpLoved";
 import AuthCallback from "./pages/AuthCallback";
+import Policies from "./pages/Policies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/make-a-bed-campaign" element={<MakeABedCampaign />} />
             <Route path="/intake" element={<Intake />} />
             <Route path="/helploved" element={<HelpLoved />} />
+            <Route path="/policies" element={<Policies />} />
             <Route path="/success-story/:id" element={<SuccessStory />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

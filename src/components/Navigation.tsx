@@ -24,6 +24,7 @@ export const Navigation = () => {
             <div className="hidden md:flex space-x-6">
               <Link to="/" className="text-gray-600 hover:text-blue-700 transition-colors">Home</Link>
               <Link to="/recovery-dynamics" className="text-gray-600 hover:text-blue-700 transition-colors">Recovery Dynamics</Link>
+              <Link to="/policies" className="text-gray-600 hover:text-blue-700 transition-colors">Policies</Link>
               {isAuthenticated && (
                 <>
                   <Link to="/statistics" className="text-gray-600 hover:text-blue-700 transition-colors">Data Insights</Link>
