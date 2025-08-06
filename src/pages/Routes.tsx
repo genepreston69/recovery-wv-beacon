@@ -109,6 +109,16 @@ const RoutesDashboard = () => {
   // Load dashboard data
   const loadDashboardData = async () => {
     try {
+      // Log access to sensitive routes data
+      try {
+        await supabase.rpc('log_data_access', {
+          action_type: 'routes_dashboard_view',
+          table_name: 'routes_data',
+        });
+      } catch (logError) {
+        console.error('Error logging access:', logError);
+      }
+
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1000));
 

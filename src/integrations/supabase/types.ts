@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          ip_address: unknown | null
+          record_id: string | null
+          table_name: string
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          record_id?: string | null
+          table_name: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          record_id?: string | null
+          table_name?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       chat_messages: {
         Row: {
           content: string
@@ -85,243 +118,6 @@ export type Database = {
         }
         Relationships: []
       }
-      intakes: {
-        Row: {
-          address: string | null
-          allergies: string[] | null
-          children_custody: string | null
-          city: string | null
-          completed_steps: number[] | null
-          court_dates: string[] | null
-          created_at: string
-          current_legal_issues: string | null
-          current_living_situation: string | null
-          current_medications: string[] | null
-          current_mental_health_treatment: string | null
-          custody_details: string | null
-          date_of_birth: string | null
-          dependent_details: string | null
-          dependents: number | null
-          detox_needed: string | null
-          disability_details: string | null
-          disability_status: string | null
-          email: string | null
-          emergency_contact_name: string | null
-          emergency_contact_phone: string | null
-          emergency_contact_relationship: string | null
-          facility: string
-          family_contact_person: string | null
-          family_contact_phone: string | null
-          family_substance_abuse_history: string | null
-          family_support: string | null
-          first_name: string | null
-          form_status: string | null
-          frequency_of_use: string | null
-          hospitalization_details: string | null
-          housing_history: string | null
-          housing_stability: string | null
-          id: string
-          last_name: string | null
-          last_use_date: string | null
-          legal_details: string | null
-          medical_conditions: string[] | null
-          medication_allergies: string[] | null
-          medication_compliance: string | null
-          mental_health_conditions: string[] | null
-          mental_health_history: string | null
-          mental_health_provider: string | null
-          pending_charges: string | null
-          phone_number: string | null
-          prescription_medications: Json | null
-          previous_leaving_reason: string | null
-          previous_residency_date: string | null
-          previous_resident: string | null
-          previous_treatment: string | null
-          previous_treatment_details: string | null
-          primary_substance: string | null
-          probation_officer_contact: string | null
-          probation_officer_name: string | null
-          probation_parole: string | null
-          recent_hospitalizations: string | null
-          referral_date: string | null
-          referral_other_source: string | null
-          referral_source: string | null
-          sex_offender: string | null
-          signature_data: string | null
-          signature_date: string | null
-          social_security: string | null
-          state: string | null
-          submitted_at: string | null
-          substances_used: string[] | null
-          suicide_details: string | null
-          suicide_history: string | null
-          trauma_details: string | null
-          trauma_history: string | null
-          updated_at: string
-          user_id: string | null
-          violent_crime: string | null
-          violent_crime_details: string | null
-          withdrawal_history: string | null
-          zip_code: string | null
-        }
-        Insert: {
-          address?: string | null
-          allergies?: string[] | null
-          children_custody?: string | null
-          city?: string | null
-          completed_steps?: number[] | null
-          court_dates?: string[] | null
-          created_at?: string
-          current_legal_issues?: string | null
-          current_living_situation?: string | null
-          current_medications?: string[] | null
-          current_mental_health_treatment?: string | null
-          custody_details?: string | null
-          date_of_birth?: string | null
-          dependent_details?: string | null
-          dependents?: number | null
-          detox_needed?: string | null
-          disability_details?: string | null
-          disability_status?: string | null
-          email?: string | null
-          emergency_contact_name?: string | null
-          emergency_contact_phone?: string | null
-          emergency_contact_relationship?: string | null
-          facility: string
-          family_contact_person?: string | null
-          family_contact_phone?: string | null
-          family_substance_abuse_history?: string | null
-          family_support?: string | null
-          first_name?: string | null
-          form_status?: string | null
-          frequency_of_use?: string | null
-          hospitalization_details?: string | null
-          housing_history?: string | null
-          housing_stability?: string | null
-          id?: string
-          last_name?: string | null
-          last_use_date?: string | null
-          legal_details?: string | null
-          medical_conditions?: string[] | null
-          medication_allergies?: string[] | null
-          medication_compliance?: string | null
-          mental_health_conditions?: string[] | null
-          mental_health_history?: string | null
-          mental_health_provider?: string | null
-          pending_charges?: string | null
-          phone_number?: string | null
-          prescription_medications?: Json | null
-          previous_leaving_reason?: string | null
-          previous_residency_date?: string | null
-          previous_resident?: string | null
-          previous_treatment?: string | null
-          previous_treatment_details?: string | null
-          primary_substance?: string | null
-          probation_officer_contact?: string | null
-          probation_officer_name?: string | null
-          probation_parole?: string | null
-          recent_hospitalizations?: string | null
-          referral_date?: string | null
-          referral_other_source?: string | null
-          referral_source?: string | null
-          sex_offender?: string | null
-          signature_data?: string | null
-          signature_date?: string | null
-          social_security?: string | null
-          state?: string | null
-          submitted_at?: string | null
-          substances_used?: string[] | null
-          suicide_details?: string | null
-          suicide_history?: string | null
-          trauma_details?: string | null
-          trauma_history?: string | null
-          updated_at?: string
-          user_id?: string | null
-          violent_crime?: string | null
-          violent_crime_details?: string | null
-          withdrawal_history?: string | null
-          zip_code?: string | null
-        }
-        Update: {
-          address?: string | null
-          allergies?: string[] | null
-          children_custody?: string | null
-          city?: string | null
-          completed_steps?: number[] | null
-          court_dates?: string[] | null
-          created_at?: string
-          current_legal_issues?: string | null
-          current_living_situation?: string | null
-          current_medications?: string[] | null
-          current_mental_health_treatment?: string | null
-          custody_details?: string | null
-          date_of_birth?: string | null
-          dependent_details?: string | null
-          dependents?: number | null
-          detox_needed?: string | null
-          disability_details?: string | null
-          disability_status?: string | null
-          email?: string | null
-          emergency_contact_name?: string | null
-          emergency_contact_phone?: string | null
-          emergency_contact_relationship?: string | null
-          facility?: string
-          family_contact_person?: string | null
-          family_contact_phone?: string | null
-          family_substance_abuse_history?: string | null
-          family_support?: string | null
-          first_name?: string | null
-          form_status?: string | null
-          frequency_of_use?: string | null
-          hospitalization_details?: string | null
-          housing_history?: string | null
-          housing_stability?: string | null
-          id?: string
-          last_name?: string | null
-          last_use_date?: string | null
-          legal_details?: string | null
-          medical_conditions?: string[] | null
-          medication_allergies?: string[] | null
-          medication_compliance?: string | null
-          mental_health_conditions?: string[] | null
-          mental_health_history?: string | null
-          mental_health_provider?: string | null
-          pending_charges?: string | null
-          phone_number?: string | null
-          prescription_medications?: Json | null
-          previous_leaving_reason?: string | null
-          previous_residency_date?: string | null
-          previous_resident?: string | null
-          previous_treatment?: string | null
-          previous_treatment_details?: string | null
-          primary_substance?: string | null
-          probation_officer_contact?: string | null
-          probation_officer_name?: string | null
-          probation_parole?: string | null
-          recent_hospitalizations?: string | null
-          referral_date?: string | null
-          referral_other_source?: string | null
-          referral_source?: string | null
-          sex_offender?: string | null
-          signature_data?: string | null
-          signature_date?: string | null
-          social_security?: string | null
-          state?: string | null
-          submitted_at?: string | null
-          substances_used?: string[] | null
-          suicide_details?: string | null
-          suicide_history?: string | null
-          trauma_details?: string | null
-          trauma_history?: string | null
-          updated_at?: string
-          user_id?: string | null
-          violent_crime?: string | null
-          violent_crime_details?: string | null
-          withdrawal_history?: string | null
-          zip_code?: string | null
-        }
-        Relationships: []
-      }
       profiles: {
         Row: {
           city: string
@@ -367,6 +163,72 @@ export type Database = {
           street_address?: string
           updated_at?: string
           zip_code?: string
+        }
+        Relationships: []
+      }
+      routes_data: {
+        Row: {
+          account_code: string | null
+          created_at: string | null
+          dropoff_address: string | null
+          dropoff_city: string | null
+          dropoff_name: string | null
+          dropoff_zip: string | null
+          first_name: string | null
+          id: number
+          last_name: string | null
+          miles: number | null
+          pickup_address: string | null
+          pickup_city: string | null
+          pickup_name: string | null
+          pickup_zip: string | null
+          ride_date: string
+          ride_time: number | null
+          sheet_year: string | null
+          total: number | null
+          trip_number: number | null
+        }
+        Insert: {
+          account_code?: string | null
+          created_at?: string | null
+          dropoff_address?: string | null
+          dropoff_city?: string | null
+          dropoff_name?: string | null
+          dropoff_zip?: string | null
+          first_name?: string | null
+          id?: number
+          last_name?: string | null
+          miles?: number | null
+          pickup_address?: string | null
+          pickup_city?: string | null
+          pickup_name?: string | null
+          pickup_zip?: string | null
+          ride_date: string
+          ride_time?: number | null
+          sheet_year?: string | null
+          total?: number | null
+          trip_number?: number | null
+        }
+        Update: {
+          account_code?: string | null
+          created_at?: string | null
+          dropoff_address?: string | null
+          dropoff_city?: string | null
+          dropoff_name?: string | null
+          dropoff_zip?: string | null
+          first_name?: string | null
+          id?: number
+          last_name?: string | null
+          miles?: number | null
+          pickup_address?: string | null
+          pickup_city?: string | null
+          pickup_name?: string | null
+          pickup_zip?: string | null
+          ride_date?: string
+          ride_time?: number | null
+          sheet_year?: string | null
+          total?: number | null
+          trip_number?: number | null
         }
         Relationships: []
       }
@@ -453,7 +315,259 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      v_account_summary: {
+        Row: {
+          account_code: string | null
+          active_months: number | null
+          avg_miles_per_ride: number | null
+          avg_revenue_per_ride: number | null
+          first_ride_date: string | null
+          last_ride_date: string | null
+          total_miles: number | null
+          total_revenue: number | null
+          total_rides: number | null
+          unique_riders: number | null
+        }
+        Relationships: []
+      }
+      v_city_metrics: {
+        Row: {
+          city: string | null
+          city_type: string | null
+          total_miles: number | null
+          total_revenue: number | null
+          trip_count: number | null
+          unique_accounts: number | null
+        }
+        Relationships: []
+      }
+      v_daily_metrics: {
+        Row: {
+          avg_miles: number | null
+          avg_revenue: number | null
+          ride_count: number | null
+          ride_date: string | null
+          total_miles: number | null
+          total_revenue: number | null
+          unique_accounts: number | null
+        }
+        Relationships: []
+      }
+      v_dashboard_mtd: {
+        Row: {
+          miles_mtd: number | null
+          revenue_mtd: number | null
+          rides_mtd: number | null
+          unique_accounts_mtd: number | null
+          unique_riders_mtd: number | null
+        }
+        Relationships: []
+      }
+      v_dashboard_today: {
+        Row: {
+          active_accounts_today: number | null
+          avg_miles_per_ride: number | null
+          avg_revenue_per_ride: number | null
+          avg_ride_time: number | null
+          miles_today: number | null
+          revenue_today: number | null
+          rides_today: number | null
+        }
+        Relationships: []
+      }
+      v_dashboard_week: {
+        Row: {
+          active_accounts_week: number | null
+          days_with_rides: number | null
+          miles_week: number | null
+          revenue_week: number | null
+          rides_week: number | null
+        }
+        Relationships: []
+      }
+      v_efficiency_metrics: {
+        Row: {
+          avg_speed_mph: number | null
+          revenue_per_mile: number | null
+          revenue_per_minute: number | null
+          ride_date: string | null
+          total_miles: number | null
+          total_rides: number | null
+          total_time_minutes: number | null
+        }
+        Relationships: []
+      }
+      v_hourly_distribution: {
+        Row: {
+          avg_revenue: number | null
+          hour_of_day: number | null
+          ride_count: number | null
+        }
+        Relationships: []
+      }
+      v_kpi_summary: {
+        Row: {
+          avg_revenue_per_ride_all_time: number | null
+          earliest_ride_date: string | null
+          latest_ride_date: string | null
+          total_accounts: number | null
+          total_dropoff_cities: number | null
+          total_miles_all_time: number | null
+          total_pickup_cities: number | null
+          total_revenue_all_time: number | null
+          total_rides_all_time: number | null
+          total_unique_riders: number | null
+        }
+        Relationships: []
+      }
+      v_monthly_trends: {
+        Row: {
+          active_days: number | null
+          avg_miles_per_ride: number | null
+          avg_revenue: number | null
+          avg_ride_time: number | null
+          month: string | null
+          month_date: string | null
+          ride_count: number | null
+          sheet_year: string | null
+          total_miles: number | null
+          total_revenue: number | null
+          unique_accounts: number | null
+        }
+        Relationships: []
+      }
+      v_popular_pickups: {
+        Row: {
+          active_days: number | null
+          common_destinations: string[] | null
+          pickup_address: string | null
+          pickup_city: string | null
+          pickup_count: number | null
+          pickup_name: string | null
+          pickup_zip: string | null
+          total_revenue: number | null
+          unique_accounts: number | null
+        }
+        Relationships: []
+      }
+      v_recent_rides: {
+        Row: {
+          account_code: string | null
+          dropoff_city: string | null
+          dropoff_name: string | null
+          miles: number | null
+          pickup_city: string | null
+          pickup_name: string | null
+          ride_date: string | null
+          ride_time: number | null
+          rider_name: string | null
+          total: number | null
+          trip_number: number | null
+        }
+        Relationships: []
+      }
+      v_rider_summary: {
+        Row: {
+          account_codes_used: number | null
+          accounts: string[] | null
+          avg_miles_per_ride: number | null
+          first_name: string | null
+          first_ride: string | null
+          last_name: string | null
+          last_ride: string | null
+          rider_name: string | null
+          total_cost: number | null
+          total_miles: number | null
+          total_rides: number | null
+        }
+        Relationships: []
+      }
+      v_route_analysis: {
+        Row: {
+          avg_miles: number | null
+          avg_revenue: number | null
+          avg_ride_time: number | null
+          dropoff_city: string | null
+          pickup_city: string | null
+          route: string | null
+          total_miles: number | null
+          total_revenue: number | null
+          trip_count: number | null
+          unique_accounts: number | null
+        }
+        Relationships: []
+      }
+      v_top_accounts_current_month: {
+        Row: {
+          account_code: string | null
+          miles_this_month: number | null
+          revenue_rank: number | null
+          revenue_this_month: number | null
+          rides_this_month: number | null
+        }
+        Relationships: []
+      }
+      v_trip_efficiency: {
+        Row: {
+          account_code: string | null
+          distance_category: string | null
+          miles: number | null
+          revenue_per_mile: number | null
+          ride_date: string | null
+          ride_time: number | null
+          speed_mph: number | null
+          total: number | null
+          trip_number: number | null
+        }
+        Insert: {
+          account_code?: string | null
+          distance_category?: never
+          miles?: number | null
+          revenue_per_mile?: never
+          ride_date?: string | null
+          ride_time?: number | null
+          speed_mph?: never
+          total?: number | null
+          trip_number?: number | null
+        }
+        Update: {
+          account_code?: string | null
+          distance_category?: never
+          miles?: number | null
+          revenue_per_mile?: never
+          ride_date?: string | null
+          ride_time?: number | null
+          speed_mph?: never
+          total?: number | null
+          trip_number?: number | null
+        }
+        Relationships: []
+      }
+      v_weekly_metrics: {
+        Row: {
+          avg_revenue_per_ride: number | null
+          ride_count: number | null
+          total_miles: number | null
+          total_revenue: number | null
+          unique_accounts: number | null
+          unique_riders: number | null
+          week_start: string | null
+        }
+        Relationships: []
+      }
+      v_yoy_comparison: {
+        Row: {
+          month_name: string | null
+          month_number: number | null
+          revenue_2023: number | null
+          revenue_2024: number | null
+          revenue_2025: number | null
+          rides_2023: number | null
+          rides_2024: number | null
+          rides_2025: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
@@ -462,6 +576,10 @@ export type Database = {
           _role: Database["public"]["Enums"]["app_role"]
         }
         Returns: boolean
+      }
+      log_data_access: {
+        Args: { action_type: string; table_name: string; record_id?: string }
+        Returns: undefined
       }
     }
     Enums: {

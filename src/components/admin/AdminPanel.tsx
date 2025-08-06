@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { StoryList } from './StoryList';
 import { StoryForm } from './StoryForm';
-import { useAzureAuth } from '@/hooks/useAzureAuth';
+import { useAdminAuth } from '@/hooks/useAdminAuth';
 import { PhotoGallery } from './PhotoGallery';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -30,13 +30,13 @@ export const AdminPanel = () => {
     featured_image_url: '',
     is_published: false
   });
-  const { isAuthenticated, user } = useAzureAuth();
+  const { user, isAdmin, loading } = useAdminAuth();
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAdmin) {
       fetchStories();
     }
-  }, [isAuthenticated]);
+  }, [isAdmin]);
 
   const fetchStories = async () => {
     try {
@@ -128,12 +128,41 @@ export const AdminPanel = () => {
     });
   };
 
-  if (!isAuthenticated) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mb-2">Authentication Required</h2>
-          <p className="text-gray-600">Please sign in to access the admin panel.</p>
+        <div className="text-center max-w-md mx-auto p-8">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <h2 className="text-xl font-semibold mb-2">Verifying Access...</h2>
+          <p className="text-gray-600">Please wait while we verify your admin privileges.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md mx-auto p-8 bg-white rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold mb-4">Authentication Required</h2>
+          <p className="text-gray-600 mb-6">Please sign in to access the admin panel.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md mx-auto p-8 bg-white rounded-lg shadow-lg border border-red-200">
+          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.728-.833-2.498 0L4.316 15.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+          <h2 className="text-xl font-semibold mb-4 text-red-800">Access Denied</h2>
+          <p className="text-gray-600 mb-6">You don't have administrator privileges to access this panel.</p>
+          <p className="text-sm text-gray-500">Contact your system administrator if you believe this is an error.</p>
         </div>
       </div>
     );
