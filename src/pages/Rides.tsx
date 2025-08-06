@@ -114,6 +114,31 @@ const Rides = () => {
         return;
       }
 
+      console.log('Transportation request saved:', data.id);
+
+      // Send email notifications
+      try {
+        const emailResponse = await supabase.functions.invoke('send-ride-notification', {
+          body: {
+            requestId: data.id
+          }
+        });
+
+        if (emailResponse.error) {
+          console.error('Error sending email notifications:', emailResponse.error);
+          // Don't fail the whole request if email fails
+          toast({
+            title: "Request Submitted",
+            description: "Your request was saved, but email notifications may have failed. We will still process your request.",
+            variant: "destructive",
+          });
+        } else {
+          console.log('Email notifications sent successfully');
+        }
+      } catch (emailError) {
+        console.error('Email notification error:', emailError);
+      }
+
       // Log the successful request submission
       await supabase.rpc('log_data_access', {
         action_type: 'transportation_request_submitted',
@@ -123,7 +148,7 @@ const Rides = () => {
 
       toast({
         title: "Request Submitted Successfully!",
-        description: "We will contact you within 24 hours to confirm your ride details.",
+        description: "We will contact you within 24 hours to confirm your ride details. You should also receive a confirmation email shortly.",
       });
 
       // Reset form after successful submission
