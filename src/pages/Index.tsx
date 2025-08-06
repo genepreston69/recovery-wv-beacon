@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { CrisisBar } from '@/components/CrisisBar';
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
 import { PathwaysSection } from '@/components/PathwaysSection';
@@ -53,7 +52,6 @@ const Index = () => {
 
   return (
     <>
-      <CrisisBar />
       <Navigation />
       <HeroSection 
         metrics={{
