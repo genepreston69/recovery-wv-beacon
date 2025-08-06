@@ -46,9 +46,6 @@ export const Navigation = () => {
                 Admin
               </Button>
             )}
-            <div className="min-w-[200px] flex justify-end">
-              <AzureAuthButton />
-            </div>
           </div>
         </div>
       </div>

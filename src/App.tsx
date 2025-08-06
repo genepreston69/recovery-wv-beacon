@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MsalProvider } from '@azure/msal-react';
 import { msalInstance } from '@/config/msalConfig';
+import { TopHeader } from '@/components/TopHeader';
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
 import Rides from "./pages/Rides";
@@ -30,7 +31,9 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
+          <div className="min-h-screen">
+            <TopHeader />
+            <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/admin" element={<Admin />} />
@@ -47,6 +50,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
