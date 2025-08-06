@@ -23,6 +23,7 @@ export const Navigation = () => {
             </Link>
             <div className="hidden md:flex space-x-6">
               <Link to="/" className="text-gray-600 hover:text-blue-700 transition-colors">Home</Link>
+              <Link to="/rides" className="text-gray-600 hover:text-blue-700 transition-colors">Rides</Link>
               <Link to="/recovery-dynamics" className="text-gray-600 hover:text-blue-700 transition-colors">Recovery Dynamics</Link>
               {isAuthenticated && (
                 <>

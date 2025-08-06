@@ -8,6 +8,7 @@ import { MsalProvider } from '@azure/msal-react';
 import { msalInstance } from '@/config/msalConfig';
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
+import Rides from "./pages/Rides";
 import Statistics from "./pages/Statistics";
 import RoutesPage from "./pages/Routes";
 import LOSAnalysis from "./pages/LOSAnalysis";
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/rides" element={<Rides />} />
             <Route path="/statistics" element={<Statistics />} />
             <Route path="/los-analysis" element={<LOSAnalysis />} />
             <Route path="/routes" element={<RoutesPage />} />
