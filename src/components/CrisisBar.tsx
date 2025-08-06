@@ -22,7 +22,7 @@ export const CrisisBar = () => {
   return (
     <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
-        <span className="font-semibold">Recovery Point West Virginia</span>
+        <span className="font-semibold">🚨 Need Help Now? Crisis Line: (304) 523-HOPE (4673)</span>
         <div className="flex gap-2">
           <Button 
             variant="outline" 
