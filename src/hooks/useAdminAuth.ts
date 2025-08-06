@@ -4,29 +4,29 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
 export const useAdminAuth = () => {
-  const { user, loading: azureLoading } = useAzureAuth();
+  const { user, supabaseUserId, loading: azureLoading } = useAzureAuth();
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
   useEffect(() => {
     const checkAdminRole = async () => {
-      if (!user) {
+      if (!user || !supabaseUserId) {
         setIsAdmin(false);
         setLoading(false);
         return;
       }
 
       try {
-        // Check if user has admin role in Supabase
+        // Check if user has admin role in Supabase using the Supabase user ID
         const { data, error } = await supabase
           .from('user_roles')
           .select('role')
-          .eq('user_id', user.localAccountId)
+          .eq('user_id', supabaseUserId)
           .eq('role', 'admin')
-          .single();
+          .maybeSingle();
 
-        if (error && error.code !== 'PGRST116') {
+        if (error) {
           console.error('Error checking admin role:', error);
           setIsAdmin(false);
         } else {
@@ -56,7 +56,7 @@ export const useAdminAuth = () => {
     if (!azureLoading) {
       checkAdminRole();
     }
-  }, [user, azureLoading, toast]);
+  }, [user, supabaseUserId, azureLoading, toast]);
 
   return {
     user,

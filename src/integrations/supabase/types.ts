@@ -369,21 +369,30 @@ export type Database = {
       }
       users: {
         Row: {
+          azure_id: string | null
           created_at: string | null
+          display_name: string | null
           email: string
           id: string
+          last_login: string | null
           profile: Json | null
         }
         Insert: {
+          azure_id?: string | null
           created_at?: string | null
+          display_name?: string | null
           email: string
           id?: string
+          last_login?: string | null
           profile?: Json | null
         }
         Update: {
+          azure_id?: string | null
           created_at?: string | null
+          display_name?: string | null
           email?: string
           id?: string
+          last_login?: string | null
           profile?: Json | null
         }
         Relationships: []
@@ -655,6 +664,10 @@ export type Database = {
       log_data_access: {
         Args: { action_type: string; table_name: string; record_id?: string }
         Returns: undefined
+      }
+      sync_azure_user: {
+        Args: { p_azure_id: string; p_email: string; p_display_name: string }
+        Returns: string
       }
     }
     Enums: {
