@@ -13,7 +13,7 @@ import RoutesPage from "./pages/Routes";
 import LOSAnalysis from "./pages/LOSAnalysis";
 import RecoveryDynamics from "./pages/RecoveryDynamics";
 import MakeABedCampaign from "./pages/MakeABedCampaign";
-import Intake from "./pages/Intake";
+
 import SuccessStory from "./pages/SuccessStory";
 import HelpLoved from "./pages/HelpLoved";
 import AuthCallback from "./pages/AuthCallback";
@@ -38,7 +38,7 @@ const App = () => (
             <Route path="/routes" element={<RoutesPage />} />
             <Route path="/recovery-dynamics" element={<RecoveryDynamics />} />
             <Route path="/make-a-bed-campaign" element={<MakeABedCampaign />} />
-            <Route path="/intake" element={<Intake />} />
+            
             <Route path="/helploved" element={<HelpLoved />} />
             <Route path="/policies" element={<Policies />} />
             <Route path="/success-story/:id" element={<SuccessStory />} />
