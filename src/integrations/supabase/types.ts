@@ -271,6 +271,81 @@ export type Database = {
         }
         Relationships: []
       }
+      transportation_requests: {
+        Row: {
+          additional_info: string | null
+          appointment_date: string
+          appointment_time: string
+          assigned_driver_id: string | null
+          created_at: string
+          dest_address: string
+          dest_name: string
+          dest_phone: string | null
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          medicaid_id: string | null
+          notes: string | null
+          phone: string
+          pickup_address: string
+          pickup_name: string | null
+          pickup_phone: string | null
+          request_date: string
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          additional_info?: string | null
+          appointment_date: string
+          appointment_time: string
+          assigned_driver_id?: string | null
+          created_at?: string
+          dest_address: string
+          dest_name: string
+          dest_phone?: string | null
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          medicaid_id?: string | null
+          notes?: string | null
+          phone: string
+          pickup_address: string
+          pickup_name?: string | null
+          pickup_phone?: string | null
+          request_date: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          additional_info?: string | null
+          appointment_date?: string
+          appointment_time?: string
+          assigned_driver_id?: string | null
+          created_at?: string
+          dest_address?: string
+          dest_name?: string
+          dest_phone?: string | null
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          medicaid_id?: string | null
+          notes?: string | null
+          phone?: string
+          pickup_address?: string
+          pickup_name?: string | null
+          pickup_phone?: string | null
+          request_date?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string | null
