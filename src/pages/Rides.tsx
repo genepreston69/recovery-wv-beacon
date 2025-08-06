@@ -193,11 +193,7 @@ const Rides = () => {
             <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg">
               <div className="text-center">
                 <CardTitle className="text-3xl font-semibold mb-2">Transportation Request</CardTitle>
-                <p className="text-lg opacity-90 mb-4">Recovery is Possible - We're Here to Help You Get There</p>
-                <div className="bg-white/15 backdrop-blur-sm rounded-lg p-3 inline-flex items-center gap-2">
-                  <Phone className="w-5 h-5" />
-                  <span className="font-medium">🆘 Need Help Now? Crisis Line: (304) 523-HOPE (4673)</span>
-                </div>
+                <p className="text-lg opacity-90">Recovery is Possible - We're Here to Help You Get There</p>
               </div>
             </CardHeader>
 
