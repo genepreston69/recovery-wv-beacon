@@ -81,14 +81,14 @@ const Rides = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary to-primary-dark">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <Card className="shadow-2xl">
             {/* Header */}
-            <CardHeader className="bg-gradient-to-r from-primary to-primary-dark text-white rounded-t-lg">
+            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg">
               <div className="text-center">
                 <CardTitle className="text-3xl font-semibold mb-2">Transportation Request</CardTitle>
                 <p className="text-lg opacity-90 mb-4">Recovery is Possible - We're Here to Help You Get There</p>
@@ -101,9 +101,9 @@ const Rides = () => {
 
             <CardContent className="p-8">
               {/* Important Notice */}
-              <div className="bg-blue-50 border-l-4 border-primary rounded-r-lg p-4 mb-8">
+              <div className="bg-blue-50 border-l-4 border-blue-600 rounded-r-lg p-4 mb-8">
                 <div className="flex items-start">
-                  <AlertTriangle className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" />
+                  <AlertTriangle className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
                   <div>
                     <p className="text-sm text-gray-700">
                       <strong>Important:</strong> Please submit your transportation request at least 24 hours in advance when possible. All rides are subject to availability and our service area.
@@ -115,7 +115,7 @@ const Rides = () => {
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Personal Information Section */}
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-primary border-b-2 border-blue-100 pb-2">
+                  <h2 className="text-xl font-semibold text-blue-700 border-b-2 border-blue-100 pb-2">
                     Personal Information
                   </h2>
                   
@@ -200,7 +200,7 @@ const Rides = () => {
 
                 {/* Appointment Information Section */}
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-primary border-b-2 border-blue-100 pb-2">
+                  <h2 className="text-xl font-semibold text-blue-700 border-b-2 border-blue-100 pb-2">
                     Appointment Details
                   </h2>
                   
@@ -234,7 +234,7 @@ const Rides = () => {
 
                 {/* Pickup Location Section */}
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-primary border-b-2 border-blue-100 pb-2">
+                  <h2 className="text-xl font-semibold text-blue-700 border-b-2 border-blue-100 pb-2">
                     Pickup Location
                   </h2>
                   
@@ -281,7 +281,7 @@ const Rides = () => {
 
                 {/* Destination Location Section */}
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-primary border-b-2 border-blue-100 pb-2">
+                  <h2 className="text-xl font-semibold text-blue-700 border-b-2 border-blue-100 pb-2">
                     Destination Location
                   </h2>
                   
@@ -329,7 +329,7 @@ const Rides = () => {
 
                 {/* Additional Information Section */}
                 <div className="space-y-6">
-                  <h2 className="text-xl font-semibold text-primary border-b-2 border-blue-100 pb-2">
+                  <h2 className="text-xl font-semibold text-blue-700 border-b-2 border-blue-100 pb-2">
                     Additional Information
                   </h2>
                   
@@ -351,7 +351,7 @@ const Rides = () => {
                   <Button 
                     type="submit" 
                     size="lg"
-                    className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white px-10 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-10 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                   >
                     Submit Transportation Request
                   </Button>
